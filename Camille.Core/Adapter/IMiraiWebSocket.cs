@@ -1,5 +1,6 @@
 ﻿using Camille.Core.Models.MiraiWebSocket;
 
+
 namespace Camille.Core.Adapter;
 
 /// <summary>

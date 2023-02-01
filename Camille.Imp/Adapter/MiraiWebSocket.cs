@@ -4,6 +4,7 @@ using System.Reactive.Subjects;
 using Camille.Core.Adapter;
 using Camille.Core.Models.MiraiWebSocket;
 using Camille.Logger;
+using Manganese.Text;
 using Websocket.Client;
 
 namespace Camille.Imp.Adapter;
@@ -11,7 +12,7 @@ namespace Camille.Imp.Adapter;
 /// <summary>
 /// <see cref="IMiraiWebSocket"/>功能实现， 提供与mirai建立连接， 接受事件与消息的功能.
 /// </summary>
-public partial class MiraiWebSocket : IMiraiWebSocket
+public class MiraiWebSocket : IMiraiWebSocket
 {
     public MiraiWebSocket(ILogger logger)
     {
@@ -31,6 +32,11 @@ public partial class MiraiWebSocket : IMiraiWebSocket
     /// Ws断开连接时推送消息
     /// </summary>
     public Subject<WebSocketCloseStatus> OnWsDisconnect { get; } = new();
+    
+    /// <summary>
+    /// 当Ws接收到数据时推送消息 
+    /// </summary>
+    public Subject<string> OnWsReceiveMsg { get; } = new();
 
     #endregion
 
@@ -52,17 +58,23 @@ public partial class MiraiWebSocket : IMiraiWebSocket
 
             await MiraiWebsocketClient.StartOrFail();
 
+            // 当连接断开时推送事件
             MiraiWebsocketClient.DisconnectionHappened.Subscribe(x =>
             {
                 OnWsDisconnect.OnNext(x.CloseStatus ?? WebSocketCloseStatus.Empty);
             });
 
+            // 当接收到消息时推送事件
             MiraiWebsocketClient.MessageReceived
                 // 因为Mirai-Http发送过来的数据都是文本格式，所以在这里过滤文本消息
                 .Where(x => x.MessageType == WebSocketMessageType.Text)
                 .Subscribe(message =>
                 {
-                    var data = message.Text.Fetch
+                    if (message.Text.IsNullOrEmpty())
+                    {
+                        return;
+                    }
+                    OnWsReceiveMsg.OnNext(message.Text);
                 });
         }
         catch (Exception e)
@@ -72,7 +84,7 @@ public partial class MiraiWebSocket : IMiraiWebSocket
                 return;
             }
 
-            Logger.Error("create MiraiWebSocket error", e);
+            Logger.Error("on MiraiWebSocket connect error", e);
         }
     }
 }
