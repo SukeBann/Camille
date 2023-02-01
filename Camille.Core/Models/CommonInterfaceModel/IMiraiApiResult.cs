@@ -1,17 +1,17 @@
-﻿using Camille.Core.Enum.Mirai;
+﻿using Camille.Core.Enum.CommonInterfaceEnum;
 
-namespace Camille.Core.Models.MiraiApi;
+namespace Camille.Core.Models.CommonInterfaceModel;
 
 /// <summary>
 /// Mirai通用接口 返回结果的基础定义
 /// </summary>
-public interface IMiraiApiResult<T> where T : IMiraiApiData
+public interface IMiraiApiResult<T>
 {
     /// <summary>
     /// 状态码
     /// </summary>
     public MiraiApiStateCode Code { get; set; }
-    
+
     /// <summary>
     /// 信息
     /// </summary>

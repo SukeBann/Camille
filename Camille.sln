@@ -1,8 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Camille.Core", "Camille.Core\Camille.Core.csproj", "{33FB1980-222C-43CE-882C-E08203EBBAA4}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Camille.Core", "Camille.Core\Camille.Core.csproj", "{33FB1980-222C-43CE-882C-E08203EBBAA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Camille.Imp", "Camille.Imp\Camille.Imp.csproj", "{9B0C0EFC-B0B7-45F7-93B2-BF53F0C16EA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Camille.Imp", "Camille.Imp\Camille.Imp.csproj", "{9B0C0EFC-B0B7-45F7-93B2-BF53F0C16EA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Camille.Logger", "Camille.Logger\Camille.Logger.csproj", "{FD949B90-3120-4291-B05C-96030C085F4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Camille.Client", "Camille.Client\Camille.Client.csproj", "{DBEF61DB-460D-487F-ABDA-3B669294AD82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Camille.Shared", "Camille.Shared\Camille.Shared.csproj", "{52E077A8-457B-4D6F-BCCA-BC5553BA476B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +27,23 @@ Global
 		{9B0C0EFC-B0B7-45F7-93B2-BF53F0C16EA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B0C0EFC-B0B7-45F7-93B2-BF53F0C16EA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B0C0EFC-B0B7-45F7-93B2-BF53F0C16EA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD949B90-3120-4291-B05C-96030C085F4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD949B90-3120-4291-B05C-96030C085F4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD949B90-3120-4291-B05C-96030C085F4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD949B90-3120-4291-B05C-96030C085F4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBEF61DB-460D-487F-ABDA-3B669294AD82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBEF61DB-460D-487F-ABDA-3B669294AD82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBEF61DB-460D-487F-ABDA-3B669294AD82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBEF61DB-460D-487F-ABDA-3B669294AD82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52E077A8-457B-4D6F-BCCA-BC5553BA476B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52E077A8-457B-4D6F-BCCA-BC5553BA476B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52E077A8-457B-4D6F-BCCA-BC5553BA476B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52E077A8-457B-4D6F-BCCA-BC5553BA476B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD9647F1-178E-426E-893B-CE1EBF5F0C1B}
 	EndGlobalSection
 EndGlobal

@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Camille.Core\Camille.Core.csproj" />
+        <ProjectReference Include="..\Camille.Core\Camille.Core.csproj" />
     </ItemGroup>
 
 </Project>
