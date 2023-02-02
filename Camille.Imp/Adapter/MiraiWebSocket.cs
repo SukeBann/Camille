@@ -28,24 +28,15 @@ public class MiraiWebSocket : IMiraiWebSocket
     /// </summary>
     private WebsocketClient MiraiWebsocketClient { get; set; }
 
-    /// <summary>
-    /// Ws断开连接时推送消息
-    /// </summary>
+    /// <inheritdoc/>
     public Subject<WebSocketCloseStatus> OnWsDisconnect { get; } = new();
     
-    /// <summary>
-    /// 当Ws接收到数据时推送消息 
-    /// </summary>
+    /// <inheritdoc/>
     public Subject<string> OnWsReceiveMsg { get; } = new();
 
     #endregion
 
-    /// <summary>
-    /// ws创建连接
-    /// </summary>
-    /// <param name="connectData">连接参数</param>
-    /// <param name="cancellationToken">取消令牌</param>
-    /// <returns></returns>
+    /// <inheritdoc/> 
     public async Task CreateConnection(IMiraiWebSocketConnectData connectData,
         CancellationToken cancellationToken)
     {

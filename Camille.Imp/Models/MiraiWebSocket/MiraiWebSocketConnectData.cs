@@ -30,7 +30,7 @@ public class MiraiWebSocketConnectData: IMiraiWebSocketConnectData
         ConnectChannelType = connectChannelType;
         VerifyKey = verifyKey;
         SessionKey = sessionKey;
-        Qq = qq;
+        QQ = qq;
         
         ConnectionMode = ConnectionMode.Reconnect;
     }
@@ -53,7 +53,7 @@ public class MiraiWebSocketConnectData: IMiraiWebSocketConnectData
         IpAddress = ipAddress;
         ConnectChannelType = connectChannelType;
         VerifyKey = verifyKey;
-        Qq = qq;
+        QQ = qq;
 
         ConnectionMode = ConnectionMode.CreateNew;
     }
@@ -67,7 +67,7 @@ public class MiraiWebSocketConnectData: IMiraiWebSocketConnectData
         get
         {
             var connectString = $"ws://{IpAddress}:{Port}/{ConnectChannelType.GetContentText()}"
-                .SetQueryParam("qq", Qq);
+                .SetQueryParam("qq", QQ);
 
             if (SessionKey is not null)
             {
@@ -86,5 +86,5 @@ public class MiraiWebSocketConnectData: IMiraiWebSocketConnectData
     
     public string? SessionKey { get; set; }
     
-    public long Qq { get; set; }
+    public long QQ { get; set; }
 }

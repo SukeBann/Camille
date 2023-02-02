@@ -48,7 +48,7 @@ public interface IMiraiWebSocketConnectData
     /// <summary>
     ///  绑定的账号, singleMode 模式下为空, 非 singleMode 下新建连接不可为空
     /// </summary>
-    public long Qq { get; set; }
+    public long QQ { get; set; }
 
     #endregion
 }

@@ -21,7 +21,7 @@ public interface ICommonApi
     /// 获取登录账号
     /// </summary>
     /// <returns></returns>
-    public IMiraiApiResult<IMiraiApiData> GetLoginQqList();
+    public IMiraiApiResult<IMiraiApiData> GetLoginQQList();
 
     #endregion
 
