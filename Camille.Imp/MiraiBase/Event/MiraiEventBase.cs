@@ -12,6 +12,6 @@ public class MiraiEventBase : IMiraiEvent
 {
     /// <inheritdoc/>
     [JsonProperty("type")]
-    [System.Text.Json.Serialization.JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(StringEnumConverter))]
     public virtual MiraiEventType EventType { get; set; }
 }
