@@ -15,8 +15,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="MiraiBase\Event\Classified\ApplicationEvent" />
-      <Folder Include="MiraiBase\Event\Classified\CommandEvent" />
       <Folder Include="MiraiBase\Event\Classified\OtherClientEvent" />
     </ItemGroup>
 
