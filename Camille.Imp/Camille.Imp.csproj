@@ -7,15 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Camille.Core\Camille.Core.csproj" />
+        <ProjectReference Include="..\Camille.Core\Camille.Core.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Manganese" Version="1.2.9" />
+        <PackageReference Include="Manganese" Version="1.2.9"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="MiraiBase\Event\Classified\OtherClientEvent" />
+        <Folder Include="MiraiBase\Event\Classified\OtherClientEvent"/>
     </ItemGroup>
 
 </Project>

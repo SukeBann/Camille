@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Camille.Core\Camille.Core.csproj" />
-      <ProjectReference Include="..\Camille.Imp\Camille.Imp.csproj" />
+        <ProjectReference Include="..\Camille.Core\Camille.Core.csproj"/>
+        <ProjectReference Include="..\Camille.Imp\Camille.Imp.csproj"/>
     </ItemGroup>
 
 </Project>
