@@ -1,6 +1,6 @@
 using Camille.Core.Enum.MiraiBaseEnum;
 
-namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
+namespace Camille.Imp.MiraiBase.Event.Classified.OtherClientEvent;
 
 public class OtherClientOfflineEvent : MiraiEventBase
 {
