@@ -10,6 +10,9 @@ public class BotOnlineEvent: MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.BotOnlineEvent;
 
+    /// <summary>
+    /// bot的qq
+    /// </summary>
     [JsonProperty("qq")]
     public long QQ { get; set; }
 }

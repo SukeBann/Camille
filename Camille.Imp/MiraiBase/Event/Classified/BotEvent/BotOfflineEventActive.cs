@@ -10,6 +10,9 @@ public class BotOfflineEventActive: MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.BotOfflineEventActive;
 
+    /// <summary>
+    /// bot的qq
+    /// </summary>
     [JsonProperty("qq")]
     public long QQ { get; set; }
 }
