@@ -3,12 +3,12 @@
 namespace Camille.Core.MiraiBase;
 
 /// <summary>
-/// 消息链的基本定义
+/// 收到的消息的基本定义
 /// </summary>
-public interface IMiraiMessageChain
+public interface IMiraiMessageReceived
 {
     /// <summary>
     /// 消息链类型
     /// </summary>
-    public MiraiMsgChainType MsgChainType { get; set; }
+    public MiraiReceiveMsgType ReceiveMsgType { get; set; }
 }

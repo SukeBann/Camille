@@ -5,9 +5,9 @@ using Newtonsoft.Json.Converters;
 namespace Camille.Core.MiraiBase;
 
 /// <summary>
-/// 消息链内消息的类型
+/// 消息链内基础消息类型定义
 /// </summary>
-public interface IMiraiMessage
+public interface IMiraiBasicMessage
 {
     /// <summary>
     /// 消息类型

@@ -3,7 +3,7 @@
 namespace Camille.Core.Enum.MiraiBaseEnum;
 
 /// <summary>
-/// Mirai消息链内的消息类型
+/// Mirai消息链内的基础消息类型
 /// https://docs.mirai.mamoe.net/mirai-api-http/api/MessageType.html#%E6%B6%88%E6%81%AF%E7%B1%BB%E5%9E%8B
 /// </summary>
 public enum MiraiMsgType

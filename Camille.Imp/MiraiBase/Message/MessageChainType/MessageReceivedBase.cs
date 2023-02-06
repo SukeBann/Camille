@@ -8,11 +8,11 @@ namespace Camille.Imp.MiraiBase.Message.MessageChainType;
 /// <summary>
 /// 消息链基础类
 /// </summary>
-public class MessageChainBase: IMiraiMessageChain
+public record MessageReceivedBase: IMiraiMessageReceived
 {
     [JsonProperty("type")]
     [JsonConverter(typeof(StringEnumConverter))]
-    public virtual MiraiMsgChainType MsgChainType { get; set; }
+    public virtual MiraiReceiveMsgType ReceiveMsgType { get; set; }
     
     /// <summary>
     /// 消息链内容体
