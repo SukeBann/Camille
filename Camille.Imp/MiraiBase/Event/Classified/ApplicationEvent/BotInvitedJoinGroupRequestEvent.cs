@@ -21,25 +21,25 @@ public class BotInvitedJoinGroupRequestEvent : MiraiEventBase
     /// </summary>
     [JsonProperty("fromId")]
     public long FromId { get; set; }
-    
+
     /// <summary>
     /// 邀请人(好友)的昵称
     /// </summary>
     [JsonProperty("nick")]
     public long Nick { get; set; }
-    
+
     /// <summary>
     /// 被邀请进入的群号
     /// </summary>
     [JsonProperty("groupId")]
     public long GroupId { get; set; }
-    
+
     /// <summary>
     /// 被邀请进入的群名称
     /// </summary>
     [JsonProperty("groupName")]
     public long GroupName { get; set; }
-    
+
     /// <summary>
     /// 邀请信息
     /// </summary>

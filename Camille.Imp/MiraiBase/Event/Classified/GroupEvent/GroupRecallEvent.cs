@@ -31,7 +31,7 @@ public class GroupRecallEvent : MiraiEventBase
     /// </summary>
     [JsonProperty("group")]
     public Group Group { get; set; }
-    
+
     /// <summary>
     /// 撤回消息的操作者, 为null则为bot的操作
     /// </summary>

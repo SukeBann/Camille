@@ -10,19 +10,19 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 public class GroupAllowConfessTalkEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.GroupAllowConfessTalkEvent;
-    
+
     /// <summary>
     /// 原本坦白说状态是否开启
     /// </summary>
     [JsonProperty("origin")]
     public bool Origin { get; set; }
-    
+
     /// <summary>
     /// 当前坦白说状态是否开启
     /// </summary>
     [JsonProperty("current")]
     public bool Current { get; set; }
-    
+
     /// <summary>
     /// 坦白说发生改变的群信息
     /// </summary>

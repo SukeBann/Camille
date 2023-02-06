@@ -19,7 +19,7 @@ public class FriendNickChangedEvent : MiraiEventBase
     /// <summary>
     /// 事件类型
     /// </summary>
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.FriendNickChangedEvent;   
+    public override MiraiEventType EventType { get; set; } = MiraiEventType.FriendNickChangedEvent;
 
     /// <summary>
     ///     发出此事件的好友

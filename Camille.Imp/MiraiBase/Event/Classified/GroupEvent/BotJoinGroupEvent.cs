@@ -15,8 +15,8 @@ public class BotJoinGroupEvent : MiraiEventBase
     /// 加入的群的信息
     /// </summary>
     [JsonProperty("group")]
-    public Group Group { get; set; } 
-    
+    public Group Group { get; set; }
+
     /// <summary>
     /// 如果是被邀请入群的, 则为邀请人的信息, 否则为null
     /// </summary>

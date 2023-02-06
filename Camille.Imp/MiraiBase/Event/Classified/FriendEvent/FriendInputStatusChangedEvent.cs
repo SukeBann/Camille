@@ -26,5 +26,6 @@ public class FriendInputStatusChangedEvent : MiraiEventBase
     /// <summary>
     /// 好友信息
     /// </summary>
-    [JsonProperty("friend")] public Friend Friend { get; set; }
+    [JsonProperty("friend")]
+    public Friend Friend { get; set; }
 }

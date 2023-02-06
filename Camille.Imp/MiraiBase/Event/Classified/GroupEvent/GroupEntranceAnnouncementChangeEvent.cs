@@ -10,13 +10,13 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 public class GroupEntranceAnnouncementChangeEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.GroupEntranceAnnouncementChangeEvent;
-    
+
     /// <summary>
     /// 原公告
     /// </summary>
     [JsonProperty("origin")]
     public string Origin { get; set; }
-    
+
     /// <summary>
     /// 新公告
     /// </summary>
@@ -27,7 +27,7 @@ public class GroupEntranceAnnouncementChangeEvent : MiraiEventBase
     /// 入群公告发生改变的群信息
     [JsonProperty("group")]
     public Group Group { get; set; }
-    
+
     /// <summary>
     /// 操作者, 当为null时为bot操作
     /// </summary>

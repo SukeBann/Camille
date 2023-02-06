@@ -10,25 +10,25 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 public class GroupAllowAnonymousChatEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.GroupAllowAnonymousChatEvent;
-    
+
     /// <summary>
     /// 原本匿名状态是否开启
     /// </summary>
     [JsonProperty("origin")]
     public bool Origin { get; set; }
-    
+
     /// <summary>
     /// 现在匿名状态是否开启
     /// </summary>
     [JsonProperty("current")]
     public bool Current { get; set; }
-    
+
     /// <summary>
     /// 匿名状态发生改变的群信息
     /// </summary>
     [JsonProperty("group")]
     public Group Group { get; set; }
-    
+
     /// <summary>
     /// 操作者, 当为null时为bot操作
     /// </summary>

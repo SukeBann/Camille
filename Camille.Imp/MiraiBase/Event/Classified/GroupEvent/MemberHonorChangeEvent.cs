@@ -10,7 +10,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 public class MemberHonorChangeEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.MemberHonorChangeEvent;
-    
+
     /// <summary>
     /// 群称号改动的群员的信息
     /// </summary>

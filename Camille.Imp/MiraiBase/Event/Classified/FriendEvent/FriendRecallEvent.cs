@@ -21,13 +21,13 @@ public class FriendRecallEvent : MiraiEventBase
     /// </summary>
     [JsonProperty("messageId")]
     public int MessageId { get; set; }
-    
+
     /// <summary>
     /// 原消息发送时间戳
     /// </summary>
     [JsonProperty("time")]
     public int Time { get; set; }
-    
+
     /// <summary>
     /// 好友QQ号或BotQQ号（谁撤回就是谁的）
     /// </summary>

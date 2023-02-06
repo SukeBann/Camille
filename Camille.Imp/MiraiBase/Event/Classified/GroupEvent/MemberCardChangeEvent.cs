@@ -22,7 +22,7 @@ public class MemberCardChangeEvent : MiraiEventBase
     /// </summary>
     [JsonProperty("current")]
     public string Current { get; set; }
-    
+
     /// <summary>
     /// 名片改动的群员的信息
     /// </summary>

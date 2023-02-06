@@ -4,11 +4,11 @@ using Newtonsoft.Json;
 namespace Camille.Imp.MiraiBase.Event.Classified.ApplicationEvent;
 
 /// <summary>
-///  用户入群申请（Bot需要有管理员权限才会收到）
+/// 添加好友申请
 /// </summary>
-public class MemberJoinRequestEvent : MiraiEventBase
+public class NewFriendRequestEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.MemberJoinRequestEvent;
+    public override MiraiEventType EventType { get; set; } = MiraiEventType.NewFriendRequestEvent;
 
     /// <summary>
     /// 事件标识, 响应该事件时的标识
@@ -23,25 +23,25 @@ public class MemberJoinRequestEvent : MiraiEventBase
     public long FromId { get; set; }
 
     /// <summary>
-    /// 申请人的昵称或群名片
+    /// 邀请人(好友)的昵称
     /// </summary>
     [JsonProperty("nick")]
     public long Nick { get; set; }
 
     /// <summary>
-    /// 申请人申请入群的群号
+    /// 申请人如果通过某个群添加好友，该项为该群群号；否则为0
     /// </summary>
     [JsonProperty("groupId")]
     public long GroupId { get; set; }
 
     /// <summary>
-    /// 被邀请进入的群名称
+    /// 是否为群内成员发送的申请 
     /// </summary>
-    [JsonProperty("groupName")]
-    public long GroupName { get; set; }
+    [JsonIgnore]
+    public bool ApplicationIsFromGroup { get; set; }
 
     /// <summary>
-    /// 申请信息
+    /// 邀请信息
     /// </summary>
     [JsonProperty("message")]
     public long Message { get; set; }
