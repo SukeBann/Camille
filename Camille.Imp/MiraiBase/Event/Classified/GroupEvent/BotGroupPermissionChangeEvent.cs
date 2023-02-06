@@ -7,7 +7,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// <summary>
 /// Bot在群里的权限被改变. 操作人一定是群主
 /// </summary>
-public class BotGroupPermissionChangeEvent : MiraiEventBase
+public record BotGroupPermissionChangeEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.BotGroupPermissionChangeEvent;
 

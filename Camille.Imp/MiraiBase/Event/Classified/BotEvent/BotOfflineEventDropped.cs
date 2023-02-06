@@ -6,7 +6,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.BotEvent;
 /// <summary>
 /// Bot被服务器断开或因网络问题而掉线
 /// </summary>
-public class BotOfflineEventDropped : MiraiEventBase
+public record BotOfflineEventDropped : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.BotOfflineEventDropped;
 

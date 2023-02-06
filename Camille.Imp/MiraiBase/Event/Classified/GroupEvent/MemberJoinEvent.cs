@@ -7,7 +7,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// <summary>
 /// 新人入群事件
 /// </summary>
-public class MemberJoinEvent : MiraiEventBase
+public record MemberJoinEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.MemberJoinEvent;
 

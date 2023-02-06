@@ -8,7 +8,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.CommandEvent;
 /// 命令被执行事件
 /// </summary>
 [Obsolete("NotImplement!!")]
-public class CommandExecutedEvent : MiraiEventBase
+public record CommandExecutedEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.CommandExecutedEvent;
 

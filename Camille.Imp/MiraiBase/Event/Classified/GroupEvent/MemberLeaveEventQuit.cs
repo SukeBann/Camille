@@ -7,7 +7,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// <summary>
 /// 成员主动离群（该成员不是Bot）
 /// </summary>
-public class MemberLeaveEventQuit : MiraiEventBase
+public record MemberLeaveEventQuit : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.MemberLeaveEventQuit;
 

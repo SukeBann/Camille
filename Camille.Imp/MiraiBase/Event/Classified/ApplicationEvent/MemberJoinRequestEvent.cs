@@ -6,7 +6,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.ApplicationEvent;
 /// <summary>
 ///  用户入群申请（Bot需要有管理员权限才会收到）
 /// </summary>
-public class MemberJoinRequestEvent : MiraiEventBase
+public record MemberJoinRequestEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.MemberJoinRequestEvent;
 

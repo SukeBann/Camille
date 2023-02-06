@@ -7,7 +7,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// <summary>
 /// 其他客户端上线
 /// </summary>
-public class OtherClientOnlineEvent : MiraiEventBase
+public record OtherClientOnlineEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.OtherClientOnlineEvent;
     

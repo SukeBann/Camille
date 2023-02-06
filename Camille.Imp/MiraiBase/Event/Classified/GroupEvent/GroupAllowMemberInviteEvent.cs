@@ -7,7 +7,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// <summary>
 /// 群允许群员邀请好友功能变更
 /// </summary>
-public class GroupAllowMemberInviteEvent : MiraiEventBase
+public record GroupAllowMemberInviteEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.GroupAllowMemberInviteEvent;
 

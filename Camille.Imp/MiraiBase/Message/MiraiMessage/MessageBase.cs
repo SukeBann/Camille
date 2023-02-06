@@ -3,15 +3,16 @@ using Camille.Core.MiraiBase;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Camille.Imp.MiraiBase.Event;
+namespace Camille.Imp.MiraiBase.Message.MiraiMessage;
 
 /// <summary>
-/// Mirai事件基类
+/// 消息类型基础类
 /// </summary>
-public record MiraiEventBase : IMiraiEvent
+public class MessageBase: IMiraiMessage
 {
     /// <inheritdoc/>
     [JsonProperty("type")]
     [JsonConverter(typeof(StringEnumConverter))]
-    public virtual MiraiEventType EventType { get; set; }
+    public virtual MiraiMsgType MiraiMsgType { get; set; }
+
 }

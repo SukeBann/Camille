@@ -7,7 +7,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.OtherClientEvent;
 /// <summary>
 /// 其他客户端离线
 /// </summary>
-public class OtherClientOfflineEvent : MiraiEventBase
+public record OtherClientOfflineEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.OtherClientOfflineEvent;
     

@@ -7,7 +7,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// <summary>
 /// 群名称发生改变
 /// </summary>
-public class GroupNameChangeEvent : MiraiEventBase
+public record GroupNameChangeEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.GroupNameChangeEvent;
 

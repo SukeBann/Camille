@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 
-public class GroupRecallEvent : MiraiEventBase
+public record GroupRecallEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.GroupRecallEvent;
 

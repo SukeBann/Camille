@@ -6,7 +6,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.FriendEvent;
 /// <summary>
 /// 好友会话中的消息被撤回
 /// </summary>
-public class FriendRecallEvent : MiraiEventBase
+public record FriendRecallEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.FriendRecallEvent;
 

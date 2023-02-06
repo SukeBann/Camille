@@ -7,7 +7,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// <summary>
 /// Bot加入了一个群
 /// </summary>
-public class BotJoinGroupEvent : MiraiEventBase
+public record BotJoinGroupEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.BotJoinGroupEvent;
 

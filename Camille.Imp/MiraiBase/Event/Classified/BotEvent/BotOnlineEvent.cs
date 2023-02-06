@@ -6,7 +6,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.BotEvent;
 /// <summary>
 /// Bot登录成功
 /// </summary>
-public class BotOnlineEvent : MiraiEventBase
+public record BotOnlineEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.BotOnlineEvent;
 

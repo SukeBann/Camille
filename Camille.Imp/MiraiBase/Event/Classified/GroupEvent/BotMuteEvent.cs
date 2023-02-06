@@ -7,7 +7,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// <summary>
 /// Bot被禁言
 /// </summary>
-public class BotMuteEvent : MiraiEventBase
+public record BotMuteEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.BotMuteEvent;
 

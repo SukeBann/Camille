@@ -7,7 +7,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// <summary>
 /// 群坦白说状态发生改变
 /// </summary>
-public class GroupAllowConfessTalkEvent : MiraiEventBase
+public record GroupAllowConfessTalkEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.GroupAllowConfessTalkEvent;
 

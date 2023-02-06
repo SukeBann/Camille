@@ -7,7 +7,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// <summary>
 /// 群成员被取消禁言事件（该成员不是Bot）
 /// </summary>
-public class MemberUnmuteEvent : MiraiEventBase
+public record MemberUnmuteEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.MemberUnmuteEvent;
 

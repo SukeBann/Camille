@@ -8,7 +8,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.FriendEvent;
 /// <summary>
 /// 好友输入状态变更
 /// </summary>
-public class FriendInputStatusChangedEvent : MiraiEventBase
+public record FriendInputStatusChangedEvent : MiraiEventBase
 {
     public FriendInputStatusChangedEvent(Friend friend)
     {

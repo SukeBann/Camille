@@ -7,7 +7,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// <summary>
 /// 群头衔改动（只有群主有操作限权）
 /// </summary>
-public class MemberSpecialTitleChangeEvent : MiraiEventBase
+public record MemberSpecialTitleChangeEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.MemberSpecialTitleChangeEvent;
 

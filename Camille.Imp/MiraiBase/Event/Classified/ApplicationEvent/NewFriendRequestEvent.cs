@@ -6,7 +6,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.ApplicationEvent;
 /// <summary>
 /// 添加好友申请
 /// </summary>
-public class NewFriendRequestEvent : MiraiEventBase
+public record NewFriendRequestEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; set; } = MiraiEventType.NewFriendRequestEvent;
 

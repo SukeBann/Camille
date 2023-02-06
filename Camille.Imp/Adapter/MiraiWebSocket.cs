@@ -26,7 +26,7 @@ public class MiraiWebSocket : IMiraiWebSocket
     /// <summary>
     /// ws 客户端, 每个qq一个单独的实例
     /// </summary>
-    private WebsocketClient MiraiWebsocketClient { get; set; }
+    private WebsocketClient? MiraiWebsocketClient { get; set; }
 
     /// <inheritdoc/>
     public Subject<WebSocketCloseStatus> OnWsDisconnect { get; } = new();
