@@ -6,7 +6,7 @@ namespace Camille.Imp.MiraiBase.Models;
 /// <summary>
 /// 事件或信息的来源
 /// </summary>
-public class MiraiSubject
+public record MiraiSubject
 {
     /// <summary>
     /// 来源的qq号或者群号

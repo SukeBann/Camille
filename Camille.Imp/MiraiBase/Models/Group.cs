@@ -7,7 +7,7 @@ namespace Camille.Imp.MiraiBase.Models;
 /// <summary>
 /// 群信息
 /// </summary>
-public class Group
+public record Group
 {
     /// <summary>
     /// 群号

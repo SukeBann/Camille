@@ -5,7 +5,7 @@ namespace Camille.Imp.MiraiBase.Models;
 /// <summary>
 /// 其他QQ客户端
 /// </summary>
-public class MiraiClient
+public record MiraiClient
 {
     /// <summary>
     /// 客户端标识

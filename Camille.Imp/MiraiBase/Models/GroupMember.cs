@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Camille.Imp.MiraiBase.Models;
 
-public class GroupMember
+public record GroupMember
 {
     /// <summary>
     /// 群员的QQ号

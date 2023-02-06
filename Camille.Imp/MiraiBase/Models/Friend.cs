@@ -5,7 +5,7 @@ namespace Camille.Imp.MiraiBase.Models;
 /// <summary>
 /// 好友数据
 /// </summary>
-public class Friend
+public record Friend
 {
     public Friend(int id, string nickname, string remark)
     {
