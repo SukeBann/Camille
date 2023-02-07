@@ -9,13 +9,6 @@ namespace Camille.Imp.MiraiBase.Event.Classified.FriendEvent;
 /// </summary>
 public record FriendNickChangedEvent : MiraiEventBase
 {
-    public FriendNickChangedEvent(Friend friend, string from, string to)
-    {
-        Friend = friend;
-        From = from;
-        To = to;
-    }
-
     /// <summary>
     /// 事件类型
     /// </summary>
@@ -25,7 +18,7 @@ public record FriendNickChangedEvent : MiraiEventBase
     ///     发出此事件的好友
     /// </summary>
     [JsonProperty("friend")]
-    public Friend Friend { get; set; }
+    public Account Friend { get; set; }
 
     /// <summary>
     /// 改变前的昵称

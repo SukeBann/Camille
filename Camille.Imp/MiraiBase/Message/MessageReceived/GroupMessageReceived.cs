@@ -2,15 +2,15 @@
 using Camille.Imp.MiraiBase.Models;
 using Newtonsoft.Json;
 
-namespace Camille.Imp.MiraiBase.Message.MessageChainType;
+namespace Camille.Imp.MiraiBase.Message.MessageReceived;
 
 /// <summary>
-/// 接收到的临时消息
+/// 接收到的群消息
 /// </summary>
-public record TempMessageReceived : MessageReceivedBase
+public record GroupMessageReceived: MessageReceivedBase
 {
     public override MiraiReceiveMsgType ReceiveMsgType { get; set; } = MiraiReceiveMsgType.GroupMessage;
-
+    
     /// <summary>
     /// 消息的发送者
     /// </summary>

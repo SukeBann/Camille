@@ -3,19 +3,22 @@ using Camille.Core.MiraiBase;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Camille.Imp.MiraiBase.Message.MessageChainType;
+namespace Camille.Imp.MiraiBase.Message;
 
 /// <summary>
-/// 消息链基础类
+/// 收到的同步消息基类
 /// </summary>
-public record MessageReceivedBase: IMiraiMessageReceived
+public record SyncMessageReceivedBase: IMiraiSyncMessageReceived
 {
+    /// <summary>
+    /// 同步消息类型
+    /// </summary>
     [JsonProperty("type")]
     [JsonConverter(typeof(StringEnumConverter))]
-    public virtual MiraiReceiveMsgType ReceiveMsgType { get; set; }
+    public virtual MiraiSyncMsgChainType SyncReceiveMsgType { get; set; }
     
     /// <summary>
-    /// 消息链内容体
+    /// 消息内容
     /// </summary>
     [JsonProperty("messageChain")]
     public MessageChain MessageChain { get; set; }

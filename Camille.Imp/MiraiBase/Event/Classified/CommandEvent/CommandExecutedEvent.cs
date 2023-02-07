@@ -28,7 +28,7 @@ public record CommandExecutedEvent : MiraiEventBase
     /// 发送命令的好友
     /// </summary>
     [JsonProperty("friend")]
-    public Friend Friend { get; set; }
+    public Account Friend { get; set; }
 
     /// <summary>
     /// 发送命令的群成员

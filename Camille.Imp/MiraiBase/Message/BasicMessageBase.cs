@@ -3,7 +3,7 @@ using Camille.Core.MiraiBase;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Camille.Imp.MiraiBase.Message.MiraiMessage;
+namespace Camille.Imp.MiraiBase.Message;
 
 /// <summary>
 /// 基础消息类型的父类

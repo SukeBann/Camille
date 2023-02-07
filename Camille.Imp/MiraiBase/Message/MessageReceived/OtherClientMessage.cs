@@ -2,7 +2,7 @@
 using Camille.Imp.MiraiBase.Models;
 using Newtonsoft.Json;
 
-namespace Camille.Imp.MiraiBase.Message.MessageChainType;
+namespace Camille.Imp.MiraiBase.Message.MessageReceived;
 
 public record OtherClientMessage : MessageReceivedBase
 {

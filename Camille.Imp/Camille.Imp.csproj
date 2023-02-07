@@ -16,6 +16,7 @@
 
     <ItemGroup>
         <Folder Include="MiraiBase\Event\Classified\OtherClientEvent" />
+        <Folder Include="MiraiBase\Message\MiraiMessage" />
     </ItemGroup>
 
 </Project>

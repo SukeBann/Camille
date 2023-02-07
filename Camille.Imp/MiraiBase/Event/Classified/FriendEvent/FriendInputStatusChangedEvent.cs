@@ -10,7 +10,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.FriendEvent;
 /// </summary>
 public record FriendInputStatusChangedEvent : MiraiEventBase
 {
-    public FriendInputStatusChangedEvent(Friend friend)
+    public FriendInputStatusChangedEvent(Account friend)
     {
         Friend = friend;
     }
@@ -27,5 +27,5 @@ public record FriendInputStatusChangedEvent : MiraiEventBase
     /// 好友信息
     /// </summary>
     [JsonProperty("friend")]
-    public Friend Friend { get; set; }
+    public Account Friend { get; set; }
 }

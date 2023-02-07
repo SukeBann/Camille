@@ -3,17 +3,10 @@
 namespace Camille.Imp.MiraiBase.Models;
 
 /// <summary>
-/// 好友数据
+/// 描述一个QQ账号的基本信息
 /// </summary>
-public record Friend
+public record Account
 {
-    public Friend(int id, string nickname, string remark)
-    {
-        Id = id;
-        Nickname = nickname;
-        Remark = remark;
-    }
-
     /// <summary>
     /// 好友qq号
     /// </summary>

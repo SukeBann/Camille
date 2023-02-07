@@ -1,5 +1,4 @@
 ﻿using Camille.Core.MiraiBase;
-using Camille.Imp.MiraiBase.Message.MiraiMessage;
 
 namespace Camille.Imp.MiraiBase.Message;
 

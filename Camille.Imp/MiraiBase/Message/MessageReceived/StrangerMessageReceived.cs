@@ -2,7 +2,7 @@
 using Camille.Imp.MiraiBase.Models;
 using Newtonsoft.Json;
 
-namespace Camille.Imp.MiraiBase.Message.MessageChainType;
+namespace Camille.Imp.MiraiBase.Message.MessageReceived;
 
 public record StrangerMessageReceived: MessageReceivedBase
 {
@@ -12,5 +12,5 @@ public record StrangerMessageReceived: MessageReceivedBase
     /// 消息发送者
     /// </summary>
     [JsonProperty("sender")]
-    public Friend Sender { get; set; }
+    public Account Sender { get; set; }
 }
