@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// </summary>
 public record GroupAllowConfessTalkEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.GroupAllowConfessTalkEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.GroupAllowConfessTalkEvent;
 
     /// <summary>
     /// 原本坦白说状态是否开启

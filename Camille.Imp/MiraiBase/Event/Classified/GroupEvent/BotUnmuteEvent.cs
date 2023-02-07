@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// </summary>
 public record BotUnmuteEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.BotUnmuteEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.BotUnmuteEvent;
 
     /// <summary>
     /// 产生该事件的操作者, 绝对是管理员或者群主

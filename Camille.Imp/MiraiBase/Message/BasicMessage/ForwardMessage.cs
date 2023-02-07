@@ -9,5 +9,5 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 // TODO 记得实现这个类型
 public record ForwardMessage : BasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; set; } = MiraiMsgType.ForwardMessage;
+    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.ForwardMessage;
 }

@@ -8,7 +8,7 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// </summary>
 public record At : BasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; set; } = MiraiMsgType.At;
+    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.At;
     
     /// <summary>
     /// 群员QQ号

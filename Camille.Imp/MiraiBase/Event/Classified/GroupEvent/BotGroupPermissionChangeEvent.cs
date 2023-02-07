@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// </summary>
 public record BotGroupPermissionChangeEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.BotGroupPermissionChangeEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.BotGroupPermissionChangeEvent;
 
     /// <summary>
     /// Bot在群中原来的权限

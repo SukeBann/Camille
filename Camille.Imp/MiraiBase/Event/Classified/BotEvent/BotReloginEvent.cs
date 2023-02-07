@@ -8,7 +8,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.BotEvent;
 /// </summary>
 public record BotReloginEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.BotReloginEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.BotReloginEvent;
 
     /// <summary>
     /// bot的qq

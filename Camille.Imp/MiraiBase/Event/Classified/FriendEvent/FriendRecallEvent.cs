@@ -8,7 +8,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.FriendEvent;
 /// </summary>
 public record FriendRecallEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.FriendRecallEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.FriendRecallEvent;
 
     /// <summary>
     /// 原消息发送者的QQ号 

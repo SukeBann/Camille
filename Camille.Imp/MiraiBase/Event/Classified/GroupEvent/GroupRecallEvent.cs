@@ -6,7 +6,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 
 public record GroupRecallEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.GroupRecallEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.GroupRecallEvent;
 
     /// <summary>
     /// 原消息发送者的QQ号 

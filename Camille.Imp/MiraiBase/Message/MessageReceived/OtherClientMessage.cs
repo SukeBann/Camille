@@ -6,7 +6,7 @@ namespace Camille.Imp.MiraiBase.Message.MessageReceived;
 
 public record OtherClientMessage : MessageReceivedBase
 {
-    public override MiraiReceiveMsgType ReceiveMsgType { get; set; } = MiraiReceiveMsgType.OtherClientMessage;
+    public override MiraiReceiveMsgType ReceiveMsgType { get; init; } = MiraiReceiveMsgType.OtherClientMessage;
 
     /// <summary>
     /// 发送者(其他客户端)

@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// </summary>
 public record MemberUnmuteEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.MemberUnmuteEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.MemberUnmuteEvent;
 
     /// <summary>
     /// 被取消禁言的群员信息

@@ -12,7 +12,7 @@ public record MessageReceivedBase: IMiraiMessageReceived
 {
     [JsonProperty("type")]
     [JsonConverter(typeof(StringEnumConverter))]
-    public virtual MiraiReceiveMsgType ReceiveMsgType { get; set; }
+    public virtual MiraiReceiveMsgType ReceiveMsgType { get; init; }
     
     /// <summary>
     /// 消息链内容体

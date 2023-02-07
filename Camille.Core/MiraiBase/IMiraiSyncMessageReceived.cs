@@ -11,5 +11,5 @@ public interface IMiraiSyncMessageReceived
     /// <summary>
     /// 收到的同步消息类型
     /// </summary>
-    public MiraiSyncMsgChainType SyncReceiveMsgType { get; set; }
+    public MiraiSyncMsgChainType SyncReceiveMsgType { get; init; }
 }

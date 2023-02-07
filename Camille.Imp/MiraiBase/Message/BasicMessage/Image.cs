@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// </summary>
 public record Image : BasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; set; } = MiraiMsgType.Image;
+    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.Image;
 
     /// <summary>
     /// 图片的imageId，群图片与好友图片格式不同。不为空时将忽略url属性

@@ -10,7 +10,7 @@ namespace Camille.Imp.MiraiBase.Message.MessageReceived;
 /// </summary>
 public record GroupSyncMessageReceived : SyncMessageReceivedBase
 {
-    public override MiraiSyncMsgChainType SyncReceiveMsgType { get; set; } = MiraiSyncMsgChainType.GroupSyncMessage;
+    public override MiraiSyncMsgChainType SyncReceiveMsgType { get; init; } = MiraiSyncMsgChainType.GroupSyncMessage;
     
     /// <summary>
     /// 发送的目标群

@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Message.MessageReceived;
 /// </summary>
 public record FriendSyncMessageReceived: SyncMessageReceivedBase
 {
-    public override MiraiSyncMsgChainType SyncReceiveMsgType { get; set; } = MiraiSyncMsgChainType.FriendSyncMessage;
+    public override MiraiSyncMsgChainType SyncReceiveMsgType { get; init; } = MiraiSyncMsgChainType.FriendSyncMessage;
 
     /// <summary>
     /// 好友

@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// </summary>
 public record MemberCardChangeEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.MemberCardChangeEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.MemberCardChangeEvent;
 
     /// <summary>
     /// 原群名片

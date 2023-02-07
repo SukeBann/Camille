@@ -11,5 +11,5 @@ public interface IMiraiMessageReceived
     /// <summary>
     /// 收到的消息类型
     /// </summary>
-    public MiraiReceiveMsgType ReceiveMsgType { get; set; }
+    public MiraiReceiveMsgType ReceiveMsgType { get; init; }
 }

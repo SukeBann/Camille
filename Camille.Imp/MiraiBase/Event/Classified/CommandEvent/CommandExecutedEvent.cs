@@ -10,7 +10,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.CommandEvent;
 [Obsolete("NotImplement!!")]
 public record CommandExecutedEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.CommandExecutedEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.CommandExecutedEvent;
 
     /// <summary>
     /// 事件标识, 响应该事件时的标识

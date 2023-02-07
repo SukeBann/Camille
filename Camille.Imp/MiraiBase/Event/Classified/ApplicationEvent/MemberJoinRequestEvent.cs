@@ -8,7 +8,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.ApplicationEvent;
 /// </summary>
 public record MemberJoinRequestEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.MemberJoinRequestEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.MemberJoinRequestEvent;
 
     /// <summary>
     /// 事件标识, 响应该事件时的标识

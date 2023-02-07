@@ -8,7 +8,7 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// </summary>
 public record Dice : BasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; set; } = MiraiMsgType.Dice;
+    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.Dice;
 
     /// <summary>
     /// 点数

@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// </summary>
 public record GroupEntranceAnnouncementChangeEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.GroupEntranceAnnouncementChangeEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.GroupEntranceAnnouncementChangeEvent;
 
     /// <summary>
     /// 原公告

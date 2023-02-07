@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// </summary>
 public record GroupAllowAnonymousChatEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.GroupAllowAnonymousChatEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.GroupAllowAnonymousChatEvent;
 
     /// <summary>
     /// 原本匿名状态是否开启

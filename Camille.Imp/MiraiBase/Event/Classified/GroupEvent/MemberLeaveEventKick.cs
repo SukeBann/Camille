@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// </summary>
 public record MemberLeaveEventKick : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.MemberLeaveEventKick;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.MemberLeaveEventKick;
 
     /// <summary>
     /// 被踢出的群员信息

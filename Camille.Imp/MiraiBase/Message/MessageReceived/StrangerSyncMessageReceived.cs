@@ -6,7 +6,7 @@ namespace Camille.Imp.MiraiBase.Message.MessageReceived;
 
 public record StrangerSyncMessageReceived : SyncMessageReceivedBase
 {
-    public override MiraiSyncMsgChainType SyncReceiveMsgType { get; set; } = MiraiSyncMsgChainType.StrangerSyncMessage;
+    public override MiraiSyncMsgChainType SyncReceiveMsgType { get; init; } = MiraiSyncMsgChainType.StrangerSyncMessage;
     
     /// <summary>
     /// 发送消息的陌生人账号

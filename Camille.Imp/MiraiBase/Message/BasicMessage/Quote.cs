@@ -8,7 +8,7 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// </summary>
 public record Quote : BasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; set; } = MiraiMsgType.Quote;
+    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.Quote;
     
     /// <summary>
     /// 被引用回复的原消息的messageId

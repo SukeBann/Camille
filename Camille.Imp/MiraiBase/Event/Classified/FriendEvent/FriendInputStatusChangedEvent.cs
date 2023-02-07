@@ -15,7 +15,7 @@ public record FriendInputStatusChangedEvent : MiraiEventBase
         Friend = friend;
     }
 
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.FriendInputStatusChangedEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.FriendInputStatusChangedEvent;
 
     /// <summary>
     /// 当前好友是否正在输入

@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// </summary>
 public record BotLeaveEventDisband : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.BotLeaveEventDisband;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.BotLeaveEventDisband;
 
     /// <summary>
     /// 被解散的群

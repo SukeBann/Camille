@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Message.MessageReceived;
 /// </summary>
 public record TempMessageReceived : MessageReceivedBase
 {
-    public override MiraiReceiveMsgType ReceiveMsgType { get; set; } = MiraiReceiveMsgType.GroupMessage;
+    public override MiraiReceiveMsgType ReceiveMsgType { get; init; } = MiraiReceiveMsgType.GroupMessage;
 
     /// <summary>
     /// 消息的发送者

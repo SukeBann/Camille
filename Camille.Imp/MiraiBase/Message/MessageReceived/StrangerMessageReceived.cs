@@ -6,7 +6,7 @@ namespace Camille.Imp.MiraiBase.Message.MessageReceived;
 
 public record StrangerMessageReceived: MessageReceivedBase
 {
-    public override MiraiReceiveMsgType ReceiveMsgType { get; set; } = MiraiReceiveMsgType.StrangerMessage;
+    public override MiraiReceiveMsgType ReceiveMsgType { get; init; } = MiraiReceiveMsgType.StrangerMessage;
     
     /// <summary>
     /// 消息发送者

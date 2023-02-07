@@ -8,7 +8,7 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// </summary>
 public record Face : BasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; set; } = MiraiMsgType.Face;
+    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.Face;
     
     /// <summary>
     /// QQ表情编号，可选，优先高于name

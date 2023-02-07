@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.FriendEvent;
 /// </summary>
 public record NudgeEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.NudgeEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.NudgeEvent;
 
     /// <summary>
     /// 动作发出者的qq

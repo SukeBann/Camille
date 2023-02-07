@@ -8,7 +8,7 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// </summary>
 public record MarketFace : BasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; set; } = MiraiMsgType.MarketFace;
+    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.MarketFace;
 
     /// <summary>
     /// 商场表情唯一标识

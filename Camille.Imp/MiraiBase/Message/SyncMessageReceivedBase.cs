@@ -15,7 +15,7 @@ public record SyncMessageReceivedBase: IMiraiSyncMessageReceived
     /// </summary>
     [JsonProperty("type")]
     [JsonConverter(typeof(StringEnumConverter))]
-    public virtual MiraiSyncMsgChainType SyncReceiveMsgType { get; set; }
+    public virtual MiraiSyncMsgChainType SyncReceiveMsgType { get; init; }
     
     /// <summary>
     /// 消息内容

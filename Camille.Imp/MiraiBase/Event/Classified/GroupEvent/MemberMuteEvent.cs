@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// </summary>
 public record MemberMuteEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.MemberMuteEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.MemberMuteEvent;
 
     /// <summary>
     /// 禁言时长, 单位:秒

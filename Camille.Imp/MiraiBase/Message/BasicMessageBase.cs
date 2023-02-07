@@ -13,5 +13,5 @@ public record BasicMessageBase: IMiraiBasicMessage
     /// <inheritdoc/>
     [JsonProperty("type")]
     [JsonConverter(typeof(StringEnumConverter))]
-    public virtual MiraiMsgType MiraiMsgType { get; set; }
+    public virtual MiraiMsgType MiraiMsgType { get; init; }
 }

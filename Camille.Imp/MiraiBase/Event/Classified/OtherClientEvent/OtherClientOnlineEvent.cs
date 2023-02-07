@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// </summary>
 public record OtherClientOnlineEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.OtherClientOnlineEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.OtherClientOnlineEvent;
     
     /// <summary>
     /// 其他客户端信息

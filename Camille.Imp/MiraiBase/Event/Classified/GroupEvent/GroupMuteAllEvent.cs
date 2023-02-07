@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// </summary>
 public record GroupMuteAllEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.GroupMuteAllEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.GroupMuteAllEvent;
 
     /// <summary>
     /// 原本全员禁言状态是否开启

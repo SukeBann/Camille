@@ -8,7 +8,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.BotEvent;
 /// </summary>
 public record BotOfflineEventForce : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.BotOfflineEventForce;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.BotOfflineEventForce;
 
     /// <summary>
     /// bot的qq

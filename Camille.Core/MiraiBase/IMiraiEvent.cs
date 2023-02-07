@@ -11,5 +11,5 @@ public interface IMiraiEvent
     /// <summary>
     /// Mirai事件的类型
     /// </summary>
-    public MiraiEventType EventType { get; set; }
+    public MiraiEventType EventType { get; init; }
 }

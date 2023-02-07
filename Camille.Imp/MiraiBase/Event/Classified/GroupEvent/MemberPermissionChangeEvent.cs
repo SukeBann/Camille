@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 /// </summary>
 public record MemberPermissionChangeEvent : MiraiEventBase
 {
-    public override MiraiEventType EventType { get; set; } = MiraiEventType.MemberPermissionChangeEvent;
+    public override MiraiEventType EventType { get; init; } = MiraiEventType.MemberPermissionChangeEvent;
 
     /// <summary>
     /// 原来的权限

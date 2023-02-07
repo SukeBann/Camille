@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// </summary>
 public record FlashImage : BasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; set; } = MiraiMsgType.FlashImage;
+    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.FlashImage;
 
     /// <summary>
     /// 图片的imageId，群图片与好友图片格式不同。不为空时将忽略url属性
