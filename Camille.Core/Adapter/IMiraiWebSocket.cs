@@ -17,11 +17,6 @@ public interface IMiraiWebSocket
     public Subject<WebSocketCloseStatus> OnWsDisconnect { get; }
     
     /// <summary>
-    /// 当Ws接收到数据时推送消息 
-    /// </summary>
-    public Subject<string> OnWsReceiveMsg { get; }
-        
-    /// <summary>
     /// 创建ws连接
     /// </summary>
     /// <param name="connectData">连接参数</param>
