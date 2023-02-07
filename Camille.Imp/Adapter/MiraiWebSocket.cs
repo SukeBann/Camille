@@ -12,7 +12,7 @@ namespace Camille.Imp.Adapter;
 /// <summary>
 /// <see cref="IMiraiWebSocket"/>功能实现， 提供与mirai建立连接， 接受事件与消息的功能.
 /// </summary>
-public class MiraiWebSocket : IMiraiWebSocket
+public class MiraiWebSocket : IMiraiWebSocket, IReceiveDataPublisher
 {
     public MiraiWebSocket(ILogger logger)
     {
