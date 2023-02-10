@@ -2,7 +2,7 @@
 using Camille.Imp.MiraiBase.Message.BasicMessage;
 using Camille.Imp.MiraiBase.Message.MessageReceived;
 using Camille.Imp.MiraiBase.Tools;
-using Manganese.Text;
+using Masuit.Tools;
 
 namespace Camille.Imp.MiraiBase.Message;
 
@@ -33,7 +33,7 @@ public class MessageChain : List<BasicMessageBase>
     public string GetPlainMessage()
     {
         var plain = this.OfType<Plain>().ToList();
-        return !plain.Any() ? string.Empty : plain.Select(x => x.Text).JoinToString("");
+        return !plain.Any() ? string.Empty : plain.Select(x => x.Text).Join("");
     }
 
     /// <summary>

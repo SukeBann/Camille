@@ -10,11 +10,6 @@ namespace Camille.Imp.MiraiBase.Event.Classified.FriendEvent;
 /// </summary>
 public record FriendInputStatusChangedEvent : MiraiEventBase
 {
-    public FriendInputStatusChangedEvent(Account friend)
-    {
-        Friend = friend;
-    }
-
     public override MiraiEventType EventType { get; init; } = MiraiEventType.FriendInputStatusChangedEvent;
 
     /// <summary>

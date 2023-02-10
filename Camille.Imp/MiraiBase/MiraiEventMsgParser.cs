@@ -3,6 +3,7 @@ using System.Reactive.Subjects;
 using Camille.Client.Extension;
 using Camille.Core.Adapter;
 using Camille.Core.MiraiBase;
+using Camille.Logger;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -10,6 +11,12 @@ namespace Camille.Imp.MiraiBase;
 
 public class MiraiEventMsgParser : IMiraiEventMsgParser
 {
+    #region Properties
+
+    public ILogger Logger { get; set; } 
+    
+    #endregion
+    
     public void BeginParseData(IReceiveDataPublisher dataSender)
     {
         dataSender.OnWsReceiveMsg.Subscribe(ParseData);
@@ -25,7 +32,11 @@ public class MiraiEventMsgParser : IMiraiEventMsgParser
 
         if (jObject.TryGetValue("type", out var value))
         {
-
+            
+        }
+        else
+        {
+            Logger.Debug($"收到无法解析的信息: {data}"); 
         }
     }
 
@@ -38,6 +49,7 @@ public class MiraiEventMsgParser : IMiraiEventMsgParser
     /// <returns>成功获取返回true, 获取失败返回false</returns>
     private bool TryGetMiraiEvent(string type, string json, out IMiraiEvent? miraiEvent)
     {
+        throw new NotImplementedException();
     }
 
     /// <summary>
@@ -49,7 +61,7 @@ public class MiraiEventMsgParser : IMiraiEventMsgParser
     /// <returns>成功获取返回true, 获取失败返回false</returns>
     private bool TryGetMiraiMessage(string type, string json, out IMiraiMessageReceived? miraiMessageReceived)
     {
-        
+        throw new NotImplementedException();
     }
 
     #endregion

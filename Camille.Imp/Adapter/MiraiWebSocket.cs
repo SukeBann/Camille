@@ -4,7 +4,7 @@ using System.Reactive.Subjects;
 using Camille.Core.Adapter;
 using Camille.Core.Models.MiraiWebSocket;
 using Camille.Logger;
-using Manganese.Text;
+using Masuit.Tools;
 using Websocket.Client;
 
 namespace Camille.Imp.Adapter;

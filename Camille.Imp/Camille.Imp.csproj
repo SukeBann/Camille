@@ -16,4 +16,8 @@
         <Folder Include="MiraiBase\Message\BasicMessage" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Masuit.Tools.Core" Version="2.5.9.2" />
+    </ItemGroup>
+
 </Project>
