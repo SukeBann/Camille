@@ -14,14 +14,11 @@ namespace Camille.Imp.Adapter;
 /// </summary>
 public class MiraiWebSocket : IMiraiWebSocket, IReceiveDataPublisher
 {
-    public MiraiWebSocket(ILogger logger)
+    public MiraiWebSocket()
     {
-        Logger = logger;
     }
 
     #region Properties
-
-    private ILogger Logger { get; }
 
     /// <summary>
     /// ws 客户端, 每个qq一个单独的实例
@@ -75,7 +72,7 @@ public class MiraiWebSocket : IMiraiWebSocket, IReceiveDataPublisher
                 return;
             }
 
-            Logger.Error("on MiraiWebSocket connect error", e);
+            Shared.Logger.Error("on MiraiWebSocket connect error", e);
         }
     }
 }

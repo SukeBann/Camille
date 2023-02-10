@@ -113,4 +113,7 @@ public enum MiraiEventType
    CommandExecutedEvent,
 
    #endregion
+   
+   [Description("无法解析的事件")]
+   UnKnown
 }

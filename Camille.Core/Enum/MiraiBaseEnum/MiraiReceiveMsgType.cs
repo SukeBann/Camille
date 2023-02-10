@@ -27,7 +27,10 @@ public enum MiraiReceiveMsgType
     [Description("同步好友消息")] FriendSyncMessage,
     [Description("同步群消息")] GroupSyncMessage,
     [Description("同步临时消息")] TempSyncMessage,
-    [Description("同步陌生人消息")] StrangerSyncMessage
+    [Description("同步陌生人消息")] StrangerSyncMessage,
 
     #endregion
+    
+    [Description("无法解析的消息接收类型")]
+    UnKnown
 }

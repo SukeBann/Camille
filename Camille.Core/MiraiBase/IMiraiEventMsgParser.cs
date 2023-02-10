@@ -4,20 +4,21 @@ using Camille.Core.Adapter;
 namespace Camille.Core.MiraiBase;
 
 /// <summary>
-/// 将Websocket收到的文本数据解析为事件<see cref="IMiraiEvent"/>或消息<see cref="IMiraiMessageReceived"/>类型
-/// 并通过Rx通知接受到的信息或事件
+/// 将Websocket收到的文本数据解析为
+/// <br/>事件<see cref="IMiraiEvent"/>或消息<see cref="IMiraiMessageReceived"/>类型
+/// <br/>并通过Rx将信息或事件向订阅者发布通知
 /// </summary>
 public interface IMiraiEventMsgParser
 {
     /// <summary>
     /// 收到新的Mirai事件
     /// </summary>
-    public Subject<IMiraiEvent> OnMiraiEventReceived { get; set; }
+    public Subject<IMiraiEvent> OnMiraiEventReceived { get; init; }
     
     /// <summary>
     /// 收到新的Mirai信息
     /// </summary>
-    public Subject<IMiraiMessageReceived> OnMiraiMessageReceived { get; set; }
+    public Subject<IMiraiMessageReceived> OnMiraiMessageReceived { get; init; }
 
     /// <summary>
     /// 开始解析收到的数据, 需要在这个方法里面实现订阅消息接收器发出的数据,

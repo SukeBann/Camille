@@ -1,15 +1,20 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using Camille.Core.Enum.MiraiBaseEnum;
+using Camille.Core.MiraiBase;
 using Camille.Imp.MiraiBase.Event;
 using Camille.Imp.MiraiBase.Message;
 using Camille.Imp.MiraiBase.Models;
 using Camille.Imp.MiraiBase.Models.Contract;
+using Camille.Shared.Extension;
+using Newtonsoft.Json;
 
 namespace Camille.Imp.MiraiBase;
 
 /// <summary>
 /// 用于将Mirai传来的数据反射为 Camille.<see cref="Camille.Imp.MiraiBase"/> 实现的类型
 /// </summary>
+/// TODO 如果此类引用的地方不多, 可以考虑改为非静态的单例
 public static class MiraiDataReflection
 {
     /// <summary>
@@ -20,11 +25,11 @@ public static class MiraiDataReflection
         var eventSet
             = GetDefaultInstances<MiraiEventBase>("Camille.Imp.MiraiBase.Event.Classified");
         MiraiEventTypeMapping = GetTypeMapping<MiraiEventType, MiraiEventBase>(eventSet);
-        
+
         var basicMsgSet
             = GetDefaultInstances<MiraiBasicMessageBase>("Camille.Imp.MiraiBase.Message.BasicMessage");
         MiraiBasicMsgTypeMapping = GetTypeMapping<MiraiBasicMsgType, MiraiBasicMessageBase>(basicMsgSet);
-        
+
         var receiveMsg
             = GetDefaultInstances<MiraiMsgReceivedBase>("Camille.Imp.MiraiBase.Message.MessageReceived");
         MiraiReceiveMsgTypeMapping = GetTypeMapping<MiraiReceiveMsgType, MiraiMsgReceivedBase>(receiveMsg);
@@ -32,7 +37,75 @@ public static class MiraiDataReflection
 
     #region Methods
 
-      
+    /// <summary>
+    /// 根据类型文本获取是事件类型还是消息类型
+    /// <br/> 由于大部分情况消息数量比事件多， 所以优先判断是否为消息, 然后在判断是否为事件, 如果都不是则返回<see cref="MiraiDataType.Unknown"/>
+    /// </summary>
+    /// <param name="typeString">类型文本</param>
+    /// <returns></returns>
+    public static MiraiDataType GetMiraiDataType(string typeString)
+    {
+        if (MiraiReceiveMsgTypeMapping.ContainsKey(typeString))
+        {
+            return MiraiDataType.Message;
+        }
+
+        return MiraiEventTypeMapping.ContainsKey(typeString) ? MiraiDataType.Event : MiraiDataType.Unknown;
+    }
+
+    /// <summary>
+    /// 根据类型标识, 将json文本转换为对应的事件实例
+    /// </summary>
+    /// <param name="typeString">类型标识文本</param>
+    /// <param name="data">json文本</param>
+    /// <returns>解析成功时返回对应类型的事件， 否则返回未知事件</returns>
+    public static IMiraiEvent GetMiraiEvent(string typeString, string data)
+    {
+        if (!MiraiEventTypeMapping.TryGetValue(typeString, out var typeMapping))
+        {
+            Shared.Logger.Error($"接收到未知事件: {data}");
+            return new UnKnownEvent {SourceData = data};
+        }
+
+        try
+        {
+            var miraiEvent = JsonConvert.DeserializeObject(data, typeMapping.InstanceType) as IMiraiEvent;
+            miraiEvent.IfNullThenThrowException(out var returnValue);
+            return returnValue;
+        }
+        catch (Exception e)
+        {
+            Shared.Logger.Error($"反序列化时失败或, 接收到未知事件: {data}", e);
+            return new UnKnownEvent {SourceData = data};
+        }
+    }
+
+    /// <summary>
+    /// 根据类型标识, 将json文本转换为对应的消息实例
+    /// </summary>
+    /// <param name="typeString">类型标识文本</param>
+    /// <param name="data">json文本</param>
+    /// <returns>解析成功时返回对应类型的消息， 否则返回未知消息</returns>
+    public static IMiraiMessageReceived GetMiraiReceivedMessage(string typeString, string data)
+    {
+        if (!MiraiReceiveMsgTypeMapping.TryGetValue(typeString, out var typeMapping))
+        {
+            Shared.Logger.Error($"接收到未知消息: {data}");
+            return new UnKnownReceivedMsg {SourceData = data};
+        }
+
+        try
+        {
+            var receivedMsg = JsonConvert.DeserializeObject(data, typeMapping.InstanceType) as IMiraiMessageReceived;
+            receivedMsg.IfNullThenThrowException(out var returnValue);
+            return returnValue;
+        }
+        catch (Exception e)
+        {
+            Shared.Logger.Error($"反序列化时失败或, 接收到未知消息: {data}", e);
+            return new UnKnownReceivedMsg() {SourceData = data};
+        }
+    }
 
     #endregion
 
@@ -41,18 +114,17 @@ public static class MiraiDataReflection
     /// <summary>
     /// <see cref="MiraiEventBase"/>子类的实现类型映射
     /// </summary>
-    public static Dictionary<string, IMiraiTypeMapping<MiraiEventType>> MiraiEventTypeMapping { get; }
-    
+    private static Dictionary<string, IMiraiTypeMapping<MiraiEventType>> MiraiEventTypeMapping { get; }
+
     /// <summary>
     /// <see cref="MiraiMsgReceivedBase"/>子类的实现类型映射
     /// </summary>
-    public static Dictionary<string, IMiraiTypeMapping<MiraiReceiveMsgType>> MiraiReceiveMsgTypeMapping { get; }
-    
+    private static Dictionary<string, IMiraiTypeMapping<MiraiReceiveMsgType>> MiraiReceiveMsgTypeMapping { get; }
+
     /// <summary>
     /// <see cref="MiraiBasicMessageBase"/>子类的实现类型映射
     /// </summary>
-    public static Dictionary<string, IMiraiTypeMapping<MiraiBasicMsgType>> MiraiBasicMsgTypeMapping { get; }
-
+    private static Dictionary<string, IMiraiTypeMapping<MiraiBasicMsgType>> MiraiBasicMsgTypeMapping { get; }
 
     #endregion
 
@@ -102,20 +174,20 @@ public static class MiraiDataReflection
         return instance switch
         {
             MiraiBasicMessageBase basicMessageBase => (IMiraiTypeMapping<T>) new MiraiBasicMsgTypeMapping(
-                basicMessageBase.MiraiBasicMsgType, 
+                basicMessageBase.MiraiBasicMsgType,
                 basicMessageBase.MiraiBasicMsgType.ToString(),
                 basicMessageBase.GetType()),
-            
+
             MiraiMsgReceivedBase messageReceivedBase => (IMiraiTypeMapping<T>) new MiraiMsgReceivedTypeMapping(
                 messageReceivedBase.ReceiveMsgType,
                 messageReceivedBase.ReceiveMsgType.ToString(),
                 messageReceivedBase.GetType()),
-            
+
             MiraiEventBase miraiEventBase => (IMiraiTypeMapping<T>) new MiraiEventTypeMapping(
                 miraiEventBase.EventType,
                 miraiEventBase.EventType.ToString(),
                 miraiEventBase.GetType()),
-            
+
             _ => throw new ArgumentException("该方法不支持此类型使用！", typeof(TI).FullName)
         };
     }

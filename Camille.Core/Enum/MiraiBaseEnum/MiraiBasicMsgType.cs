@@ -51,5 +51,7 @@ public enum MiraiBasicMsgType
     [Description("文件")]
     File,
     [Description("MiraiCode")]
-    MiraiCode
+    MiraiCode, 
+    [Description("无法解析的基础消息类型")]
+    UnKnown
 }

@@ -1,8 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json.Linq;
-using SixLabors.Fonts.Tables.TrueType;
 
-namespace Camille.Client.Extension;
+namespace Camille.Shared.Extension;
 
 public static class StringExtension
 {
@@ -12,7 +11,7 @@ public static class StringExtension
     /// <param name="jsonText">要解析的json文本</param>
     /// <param name="jToken">如果能解析则返回JToken, 否则返回null</param>
     /// <returns></returns>
-    public static bool TryGetJObject(this string jsonText, out JToken? jToken)
+    public static bool TryGetJObject(this string jsonText, [MaybeNullWhen(false)] out JToken jToken)
     {
         jToken = null;
         try
@@ -24,6 +23,14 @@ public static class StringExtension
         {
             return false;
         }
+    }
+
+    public static bool TryGetValue<T>(this JObject jObject, string path, [MaybeNullWhen(false)]out T value)
+    where T: class
+    {
+        var tryGetValue = jObject.TryGetValue(path, out var nullableValue);
+        value = nullableValue?.Value<T>();
+        return tryGetValue;
     }
 
     /// <summary>
