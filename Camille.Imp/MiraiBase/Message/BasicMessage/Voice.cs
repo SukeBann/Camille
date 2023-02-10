@@ -6,9 +6,9 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// <summary>
 /// 语音
 /// </summary>
-public record Voice : BasicMessageBase
+public record Voice : MiraiBasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.Voice;
+    public override MiraiBasicMsgType MiraiBasicMsgType { get; init; } = MiraiBasicMsgType.Voice;
     
     /// <summary>
     /// 语音的voiceId，不为空时将忽略url属性

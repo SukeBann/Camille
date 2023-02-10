@@ -6,9 +6,9 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// <summary>
 /// 音乐分享
 /// </summary>
-public record MusicShare : BasicMessageBase
+public record MusicShare : MiraiBasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.MusicShare;
+    public override MiraiBasicMsgType MiraiBasicMsgType { get; init; } = MiraiBasicMsgType.MusicShare;
 
     /// <summary>
     ///  类型

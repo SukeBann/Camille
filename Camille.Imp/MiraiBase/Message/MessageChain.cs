@@ -10,11 +10,11 @@ namespace Camille.Imp.MiraiBase.Message;
 /// 消息链内容体的实现, 我直接从Mirai.NET搬过来的, 除非我能想出来更好的实现方法 不然应该是不用改了
 /// 感谢Mirai.NET https://github.com/SinoAHpx/Mirai.Net
 /// </summary>
-public class MessageChain : List<BasicMessageBase>
+public class MessageChain : List<MiraiBasicMessageBase>
 {
     #region Ctor
 
-    public MessageChain(IEnumerable<BasicMessageBase> collection) : base(collection)
+    public MessageChain(IEnumerable<MiraiBasicMessageBase> collection) : base(collection)
     {
     }
 
@@ -49,9 +49,9 @@ public class MessageChain : List<BasicMessageBase>
     /// <summary>
     /// 将该消息链 发送到指定接受信息容器的目标
     /// </summary>
-    /// <param name="groupMessage">群信息</param>
+    /// <param name="groupMiraiMsg">群信息</param>
     /// <returns></returns>
-    public async Task<string> SendToAsync(GroupMessageReceived groupMessage)
+    public async Task<string> SendToAsync(GroupMiraiMsgReceived groupMiraiMsg)
     {
         throw new NotImplementedException();
         // return await groupMessage.SendMessageAsync(this);
@@ -60,9 +60,9 @@ public class MessageChain : List<BasicMessageBase>
     /// <summary>
     /// 将该消息链 发送到指定接受信息容器的目标
     /// </summary>
-    /// <param name="friendMessage"></param>
+    /// <param name="friendMiraiMsg"></param>
     /// <returns></returns>
-    public async Task<string> SendToAsync(FriendMessageReceived friendMessage)
+    public async Task<string> SendToAsync(FriendMiraiMsgReceived friendMiraiMsg)
     {
         throw new NotImplementedException();
         // return await friendMessage.SendMessageAsync(this);
@@ -71,9 +71,9 @@ public class MessageChain : List<BasicMessageBase>
     /// <summary>
     /// 将本消息链发送到指定接收器
     /// </summary>
-    /// <param name="tempMessage"></param>
+    /// <param name="tempMiraiMsg"></param>
     /// <returns></returns>
-    public async Task<string> SendToAsync(TempMessageReceived tempMessage)
+    public async Task<string> SendToAsync(TempMiraiMsgReceived tempMiraiMsg)
     {
         throw new NotImplementedException();
         // return await tempMessage.SendMessageAsync(this);
@@ -84,7 +84,7 @@ public class MessageChain : List<BasicMessageBase>
     /// </summary>
     /// <param name="messageBase"></param>
     /// <returns></returns>
-    public static implicit operator MessageChain(BasicMessageBase messageBase)
+    public static implicit operator MessageChain(MiraiBasicMessageBase messageBase)
     {
         return messageBase.ToMessageChain();
     }
@@ -120,7 +120,7 @@ public class MessageChain : List<BasicMessageBase>
     /// <param name="chain"></param>
     /// <param name="msg"></param>
     /// <returns></returns>
-    public static MessageChain operator +(MessageChain chain, BasicMessageBase msg)
+    public static MessageChain operator +(MessageChain chain, MiraiBasicMessageBase msg)
     {
         chain.Add(msg);
         return chain;

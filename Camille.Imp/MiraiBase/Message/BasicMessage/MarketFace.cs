@@ -6,9 +6,9 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// <summary>
 /// 商城表情
 /// </summary>
-public record MarketFace : BasicMessageBase
+public record MarketFace : MiraiBasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.MarketFace;
+    public override MiraiBasicMsgType MiraiBasicMsgType { get; init; } = MiraiBasicMsgType.MarketFace;
 
     /// <summary>
     /// 商场表情唯一标识

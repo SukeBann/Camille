@@ -12,16 +12,47 @@ namespace Camille.Imp.MiraiBase;
 /// </summary>
 public static class MiraiDataReflection
 {
+    /// <summary>
+    /// Ctor
+    /// </summary>
     static MiraiDataReflection()
     {
         var eventSet
             = GetDefaultInstances<MiraiEventBase>("Camille.Imp.MiraiBase.Event.Classified");
         MiraiEventTypeMapping = GetTypeMapping<MiraiEventType, MiraiEventBase>(eventSet);
+        
+        var basicMsgSet
+            = GetDefaultInstances<MiraiBasicMessageBase>("Camille.Imp.MiraiBase.Message.BasicMessage");
+        MiraiBasicMsgTypeMapping = GetTypeMapping<MiraiBasicMsgType, MiraiBasicMessageBase>(basicMsgSet);
+        
+        var receiveMsg
+            = GetDefaultInstances<MiraiMsgReceivedBase>("Camille.Imp.MiraiBase.Message.MessageReceived");
+        MiraiReceiveMsgTypeMapping = GetTypeMapping<MiraiReceiveMsgType, MiraiMsgReceivedBase>(receiveMsg);
     }
+
+    #region Methods
+
+      
+
+    #endregion
 
     #region Properties
 
+    /// <summary>
+    /// <see cref="MiraiEventBase"/>子类的实现类型映射
+    /// </summary>
     public static Dictionary<string, IMiraiTypeMapping<MiraiEventType>> MiraiEventTypeMapping { get; }
+    
+    /// <summary>
+    /// <see cref="MiraiMsgReceivedBase"/>子类的实现类型映射
+    /// </summary>
+    public static Dictionary<string, IMiraiTypeMapping<MiraiReceiveMsgType>> MiraiReceiveMsgTypeMapping { get; }
+    
+    /// <summary>
+    /// <see cref="MiraiBasicMessageBase"/>子类的实现类型映射
+    /// </summary>
+    public static Dictionary<string, IMiraiTypeMapping<MiraiBasicMsgType>> MiraiBasicMsgTypeMapping { get; }
+
 
     #endregion
 
@@ -33,14 +64,14 @@ public static class MiraiDataReflection
     ///  <br/> value: 对应的<see cref="IMiraiTypeMapping{T}"/>的实现
     ///  <br/> 例如: <see cref="MiraiEventTypeMapping"/> or <see cref="MiraiBasicMsgTypeMapping"/> and <see cref="MiraiReceiveMsgType"/>
     /// </summary>
-    /// <typeparam name="T"><see cref="MiraiEventType"/> or <see cref="MiraiMsgType"/> or <see cref="MiraiReceiveMsgType"/></typeparam>
-    /// <typeparam name="I">实例类型</typeparam>
+    /// <typeparam name="T"><see cref="MiraiEventType"/> or <see cref="MiraiBasicMsgType"/> or <see cref="MiraiReceiveMsgType"/></typeparam>
+    /// <typeparam name="TI">实例类型</typeparam>
     /// <returns></returns>
-    private static Dictionary<string, IMiraiTypeMapping<T>> GetTypeMapping<T, I>(IEnumerable<I> instanceSet)
+    private static Dictionary<string, IMiraiTypeMapping<T>> GetTypeMapping<T, TI>(IEnumerable<TI> instanceSet)
         where T : Enum
-        where I : class
+        where TI : class
     {
-        if (typeof(T) != typeof(MiraiMsgType) &&
+        if (typeof(T) != typeof(MiraiBasicMsgType) &&
             typeof(T) != typeof(MiraiEventType) &&
             typeof(T) != typeof(MiraiReceiveMsgType))
         {
@@ -51,7 +82,7 @@ public static class MiraiDataReflection
 
         foreach (var instance in instanceSet)
         {
-            var miraiTypeMapping = GetTypeMapping<T, I>(instance);
+            var miraiTypeMapping = GetTypeMapping<T, TI>(instance);
             miraiTypeDict.TryAdd(miraiTypeMapping.MiraiTypeName, miraiTypeMapping);
         }
 
@@ -62,33 +93,30 @@ public static class MiraiDataReflection
     /// 获取对应实例的 类型映射<see cref="IMiraiTypeMapping{T}"/>
     /// </summary>
     /// <param name="instance">类型实例</param>
-    /// <typeparam name="T"><see cref="MiraiEventType"/> or <see cref="MiraiMsgType"/> or <see cref="MiraiReceiveMsgType"/></typeparam>
-    /// <typeparam name="I">实例类型</typeparam>
+    /// <typeparam name="T"><see cref="MiraiEventType"/> or <see cref="MiraiBasicMsgType"/> or <see cref="MiraiReceiveMsgType"/></typeparam>
+    /// <typeparam name="TI">实例类型</typeparam>
     /// <returns></returns>
-    private static IMiraiTypeMapping<T> GetTypeMapping<T, I>(I instance)
+    private static IMiraiTypeMapping<T> GetTypeMapping<T, TI>(TI instance)
         where T : Enum
     {
         return instance switch
         {
-            BasicMessageBase basicMessageBase => (IMiraiTypeMapping<T>) new MiraiBasicMsgTypeMapping()
-            {
-                IdentityType = basicMessageBase.MiraiMsgType,
-                MiraiTypeName = basicMessageBase.MiraiMsgType.ToString(),
-                InstanceType = basicMessageBase.GetType() 
-            },
-            MessageReceivedBase messageReceivedBase => (IMiraiTypeMapping<T>) new MiraiMsgReceivedTypeMapping()
-            {
-                IdentityType = messageReceivedBase.ReceiveMsgType,
-                MiraiTypeName = messageReceivedBase.ReceiveMsgType.ToString(),
-                InstanceType = messageReceivedBase.GetType() 
-            },
-            MiraiEventBase miraiEventBase => (IMiraiTypeMapping<T>) new MiraiEventTypeMapping()
-            {
-                IdentityType = miraiEventBase.EventType,
-                MiraiTypeName = miraiEventBase.EventType.ToString(),
-                InstanceType = miraiEventBase.GetType() 
-            },
-            _ => throw new ArgumentException("该方法不支持此类型使用！", typeof(I).FullName)
+            MiraiBasicMessageBase basicMessageBase => (IMiraiTypeMapping<T>) new MiraiBasicMsgTypeMapping(
+                basicMessageBase.MiraiBasicMsgType, 
+                basicMessageBase.MiraiBasicMsgType.ToString(),
+                basicMessageBase.GetType()),
+            
+            MiraiMsgReceivedBase messageReceivedBase => (IMiraiTypeMapping<T>) new MiraiMsgReceivedTypeMapping(
+                messageReceivedBase.ReceiveMsgType,
+                messageReceivedBase.ReceiveMsgType.ToString(),
+                messageReceivedBase.GetType()),
+            
+            MiraiEventBase miraiEventBase => (IMiraiTypeMapping<T>) new MiraiEventTypeMapping(
+                miraiEventBase.EventType,
+                miraiEventBase.EventType.ToString(),
+                miraiEventBase.GetType()),
+            
+            _ => throw new ArgumentException("该方法不支持此类型使用！", typeof(TI).FullName)
         };
     }
 
@@ -98,13 +126,11 @@ public static class MiraiDataReflection
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    internal static IEnumerable<T> GetDefaultInstances<T>(string @namespace) where T : class
+    private static IEnumerable<T> GetDefaultInstances<T>(string @namespace) where T : class
     {
-        return Assembly
-            .GetExecutingAssembly()
+        return Assembly.GetExecutingAssembly()
             .GetTypes()
-            .Where(type => type.FullName != null)
-            .Where(type => type.FullName.Contains(@namespace))
+            .Where(type => type.FullName is not null && type.FullName.Contains(@namespace))
             .Where(type => !type.IsAbstract)
             .Select(type =>
             {
@@ -115,7 +141,8 @@ public static class MiraiDataReflection
 
                 return null;
             })
-            .Where(i => i != null);
+            // 这里判断了 x is not null 但是idea依旧提示返回 T? 所以使用感叹号让他闭嘴
+            .Where(x => x is not null)!;
     }
 
     #endregion

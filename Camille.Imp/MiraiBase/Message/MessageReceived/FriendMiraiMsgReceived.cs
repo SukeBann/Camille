@@ -4,10 +4,13 @@ using Newtonsoft.Json;
 
 namespace Camille.Imp.MiraiBase.Message.MessageReceived;
 
-public record StrangerMessageReceived: MessageReceivedBase
+/// <summary>
+/// 好友发来的消息
+/// </summary>
+public record FriendMiraiMsgReceived: MiraiMsgReceivedBase
 {
-    public override MiraiReceiveMsgType ReceiveMsgType { get; init; } = MiraiReceiveMsgType.StrangerMessage;
-    
+    public override MiraiReceiveMsgType ReceiveMsgType { get; init; } = MiraiReceiveMsgType.FriendMessage;
+
     /// <summary>
     /// 消息发送者
     /// </summary>

@@ -1,12 +1,11 @@
-﻿using Camille.Core.Enum.MiraiBaseEnum;
-
-namespace Camille.Imp.MiraiBase.Models.Contract;
+﻿namespace Camille.Imp.MiraiBase.Models.Contract;
 
 /// <summary>
 /// <see cref="Type"/> mapping of Mirai Event or Message
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public interface IMiraiTypeMapping<T>
+where T : Enum
 {
     /// <summary>
     /// 标识类型, 比如事件的类型， 或者是信息的类型

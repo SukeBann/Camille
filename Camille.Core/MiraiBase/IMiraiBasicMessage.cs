@@ -13,5 +13,5 @@ public interface IMiraiBasicMessage
     /// <summary>
     /// 消息类型
     /// </summary>
-    public MiraiMsgType MiraiMsgType { get; init; }
+    public MiraiBasicMsgType MiraiBasicMsgType { get; init; }
 }

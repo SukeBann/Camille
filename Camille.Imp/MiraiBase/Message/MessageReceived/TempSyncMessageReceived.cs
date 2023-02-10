@@ -7,9 +7,9 @@ namespace Camille.Imp.MiraiBase.Message.MessageReceived;
 /// <summary>
 /// 群临时同步消息
 /// </summary>
-public record TempSyncMessageReceived : SyncMessageReceivedBase
+public record TempSyncMessageReceived : MiraiMsgReceivedBase
 {
-    public override MiraiSyncMsgChainType SyncReceiveMsgType { get; init; } = MiraiSyncMsgChainType.TempSyncMessage;
+    public override MiraiReceiveMsgType ReceiveMsgType { get; init; } = MiraiReceiveMsgType.TempSyncMessage;
 
     /// <summary>
     /// 为发送的目标群成员

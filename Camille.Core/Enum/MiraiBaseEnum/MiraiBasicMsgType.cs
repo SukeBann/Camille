@@ -6,7 +6,7 @@ namespace Camille.Core.Enum.MiraiBaseEnum;
 /// Mirai消息链内的基础消息类型
 /// https://docs.mirai.mamoe.net/mirai-api-http/api/MessageType.html#%E6%B6%88%E6%81%AF%E7%B1%BB%E5%9E%8B
 /// </summary>
-public enum MiraiMsgType
+public enum MiraiBasicMsgType
 {
     /// <summary>
     /// 消息的识别号，用于引用回复（Source类型永远为chain的第一个元素）

@@ -7,7 +7,7 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// </summary>
 [Obsolete("NotImplement!!!!")]
 // TODO 记得实现这个类型
-public record ForwardMessage : BasicMessageBase
+public record ForwardMessage : MiraiBasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.ForwardMessage;
+    public override MiraiBasicMsgType MiraiBasicMsgType { get; init; } = MiraiBasicMsgType.ForwardMessage;
 }

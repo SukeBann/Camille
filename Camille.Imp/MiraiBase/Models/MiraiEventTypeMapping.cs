@@ -4,13 +4,9 @@ using Camille.Imp.MiraiBase.Models.Contract;
 namespace Camille.Imp.MiraiBase.Models;
 
 /// <summary>
-/// Mirai的事件类型映射<see cref="MiraiEventType"/>
+/// <see cref="Type"/> mapping of Mirai Event<see cref="MiraiEventType"/>
 /// </summary>
-public record MiraiEventTypeMapping : IMiraiTypeMapping<MiraiEventType>
-{
-    public MiraiEventType IdentityType { get; init; }
-
-    public string MiraiTypeName { get; init; }
-
-    public Type InstanceType { get; init; }
-}
+/// <param name="IdentityType">事件类型</param>
+/// <param name="MiraiTypeName">事件类型string文本</param>
+/// <param name="InstanceType">事件实例类型</param>
+public record MiraiEventTypeMapping(MiraiEventType IdentityType, string MiraiTypeName, Type InstanceType) : IMiraiTypeMapping<MiraiEventType>;

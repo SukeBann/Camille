@@ -4,9 +4,9 @@ using Newtonsoft.Json;
 
 namespace Camille.Imp.MiraiBase.Message.MessageReceived;
 
-public record StrangerSyncMessageReceived : SyncMessageReceivedBase
+public record StrangerSyncMessageReceived : MiraiMsgReceivedBase
 {
-    public override MiraiSyncMsgChainType SyncReceiveMsgType { get; init; } = MiraiSyncMsgChainType.StrangerSyncMessage;
+    public override MiraiReceiveMsgType ReceiveMsgType { get; init; } = MiraiReceiveMsgType.StrangerSyncMessage;
     
     /// <summary>
     /// 发送消息的陌生人账号

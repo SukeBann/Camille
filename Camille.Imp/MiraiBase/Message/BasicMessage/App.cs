@@ -6,9 +6,9 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// <summary>
 /// 内容(小程序消息?) 文档也看不到这个到底是什么消息
 /// </summary>
-public record App : BasicMessageBase
+public record App : MiraiBasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.App;
+    public override MiraiBasicMsgType MiraiBasicMsgType { get; init; } = MiraiBasicMsgType.App;
 
     /// <summary>
     /// 消息内容

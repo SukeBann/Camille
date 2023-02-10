@@ -6,9 +6,9 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// <summary>
 /// QQ表情
 /// </summary>
-public record Face : BasicMessageBase
+public record Face : MiraiBasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.Face;
+    public override MiraiBasicMsgType MiraiBasicMsgType { get; init; } = MiraiBasicMsgType.Face;
     
     /// <summary>
     /// QQ表情编号，可选，优先高于name

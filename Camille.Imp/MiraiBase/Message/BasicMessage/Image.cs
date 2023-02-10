@@ -7,9 +7,9 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// 图片
 /// 四个参数任选其一，出现多个参数时，按照imageId > url > path > base64的优先级
 /// </summary>
-public record Image : BasicMessageBase
+public record Image : MiraiBasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.Image;
+    public override MiraiBasicMsgType MiraiBasicMsgType { get; init; } = MiraiBasicMsgType.Image;
 
     /// <summary>
     /// 图片的imageId，群图片与好友图片格式不同。不为空时将忽略url属性

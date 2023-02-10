@@ -8,10 +8,10 @@ namespace Camille.Imp.MiraiBase.Message;
 /// <summary>
 /// 基础消息类型的父类
 /// </summary>
-public record BasicMessageBase: IMiraiBasicMessage
+public record MiraiBasicMessageBase: IMiraiBasicMessage
 {
     /// <inheritdoc/>
     [JsonProperty("type")]
     [JsonConverter(typeof(StringEnumConverter))]
-    public virtual MiraiMsgType MiraiMsgType { get; init; }
+    public virtual MiraiBasicMsgType MiraiBasicMsgType { get; init; }
 }

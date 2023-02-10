@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Camille.Imp.MiraiBase.Message.MessageReceived;
 
-public record OtherClientMessage : MessageReceivedBase
+public record OtherClientMiraiMsg : MiraiMsgReceivedBase
 {
     public override MiraiReceiveMsgType ReceiveMsgType { get; init; } = MiraiReceiveMsgType.OtherClientMessage;
 

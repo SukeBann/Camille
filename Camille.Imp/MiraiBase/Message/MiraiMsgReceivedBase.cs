@@ -8,7 +8,7 @@ namespace Camille.Imp.MiraiBase.Message;
 /// <summary>
 /// 收到的消息的基类
 /// </summary>
-public record MessageReceivedBase: IMiraiMessageReceived
+public record MiraiMsgReceivedBase: IMiraiMessageReceived
 {
     [JsonProperty("type")]
     [JsonConverter(typeof(StringEnumConverter))]

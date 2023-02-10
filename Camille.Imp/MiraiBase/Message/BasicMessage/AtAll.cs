@@ -5,7 +5,7 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// <summary>
 /// AtAll @全员
 /// </summary>
-public record AtAll : BasicMessageBase
+public record AtAll : MiraiBasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.AtAll;
+    public override MiraiBasicMsgType MiraiBasicMsgType { get; init; } = MiraiBasicMsgType.AtAll;
 }

@@ -6,9 +6,9 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 /// <summary>
 /// 消息识别源, Source类型永远为chain的第一个元素
 /// </summary>
-public record Source : BasicMessageBase
+public record Source : MiraiBasicMessageBase
 {
-    public override MiraiMsgType MiraiMsgType { get; init; } = MiraiMsgType.Source;
+    public override MiraiBasicMsgType MiraiBasicMsgType { get; init; } = MiraiBasicMsgType.Source;
     
     /// <summary>
     /// 消息的识别号，用于引用回复
