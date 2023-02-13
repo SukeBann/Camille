@@ -14,6 +14,6 @@ public enum ConnectChannelType
     [Description("推送事件")] [ContentText("event")]
     Event,
 
-    [ContentText("all")] [Description("推送消息与事件")]
+    [Description("推送消息与事件")] [ContentText("all")] 
     All
 }

@@ -5,7 +5,7 @@ using Masuit.Tools.Core.Validator;
 namespace Camille.Core.Adapter;
 
 /// <summary>
-/// 通用接口定义
+/// Mirai 通用接口定义
 /// </summary>
 public interface ICommonApi
 {

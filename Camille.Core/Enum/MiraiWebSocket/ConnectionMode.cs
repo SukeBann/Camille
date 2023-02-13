@@ -4,7 +4,7 @@ namespace Camille.Core.Enum.MiraiWebSocket;
 
 public enum ConnectionMode
 {
-    [Description("")] CreateNew,
+    [Description("新建连接")] CreateNew,
 
-    [Description("")] Reconnect
+    [Description("使用sessionKey重连")] Reconnect
 }
