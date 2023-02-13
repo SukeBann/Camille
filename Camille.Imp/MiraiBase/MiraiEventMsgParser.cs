@@ -18,7 +18,7 @@ public class MiraiEventMsgParser : IMiraiEventMsgParser
     }
 
     #endregion
-    
+
     public void BeginParseData(IReceiveDataPublisher dataSender)
     {
         dataSender.OnWsReceiveMsg.Subscribe(ParseData);
@@ -35,9 +35,9 @@ public class MiraiEventMsgParser : IMiraiEventMsgParser
         if (!data.TryGetJToken(out var jToken)) return;
 
         if (!jToken.TryGetJObject(out var jObject)) return;
-        
+
         if (!jObject.TryGetValue("data", out var jData)) return;
-        
+
         if (!jData.TryGetJObject(out var dataValue)) return;
 
         if (dataValue.TryGetValue<string>("type", out var value) && !value.Equals(""))
@@ -46,7 +46,7 @@ public class MiraiEventMsgParser : IMiraiEventMsgParser
         }
         else
         {
-            Shared.Logger.Error($"收到无法解析的信息: {data}"); 
+            Shared.Logger.Error($"收到无法解析的信息: {data}");
         }
     }
 

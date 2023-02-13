@@ -8,11 +8,9 @@ namespace Camille.Core.Enum.MiraiBaseEnum;
 /// </summary>
 public enum MemberHonorChangeType
 {
-    [Description("获得群称号")]
-    [JsonProperty("achieve")]
+    [Description("获得群称号")] [JsonProperty("achieve")]
     Achieve,
-    
-    [Description("失去群称号")]
-    [JsonProperty("lose")]
+
+    [Description("失去群称号")] [JsonProperty("lose")]
     Lose
 }

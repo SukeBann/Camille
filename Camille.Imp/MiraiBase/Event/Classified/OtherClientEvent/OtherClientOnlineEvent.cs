@@ -10,16 +10,16 @@ namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
 public record OtherClientOnlineEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; init; } = MiraiEventType.OtherClientOnlineEvent;
-    
+
     /// <summary>
     /// 其他客户端信息
     /// </summary>
     [JsonProperty("client")]
-    public MiraiClient Client { get; set; } 
-    
+    public MiraiClient Client { get; set; }
+
     /// <summary>
     /// 详细设备类型
     /// </summary>
     [JsonProperty("kind")]
-    public long? Kind { get; set; } 
+    public long? Kind { get; set; }
 }

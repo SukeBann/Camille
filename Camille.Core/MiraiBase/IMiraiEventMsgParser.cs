@@ -14,7 +14,7 @@ public interface IMiraiEventMsgParser
     /// 收到新的Mirai事件
     /// </summary>
     public Subject<IMiraiEvent> OnMiraiEventReceived { get; init; }
-    
+
     /// <summary>
     /// 收到新的Mirai信息
     /// </summary>

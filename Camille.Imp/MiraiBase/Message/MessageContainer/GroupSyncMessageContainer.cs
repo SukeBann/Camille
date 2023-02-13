@@ -10,7 +10,7 @@ namespace Camille.Imp.MiraiBase.Message.MessageContainer;
 public record GroupSyncMessageContainer : MiraiMsgContainerBase
 {
     public override MiraiContainerMsgType ContainerMsgType { get; init; } = MiraiContainerMsgType.GroupSyncMessage;
-    
+
     /// <summary>
     /// 发送的目标群
     /// </summary>

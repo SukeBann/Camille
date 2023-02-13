@@ -4,10 +4,10 @@ using Newtonsoft.Json;
 
 namespace Camille.Imp.MiraiBase.Message.MessageContainer;
 
-public record StrangerMiraiMsgContainer: MiraiMsgContainerBase
+public record StrangerMiraiMsgContainer : MiraiMsgContainerBase
 {
     public override MiraiContainerMsgType ContainerMsgType { get; init; } = MiraiContainerMsgType.StrangerMessage;
-    
+
     /// <summary>
     /// 消息发送者
     /// </summary>

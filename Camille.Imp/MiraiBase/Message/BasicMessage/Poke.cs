@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 public record Poke : MiraiBasicMessageBase
 {
     public override MiraiBasicMsgType MiraiBasicMsgType { get; init; } = MiraiBasicMsgType.Poke;
-    
+
     /// <summary>
     /// 戳一戳的类型
     /// </summary>

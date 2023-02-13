@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 public record Json : MiraiBasicMessageBase
 {
     public override MiraiBasicMsgType MiraiBasicMsgType { get; init; } = MiraiBasicMsgType.Json;
-    
+
     /// <summary>
     /// json文本
     /// </summary>

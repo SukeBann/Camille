@@ -10,12 +10,11 @@ namespace Camille.Core.Adapter;
 /// </summary>
 public interface IMiraiWebSocket
 {
-        
     /// <summary>
     /// Ws断开连接时推送消息
     /// </summary>
     public Subject<WebSocketCloseStatus> OnWsDisconnect { get; }
-    
+
     /// <summary>
     /// 创建ws连接
     /// </summary>

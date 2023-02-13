@@ -27,7 +27,7 @@ public class MiraiWebSocket : IMiraiWebSocket, IReceiveDataPublisher
 
     /// <inheritdoc/>
     public Subject<WebSocketCloseStatus> OnWsDisconnect { get; } = new();
-    
+
     /// <inheritdoc/>
     public Subject<string> OnWsReceiveMsg { get; } = new();
 
@@ -62,6 +62,7 @@ public class MiraiWebSocket : IMiraiWebSocket, IReceiveDataPublisher
                     {
                         return;
                     }
+
                     OnWsReceiveMsg.OnNext(message.Text);
                 });
         }

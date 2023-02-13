@@ -9,7 +9,7 @@ public static class Logger
     /// 具体的日志实现
     /// </summary>
     private static ILogger LoggerImp { get; set; }
-    
+
     public static void InitLogger(LogConfig logConfig)
     {
         LoggerImp.InitLogger(logConfig);

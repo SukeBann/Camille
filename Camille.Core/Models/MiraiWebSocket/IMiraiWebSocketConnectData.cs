@@ -19,22 +19,22 @@ public interface IMiraiWebSocketConnectData
     /// Ip Address
     /// </summary>
     public IPAddress IpAddress { get; set; }
-    
+
     /// <summary>
     /// Ws connect Uri
     /// </summary>
     public Uri ConnectUri { get; }
-    
+
     /// <summary>
     /// 连接模式
     /// </summary>
     public ConnectionMode ConnectionMode { get; }
-    
+
     /// <summary>
     /// 连接模式
     /// </summary>
     public ConnectChannelType ConnectChannelType { get; set; }
-    
+
     /// <summary>
     /// verifyKey, 配置文件中指定 
     /// </summary>

@@ -12,21 +12,18 @@ public enum GroupPermissions
     /// <summary>
     /// 群主
     /// </summary>
-    [Description("OWNER")]
-    [ContentText("OWNER")]
+    [Description("OWNER")] [ContentText("OWNER")]
     Owner,
 
     /// <summary>
     /// 管理员
     /// </summary>
-    [Description("ADMINISTRATOR")]
-    [ContentText("ADMINISTRATOR")]
+    [Description("ADMINISTRATOR")] [ContentText("ADMINISTRATOR")]
     Administrator,
 
     /// <summary>
     /// 群员
     /// </summary>
-    [Description("MEMBER")]
-    [ContentText("MEMBER")]
+    [Description("MEMBER")] [ContentText("MEMBER")]
     Member
 }

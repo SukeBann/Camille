@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 public record Xml : MiraiBasicMessageBase
 {
     public override MiraiBasicMsgType MiraiBasicMsgType { get; init; } = MiraiBasicMsgType.Xml;
-    
+
     /// <summary>
     /// xml文本
     /// </summary>

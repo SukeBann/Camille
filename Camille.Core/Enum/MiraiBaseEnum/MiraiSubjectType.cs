@@ -7,9 +7,7 @@ namespace Camille.Core.Enum.MiraiBaseEnum;
 /// </summary>
 public enum MiraiSubjectType
 {
-    [Description("来自好友")]
-    Friend,
-    
-    [Description("来自群聊")]
-    Group
+    [Description("来自好友")] Friend,
+
+    [Description("来自群聊")] Group
 }

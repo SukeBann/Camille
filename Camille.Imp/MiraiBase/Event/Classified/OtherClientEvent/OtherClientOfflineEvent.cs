@@ -10,10 +10,10 @@ namespace Camille.Imp.MiraiBase.Event.Classified.OtherClientEvent;
 public record OtherClientOfflineEvent : MiraiEventBase
 {
     public override MiraiEventType EventType { get; init; } = MiraiEventType.OtherClientOfflineEvent;
-    
+
     /// <summary>
     /// 其他客户端信息
     /// </summary>
     [JsonProperty("client")]
-    public MiraiClient Client { get; set; } 
+    public MiraiClient Client { get; set; }
 }

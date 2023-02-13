@@ -8,15 +8,12 @@ namespace Camille.Core.Enum.MiraiWebSocket;
 /// </summary>
 public enum ConnectChannelType
 {
-    [Description("推送消息")]
-    [ContentText("message")]
+    [Description("推送消息")] [ContentText("message")]
     Message,
-    
-    [Description("推送事件")]
-    [ContentText("event")]
+
+    [Description("推送事件")] [ContentText("event")]
     Event,
-    
-    [ContentText("all")]
-    [Description("推送消息与事件")]
+
+    [ContentText("all")] [Description("推送消息与事件")]
     All
 }

@@ -5,7 +5,7 @@
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public interface IMiraiTypeMapping<T>
-where T : Enum
+    where T : Enum
 {
     /// <summary>
     /// 标识类型, 比如事件的类型， 或者是信息的类型

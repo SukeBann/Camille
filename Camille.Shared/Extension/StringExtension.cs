@@ -25,8 +25,8 @@ public static class StringExtension
         }
     }
 
-    public static bool TryGetValue<T>(this JObject jObject, string path, [MaybeNullWhen(false)]out T value)
-    where T: class
+    public static bool TryGetValue<T>(this JObject jObject, string path, [MaybeNullWhen(false)] out T value)
+        where T : class
     {
         var tryGetValue = jObject.TryGetValue(path, out var nullableValue);
         value = nullableValue?.Value<T>();

@@ -12,12 +12,12 @@ internal class Logger : ILogger
     /// 日志助手
     /// </summary>
     private LogHelper? LogHelper { get; set; }
-    
+
     /// <summary>
     /// 显示日志窗口
     /// </summary>
     private Action? ShowLogWindow { get; set; }
-    
+
     /// <summary>
     /// 隐藏日志窗口
     /// </summary>

@@ -7,7 +7,7 @@ using Flurl;
 
 namespace Camille.Imp.Models.MiraiWebSocket;
 
-public class MiraiWebSocketConnectData: IMiraiWebSocketConnectData
+public class MiraiWebSocketConnectData : IMiraiWebSocketConnectData
 {
     /// <summary>
     /// 通过现有Session连接
@@ -31,7 +31,7 @@ public class MiraiWebSocketConnectData: IMiraiWebSocketConnectData
         VerifyKey = verifyKey;
         SessionKey = sessionKey;
         QQ = qq;
-        
+
         ConnectionMode = ConnectionMode.Reconnect;
     }
 
@@ -59,7 +59,7 @@ public class MiraiWebSocketConnectData: IMiraiWebSocketConnectData
     }
 
     public int Port { get; set; }
-    
+
     public IPAddress IpAddress { get; set; }
 
     public Uri ConnectUri
@@ -78,13 +78,13 @@ public class MiraiWebSocketConnectData: IMiraiWebSocketConnectData
         }
     }
 
-    public ConnectionMode ConnectionMode { get; private set; } 
-    
+    public ConnectionMode ConnectionMode { get; private set; }
+
     public ConnectChannelType ConnectChannelType { get; set; }
-    
+
     public string VerifyKey { get; set; }
-    
+
     public string? SessionKey { get; set; }
-    
+
     public long QQ { get; set; }
 }

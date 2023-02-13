@@ -7,12 +7,9 @@ namespace Camille.Core.Enum.MiraiBaseEnum;
 /// </summary>
 public enum MiraiDataType
 {
-    [Description("事件")]
-    Event,
-    
-    [Description("消息")]
-    Message,
-    
-    [Description("未知类型")]
-    Unknown
+    [Description("事件")] Event,
+
+    [Description("消息")] Message,
+
+    [Description("未知类型")] Unknown
 }

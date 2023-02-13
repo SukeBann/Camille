@@ -8,7 +8,7 @@ namespace Camille.Imp.MiraiBase.Event;
 /// <summary>
 /// 未知事件
 /// </summary>
-public record UnKnownEvent: IMiraiEvent, IMiraiUnknownData
+public record UnKnownEvent : IMiraiEvent, IMiraiUnknownData
 {
     [JsonProperty("type")]
     [JsonConverter(typeof(StringEnumConverter))]

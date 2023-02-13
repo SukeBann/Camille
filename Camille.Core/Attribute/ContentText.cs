@@ -46,7 +46,7 @@ public class ContentTextAttribute : System.Attribute
         var contentText = ContentText;
         return contentText == null ? 0 : contentText.GetHashCode();
     }
-    
+
     public override bool IsDefaultAttribute() => Equals(Default);
 
     #endregion

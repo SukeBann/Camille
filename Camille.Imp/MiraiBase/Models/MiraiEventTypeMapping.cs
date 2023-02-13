@@ -9,4 +9,5 @@ namespace Camille.Imp.MiraiBase.Models;
 /// <param name="IdentityType">事件类型</param>
 /// <param name="MiraiTypeName">事件类型string文本</param>
 /// <param name="InstanceType">事件实例类型</param>
-public record MiraiEventTypeMapping(MiraiEventType IdentityType, string MiraiTypeName, Type InstanceType) : IMiraiTypeMapping<MiraiEventType>;
+public record MiraiEventTypeMapping
+    (MiraiEventType IdentityType, string MiraiTypeName, Type InstanceType) : IMiraiTypeMapping<MiraiEventType>;

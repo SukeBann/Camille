@@ -9,7 +9,7 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 public record Source : MiraiBasicMessageBase
 {
     public override MiraiBasicMsgType MiraiBasicMsgType { get; init; } = MiraiBasicMsgType.Source;
-    
+
     /// <summary>
     /// 消息的识别号，用于引用回复
     /// </summary>

@@ -31,7 +31,7 @@ internal class LogHelper
             .WriteTo.Console()
             .WriteTo.Debug();
 #endif
-        
+
         // 调用日志窗口初始化方法
         LogConfig.LogWindowInitAction?.Invoke(loggerConfiguration);
         return loggerConfiguration;

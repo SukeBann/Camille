@@ -8,22 +8,21 @@ namespace Camille.Core.Enum.MiraiBaseEnum;
 /// </summary>
 public enum MiraiPokeType
 {
-    [Description("戳一戳")]
-    [ContentText("Poke")]
+    [Description("戳一戳")] [ContentText("Poke")]
     Poke,
-    [Description("比心")]
-    [ContentText("ShowLove")]
+
+    [Description("比心")] [ContentText("ShowLove")]
     ShowLove,
-    [Description("点赞")]
-    [ContentText("Like")]
+
+    [Description("点赞")] [ContentText("Like")]
     Like,
-    [Description("心碎")]
-    [ContentText("Heartbroken")]
+
+    [Description("心碎")] [ContentText("Heartbroken")]
     Heartbroken,
-    [Description("666")]
-    [ContentText("SixSixSix")]
+
+    [Description("666")] [ContentText("SixSixSix")]
     SixSixSix,
-    [Description("放大招")]
-    [ContentText("FangDaZhao")]
+
+    [Description("放大招")] [ContentText("FangDaZhao")]
     FangDaZhao
 }

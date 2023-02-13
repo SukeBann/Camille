@@ -22,5 +22,4 @@ public record NudgeEvent : MiraiEventBase
     /// </summary>
     [JsonProperty("subject")]
     public MiraiSubject EventSubject { get; set; }
-
 }

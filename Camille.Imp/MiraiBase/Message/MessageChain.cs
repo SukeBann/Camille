@@ -98,7 +98,7 @@ public class MessageChain : List<IMiraiBasicMessage>
     {
         return new Plain(message).ToMessageChain();
     }
-    
+
 
     /// <summary>
     /// 拼接两个消息链

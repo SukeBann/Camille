@@ -18,11 +18,10 @@ public record MiraiClient
     /// </summary>
     [JsonProperty("id")]
     public long Id { get; init; }
-    
+
     /// <summary>
     /// 客户端平台类型
     /// </summary>
     [JsonProperty("platform")]
     public string Platform { get; init; }
-    
 }

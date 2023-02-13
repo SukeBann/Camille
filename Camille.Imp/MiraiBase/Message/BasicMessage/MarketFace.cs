@@ -13,10 +13,12 @@ public record MarketFace : MiraiBasicMessageBase
     /// <summary>
     /// 商场表情唯一标识
     /// </summary>
-    [JsonProperty("id")] public int Id { get; set; }
+    [JsonProperty("id")]
+    public int Id { get; set; }
 
     /// <summary>
     /// 表情显示名称
     /// </summary>
-    [JsonProperty("name")] public int Name { get; set; }
+    [JsonProperty("name")]
+    public int Name { get; set; }
 }

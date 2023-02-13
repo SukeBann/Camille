@@ -12,7 +12,7 @@ public static class ObjectExtension
     /// <typeparam name="T">目标泛型， 约束为class</typeparam>
     /// <exception cref="NullReferenceException">目标为Null时抛出异常</exception>
     public static void IfNullThenThrowException<T>(this T? target, [NotNullWhen(true)] out T returnValue)
-    where T: class
+        where T : class
     {
         returnValue = target ?? throw new NullReferenceException("空引用目标!");
     }

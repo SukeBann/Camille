@@ -7,7 +7,7 @@ namespace Camille.Imp.MiraiBase.Message.MessageContainer;
 /// <summary>
 /// 好友发来的消息
 /// </summary>
-public record FriendMiraiMsgContainer: MiraiMsgContainerBase
+public record FriendMiraiMsgContainer : MiraiMsgContainerBase
 {
     public override MiraiContainerMsgType ContainerMsgType { get; init; } = MiraiContainerMsgType.FriendMessage;
 

@@ -9,13 +9,13 @@ namespace Camille.Imp.MiraiBase.Message.BasicMessage;
 public record Face : MiraiBasicMessageBase
 {
     public override MiraiBasicMsgType MiraiBasicMsgType { get; init; } = MiraiBasicMsgType.Face;
-    
+
     /// <summary>
     /// QQ表情编号，可选，优先高于name
     /// </summary>
     [JsonProperty("faceId")]
     public int FaceId { get; set; }
-    
+
     /// <summary>
     /// QQ表情拼音，可选
     /// </summary>

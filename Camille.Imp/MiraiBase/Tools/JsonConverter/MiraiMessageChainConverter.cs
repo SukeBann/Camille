@@ -41,7 +41,7 @@ public class MiraiMessageChainConverter : Newtonsoft.Json.JsonConverter
             ? typeMapping.InstanceType
             : typeof(UnKnownBasicMsg);
     }
-    
+
     /// <summary>
     /// 获取基础消息实例
     /// </summary>
@@ -54,7 +54,7 @@ public class MiraiMessageChainConverter : Newtonsoft.Json.JsonConverter
         {
             if (!item.TryGetJObject(out var jObject) || !jObject.TryGetValue<string>("type", out var value))
                 return new UnKnownBasicMsg(reader.Value?.ToString() ?? string.Empty);
-            
+
             var basicMsgType = GetBasicMsgType(value);
             return (JsonConvert.DeserializeObject(item.ToString(), basicMsgType) as MiraiBasicMessageBase) ??
                    (IMiraiBasicMessage) new UnKnownBasicMsg(reader.Value?.ToString() ?? string.Empty);
@@ -70,7 +70,7 @@ public class MiraiMessageChainConverter : Newtonsoft.Json.JsonConverter
     {
         var messageChain = new MessageChain();
         var messageChainJArray = serializer.Deserialize<JArray>(reader) ?? new JArray();
-        
+
         messageChain.AddRange(messageChainJArray.Select(item => GetBasicMsg(reader, item)));
         return messageChain;
     }
