@@ -6,6 +6,7 @@ using Camille.Imp.MiraiBase.Event;
 using Camille.Imp.MiraiBase.Message;
 using Camille.Imp.MiraiBase.Models;
 using Camille.Imp.MiraiBase.Models.Contract;
+using Camille.Imp.MiraiBase.Tools.JsonConverter;
 using Camille.Shared.Extension;
 using Newtonsoft.Json;
 
@@ -31,8 +32,8 @@ public static class MiraiDataReflection
         MiraiBasicMsgTypeMapping = GetTypeMapping<MiraiBasicMsgType, MiraiBasicMessageBase>(basicMsgSet);
 
         var receiveMsg
-            = GetDefaultInstances<MiraiMsgReceivedBase>("Camille.Imp.MiraiBase.Message.MessageReceived");
-        MiraiReceiveMsgTypeMapping = GetTypeMapping<MiraiReceiveMsgType, MiraiMsgReceivedBase>(receiveMsg);
+            = GetDefaultInstances<MiraiMsgContainerBase>("Camille.Imp.MiraiBase.Message.MessageContainer");
+        MiraiMsgContainerTypeMapping = GetTypeMapping<MiraiContainerMsgType, MiraiMsgContainerBase>(receiveMsg);
     }
 
     #region Methods
@@ -45,7 +46,7 @@ public static class MiraiDataReflection
     /// <returns></returns>
     public static MiraiDataType GetMiraiDataType(string typeString)
     {
-        if (MiraiReceiveMsgTypeMapping.ContainsKey(typeString))
+        if (MiraiMsgContainerTypeMapping.ContainsKey(typeString))
         {
             return MiraiDataType.Message;
         }
@@ -88,7 +89,7 @@ public static class MiraiDataReflection
     /// <returns>解析成功时返回对应类型的消息， 否则返回未知消息</returns>
     public static IMiraiMessageReceived GetMiraiReceivedMessage(string typeString, string data)
     {
-        if (!MiraiReceiveMsgTypeMapping.TryGetValue(typeString, out var typeMapping))
+        if (!MiraiMsgContainerTypeMapping.TryGetValue(typeString, out var typeMapping))
         {
             Shared.Logger.Error($"接收到未知消息: {data}");
             return new UnKnownReceivedMsg {SourceData = data};
@@ -117,14 +118,14 @@ public static class MiraiDataReflection
     private static Dictionary<string, IMiraiTypeMapping<MiraiEventType>> MiraiEventTypeMapping { get; }
 
     /// <summary>
-    /// <see cref="MiraiMsgReceivedBase"/>子类的实现类型映射
+    /// <see cref="MiraiMsgContainerBase"/>子类的实现类型映射
     /// </summary>
-    private static Dictionary<string, IMiraiTypeMapping<MiraiReceiveMsgType>> MiraiReceiveMsgTypeMapping { get; }
+    private static Dictionary<string, IMiraiTypeMapping<MiraiContainerMsgType>> MiraiMsgContainerTypeMapping { get; }
 
     /// <summary>
     /// <see cref="MiraiBasicMessageBase"/>子类的实现类型映射
     /// </summary>
-    private static Dictionary<string, IMiraiTypeMapping<MiraiBasicMsgType>> MiraiBasicMsgTypeMapping { get; }
+    internal static Dictionary<string, IMiraiTypeMapping<MiraiBasicMsgType>> MiraiBasicMsgTypeMapping { get; }
 
     #endregion
 
@@ -134,9 +135,9 @@ public static class MiraiDataReflection
     /// 获取对应Mirai类型的Type映射字典
     ///  <br/> key: 对应标识类型的字符串文本 例如: <see cref="MiraiEventType.NudgeEvent"/>
     ///  <br/> value: 对应的<see cref="IMiraiTypeMapping{T}"/>的实现
-    ///  <br/> 例如: <see cref="MiraiEventTypeMapping"/> or <see cref="MiraiBasicMsgTypeMapping"/> and <see cref="MiraiReceiveMsgType"/>
+    ///  <br/> 例如: <see cref="MiraiEventTypeMapping"/> or <see cref="MiraiBasicMsgTypeMapping"/> and <see cref="MiraiContainerMsgType"/>
     /// </summary>
-    /// <typeparam name="T"><see cref="MiraiEventType"/> or <see cref="MiraiBasicMsgType"/> or <see cref="MiraiReceiveMsgType"/></typeparam>
+    /// <typeparam name="T"><see cref="MiraiEventType"/> or <see cref="MiraiBasicMsgType"/> or <see cref="MiraiContainerMsgType"/></typeparam>
     /// <typeparam name="TI">实例类型</typeparam>
     /// <returns></returns>
     private static Dictionary<string, IMiraiTypeMapping<T>> GetTypeMapping<T, TI>(IEnumerable<TI> instanceSet)
@@ -145,7 +146,7 @@ public static class MiraiDataReflection
     {
         if (typeof(T) != typeof(MiraiBasicMsgType) &&
             typeof(T) != typeof(MiraiEventType) &&
-            typeof(T) != typeof(MiraiReceiveMsgType))
+            typeof(T) != typeof(MiraiContainerMsgType))
         {
             throw new ArgumentException("该方法不支持此枚举类型使用", $"{typeof(T).FullName}");
         }
@@ -165,7 +166,7 @@ public static class MiraiDataReflection
     /// 获取对应实例的 类型映射<see cref="IMiraiTypeMapping{T}"/>
     /// </summary>
     /// <param name="instance">类型实例</param>
-    /// <typeparam name="T"><see cref="MiraiEventType"/> or <see cref="MiraiBasicMsgType"/> or <see cref="MiraiReceiveMsgType"/></typeparam>
+    /// <typeparam name="T"><see cref="MiraiEventType"/> or <see cref="MiraiBasicMsgType"/> or <see cref="MiraiContainerMsgType"/></typeparam>
     /// <typeparam name="TI">实例类型</typeparam>
     /// <returns></returns>
     private static IMiraiTypeMapping<T> GetTypeMapping<T, TI>(TI instance)
@@ -178,9 +179,9 @@ public static class MiraiDataReflection
                 basicMessageBase.MiraiBasicMsgType.ToString(),
                 basicMessageBase.GetType()),
 
-            MiraiMsgReceivedBase messageReceivedBase => (IMiraiTypeMapping<T>) new MiraiMsgReceivedTypeMapping(
-                messageReceivedBase.ReceiveMsgType,
-                messageReceivedBase.ReceiveMsgType.ToString(),
+            MiraiMsgContainerBase messageReceivedBase => (IMiraiTypeMapping<T>) new MiraiMsgContainerTypeMapping(
+                messageReceivedBase.ContainerMsgType,
+                messageReceivedBase.ContainerMsgType.ToString(),
                 messageReceivedBase.GetType()),
 
             MiraiEventBase miraiEventBase => (IMiraiTypeMapping<T>) new MiraiEventTypeMapping(

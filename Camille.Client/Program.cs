@@ -1,9 +1,17 @@
 ﻿using System.Net;
+using System.Net.Mime;
+using System.Reactive.Linq;
 using Camille.Core.Enum.MiraiWebSocket;
 using Camille.Core.MiraiBase;
 using Camille.Imp.Adapter;
 using Camille.Imp.MiraiBase;
+using Camille.Imp.MiraiBase.Message;
+using Camille.Imp.MiraiBase.Message.BasicMessage;
+using Camille.Imp.MiraiBase.Message.MessageContainer;
+using Camille.Imp.MiraiBase.Models;
 using Camille.Imp.Models.MiraiWebSocket;
+using Masuit.Tools;
+using Newtonsoft.Json;
 
 var cancellationTokenSource = new CancellationTokenSource();
 
@@ -24,9 +32,20 @@ miraiEventMsgParser.OnMiraiEventReceived.Subscribe(miraiEvent =>
     Console.WriteLine($"mirai event: {miraiEvent.EventType}");
 }); 
 
-miraiEventMsgParser.OnMiraiMessageReceived.Subscribe(miraiMsg =>
-{
-    Console.WriteLine($"mirai msg: {miraiMsg.ReceiveMsgType}");
-});
+miraiEventMsgParser.OnMiraiMessageReceived
+    .OfType<GroupMiraiMsgContainer>()
+    .Subscribe(miraiMsg =>
+    {
+        var senderGroup = miraiMsg.Sender.Group;
+        Console.WriteLine($"mirai msg: [{senderGroup.Name}]{miraiMsg.Sender.MemberName}: {miraiMsg.MessageChain.GetPlainMessage()} Image: {miraiMsg.MessageChain.OfType<Image>().ToJsonString()}");
+    });
+
+miraiEventMsgParser.OnMiraiMessageReceived
+    .OfType<FriendMiraiMsgContainer>()
+    .Subscribe(miraiMsg =>
+    {
+        var sender = miraiMsg.Sender;
+        Console.WriteLine($"mirai msg: [{sender.Nickname}]: {miraiMsg.MessageChain.GetPlainMessage()} Image: {miraiMsg.MessageChain.OfType<Image>().ToJsonString()}");
+    });
 
 Console.ReadKey();

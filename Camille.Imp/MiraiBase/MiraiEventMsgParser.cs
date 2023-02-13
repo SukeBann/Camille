@@ -32,7 +32,7 @@ public class MiraiEventMsgParser : IMiraiEventMsgParser
     /// <param name="data"></param>
     private void ParseData(string data)
     {
-        if (!data.TryGetJObject(out var jToken)) return;
+        if (!data.TryGetJToken(out var jToken)) return;
 
         if (!jToken.TryGetJObject(out var jObject)) return;
         
@@ -42,7 +42,7 @@ public class MiraiEventMsgParser : IMiraiEventMsgParser
 
         if (dataValue.TryGetValue<string>("type", out var value) && !value.Equals(""))
         {
-            GetEventOrMsg(data, value);
+            GetEventOrMsg(jData.ToString(), value);
         }
         else
         {

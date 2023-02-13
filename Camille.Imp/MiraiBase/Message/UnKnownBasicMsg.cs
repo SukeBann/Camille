@@ -10,6 +10,11 @@ namespace Camille.Imp.MiraiBase.Message;
 /// </summary>
 public class UnKnownBasicMsg: IMiraiBasicMessage, IMiraiUnknownData
 {
+    public UnKnownBasicMsg(string sourceData)
+    {
+        SourceData = sourceData;
+    }
+
     [JsonProperty("type")]
     [JsonConverter(typeof(StringEnumConverter))]
     public MiraiBasicMsgType MiraiBasicMsgType { get; init; } = MiraiBasicMsgType.UnKnown;

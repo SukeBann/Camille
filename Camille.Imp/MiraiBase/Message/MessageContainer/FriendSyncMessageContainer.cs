@@ -2,14 +2,14 @@
 using Camille.Imp.MiraiBase.Models;
 using Newtonsoft.Json;
 
-namespace Camille.Imp.MiraiBase.Message.MessageReceived;
+namespace Camille.Imp.MiraiBase.Message.MessageContainer;
 
 /// <summary>
 /// 好友同步消息
 /// </summary>
-public record FriendSyncMessageReceived: MiraiMsgReceivedBase
+public record FriendSyncMessageContainer: MiraiMsgContainerBase
 {
-    public override MiraiReceiveMsgType ReceiveMsgType { get; init; } = MiraiReceiveMsgType.FriendSyncMessage;
+    public override MiraiContainerMsgType ContainerMsgType { get; init; } = MiraiContainerMsgType.FriendSyncMessage;
 
     /// <summary>
     /// 好友

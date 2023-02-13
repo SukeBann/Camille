@@ -12,7 +12,7 @@ public record UnKnownReceivedMsg: IMiraiMessageReceived, IMiraiUnknownData
 {
     [JsonProperty("type")]
     [JsonConverter(typeof(StringEnumConverter))]
-    public MiraiReceiveMsgType ReceiveMsgType { get; init; } = MiraiReceiveMsgType.UnKnown;
+    public MiraiContainerMsgType ContainerMsgType { get; init; } = MiraiContainerMsgType.UnKnown;
     
     /// <summary>
     /// 源数据

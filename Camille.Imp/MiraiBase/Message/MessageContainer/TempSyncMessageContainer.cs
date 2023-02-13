@@ -2,14 +2,14 @@
 using Camille.Imp.MiraiBase.Models;
 using Newtonsoft.Json;
 
-namespace Camille.Imp.MiraiBase.Message.MessageReceived;
+namespace Camille.Imp.MiraiBase.Message.MessageContainer;
 
 /// <summary>
 /// 群临时同步消息
 /// </summary>
-public record TempSyncMessageReceived : MiraiMsgReceivedBase
+public record TempSyncMessageContainer : MiraiMsgContainerBase
 {
-    public override MiraiReceiveMsgType ReceiveMsgType { get; init; } = MiraiReceiveMsgType.TempSyncMessage;
+    public override MiraiContainerMsgType ContainerMsgType { get; init; } = MiraiContainerMsgType.TempSyncMessage;
 
     /// <summary>
     /// 为发送的目标群成员

@@ -1,16 +1,15 @@
 ﻿using Camille.Core.Enum.MiraiBaseEnum;
-using Camille.Core.MiraiBase;
 using Camille.Imp.MiraiBase.Models;
 using Newtonsoft.Json;
 
-namespace Camille.Imp.MiraiBase.Message.MessageReceived;
+namespace Camille.Imp.MiraiBase.Message.MessageContainer;
 
 /// <summary>
 /// 群同步消息
 /// </summary>
-public record GroupSyncMessageReceived : MiraiMsgReceivedBase
+public record GroupSyncMessageContainer : MiraiMsgContainerBase
 {
-    public override MiraiReceiveMsgType ReceiveMsgType { get; init; } = MiraiReceiveMsgType.GroupSyncMessage;
+    public override MiraiContainerMsgType ContainerMsgType { get; init; } = MiraiContainerMsgType.GroupSyncMessage;
     
     /// <summary>
     /// 发送的目标群

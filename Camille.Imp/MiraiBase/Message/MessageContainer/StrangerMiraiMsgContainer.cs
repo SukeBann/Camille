@@ -2,11 +2,11 @@
 using Camille.Imp.MiraiBase.Models;
 using Newtonsoft.Json;
 
-namespace Camille.Imp.MiraiBase.Message.MessageReceived;
+namespace Camille.Imp.MiraiBase.Message.MessageContainer;
 
-public record StrangerMiraiMsgReceived: MiraiMsgReceivedBase
+public record StrangerMiraiMsgContainer: MiraiMsgContainerBase
 {
-    public override MiraiReceiveMsgType ReceiveMsgType { get; init; } = MiraiReceiveMsgType.StrangerMessage;
+    public override MiraiContainerMsgType ContainerMsgType { get; init; } = MiraiContainerMsgType.StrangerMessage;
     
     /// <summary>
     /// 消息发送者

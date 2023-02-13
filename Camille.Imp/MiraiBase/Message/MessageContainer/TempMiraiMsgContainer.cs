@@ -2,14 +2,14 @@
 using Camille.Imp.MiraiBase.Models;
 using Newtonsoft.Json;
 
-namespace Camille.Imp.MiraiBase.Message.MessageReceived;
+namespace Camille.Imp.MiraiBase.Message.MessageContainer;
 
 /// <summary>
 /// 接收到的临时消息
 /// </summary>
-public record TempMiraiMsgReceived : MiraiMsgReceivedBase
+public record TempMiraiMsgContainer : MiraiMsgContainerBase
 {
-    public override MiraiReceiveMsgType ReceiveMsgType { get; init; } = MiraiReceiveMsgType.TempMessage;
+    public override MiraiContainerMsgType ContainerMsgType { get; init; } = MiraiContainerMsgType.TempMessage;
 
     /// <summary>
     /// 消息的发送者

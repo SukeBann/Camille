@@ -11,7 +11,7 @@ public static class StringExtension
     /// <param name="jsonText">要解析的json文本</param>
     /// <param name="jToken">如果能解析则返回JToken, 否则返回null</param>
     /// <returns></returns>
-    public static bool TryGetJObject(this string jsonText, [MaybeNullWhen(false)] out JToken jToken)
+    public static bool TryGetJToken(this string jsonText, [MaybeNullWhen(false)] out JToken jToken)
     {
         jToken = null;
         try
@@ -40,6 +40,6 @@ public static class StringExtension
     /// <returns></returns>
     public static bool IsValidJson(this string jsonText)
     {
-        return TryGetJObject(jsonText, out _);
+        return TryGetJToken(jsonText, out _);
     }
 }

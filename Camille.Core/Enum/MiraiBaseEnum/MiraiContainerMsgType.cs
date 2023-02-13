@@ -6,7 +6,7 @@ namespace Camille.Core.Enum.MiraiBaseEnum;
 /// Mirai 收到的消息类型
 /// https://docs.mirai.mamoe.net/mirai-api-http/api/MessageType.html#%E6%B6%88%E6%81%AF%E9%93%BE%E7%B1%BB%E5%9E%8B
 /// </summary>
-public enum MiraiReceiveMsgType
+public enum MiraiContainerMsgType
 {
     #region Msg
 
