@@ -9,25 +9,5 @@ namespace Camille.Core.Adapter;
 /// </summary>
 public interface ICommonApi
 {
-    #region 获取插件信息
-
-    /// <summary>
-    /// 获取Mirai-http插件信息
-    /// </summary>
-    /// <returns></returns>
-    public IMiraiApiResult<IMiraiApiData> AboutMiraiHttp();
-
-    /// <summary>
-    /// 获取登录账号
-    /// </summary>
-    /// <returns></returns>
-    public IMiraiApiResult<IMiraiApiData> GetLoginQQList();
-
-    #endregion
-
-    #region 缓存操作
-
-    public IMiraiApiResult<IMiraiApiData> GetMsgByMsgId(ICommonRequestArg arg);
-
-    #endregion
+  
 }

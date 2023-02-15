@@ -7,6 +7,8 @@ namespace Camille.Core.Enum.CommonInterfaceEnum;
 /// </summary>
 public enum MiraiApiStateCode
 {
+    [Description("未知状态码")] Unknown,
+    
     [Description("成功")] Success = 0,
 
     [Description("错误的验证秘钥")] IncorrectVerifyKey = 1,
@@ -29,4 +31,6 @@ public enum MiraiApiStateCode
     [Description("消息过长")] MsgTooLong = 30,
 
     [Description("错误的访问, 如参数错误等")] BadRequest = 400,
+    
+    [Description("上传文件出错")] UploadFileError = 500,
 }
