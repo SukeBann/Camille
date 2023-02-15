@@ -13,7 +13,6 @@ using Newtonsoft.Json;
 
 namespace Camille.Imp.Adapter;
 
-
 /// <summary>
 /// 实现Mirai的通用接口
 /// <br/>每个bot创建时都会构建一个自身专用接口适配器的实例,
@@ -25,10 +24,16 @@ public class MiraiHttp : IMiraiHttp
 {
     #region Properties
 
+    public MiraiHttp(AdapterServerAddress httpAddress, string sessionKey)
+    {
+        HttpAddress = httpAddress;
+        SessionKey = sessionKey;
+    }
+
     /// <summary>
     /// Mirai http服务请求地址
     /// </summary>
-    private AdapterConfig HttpAdress { get; set; }
+    private AdapterServerAddress HttpAddress { get; set; }
 
     /// <summary>
     /// Mirai Http session key
@@ -105,7 +110,7 @@ public class MiraiHttp : IMiraiHttp
     ///<inheritdoc/>
     public async Task<string> PostJsonAsync(HttpEndpoints endpoint, object data, bool withSessionKey = true)
     {
-        var url = $"http://{HttpAdress}/{endpoint.GetContentText()}";
+        var url = $"http://{HttpAddress}/{endpoint.GetContentText()}";
         return await PostJsonAsync(url, data, withSessionKey);
     }
 
@@ -135,7 +140,7 @@ public class MiraiHttp : IMiraiHttp
     ///<inheritdoc/>
     public async Task<string> GetAsync(HttpEndpoints endpoint, object? data = null, bool withSessionKey = true)
     {
-        var url = $"http://{HttpAdress}/{endpoint.GetContentText()}";
+        var url = $"http://{HttpAddress}/{endpoint.GetContentText()}";
 
         if (data != null)
             url = url.SetQueryParams(data);
