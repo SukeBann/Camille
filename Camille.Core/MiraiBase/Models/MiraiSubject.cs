@@ -1,7 +1,7 @@
 ﻿using Camille.Core.Enum.MiraiBaseEnum;
 using Newtonsoft.Json;
 
-namespace Camille.Imp.MiraiBase.Models;
+namespace Camille.Core.MiraiBase.Models;
 
 /// <summary>
 /// 事件或信息的来源

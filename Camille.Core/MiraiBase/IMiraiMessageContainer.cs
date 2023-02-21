@@ -3,10 +3,10 @@
 namespace Camille.Core.MiraiBase;
 
 /// <summary>
-/// 收到的消息的基本定义
+/// 收到的消息容器的基本定义
 /// https://docs.mirai.mamoe.net/mirai-api-http/api/MessageType.html
 /// </summary>
-public interface IMiraiMessageReceived
+public interface IMiraiMessageContainer
 {
     /// <summary>
     /// 收到的消息类型

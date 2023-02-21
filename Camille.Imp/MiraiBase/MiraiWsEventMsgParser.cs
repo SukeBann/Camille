@@ -7,14 +7,14 @@ using Camille.Shared.Extension;
 namespace Camille.Imp.MiraiBase;
 
 /// <inheritdoc />
-public class MiraiEventMsgParser : IMiraiEventMsgParser
+public class MiraiWsEventMsgParser : IMiraiEventMsgParser
 {
     #region Ctor
 
-    public MiraiEventMsgParser()
+    public MiraiWsEventMsgParser()
     {
         OnMiraiEventReceived = new Subject<IMiraiEvent>();
-        OnMiraiMessageReceived = new Subject<IMiraiMessageReceived>();
+        OnMiraiMessageReceived = new Subject<IMiraiMessageContainer>();
     }
 
     #endregion
@@ -94,7 +94,7 @@ public class MiraiEventMsgParser : IMiraiEventMsgParser
     /// <param name="msgType">信息类型</param>
     /// <param name="json">接受到的json数据</param>
     /// <returns>成功获取返回true, 获取失败返回false</returns>
-    private IMiraiMessageReceived TryGetMiraiMessage(string msgType, string json)
+    private IMiraiMessageContainer TryGetMiraiMessage(string msgType, string json)
     {
         return MiraiDataReflection.GetMiraiReceivedMessage(msgType, json);
     }
@@ -107,7 +107,7 @@ public class MiraiEventMsgParser : IMiraiEventMsgParser
     public Subject<IMiraiEvent> OnMiraiEventReceived { get; init; }
 
     /// <inheritdoc/>
-    public Subject<IMiraiMessageReceived> OnMiraiMessageReceived { get; init; }
+    public Subject<IMiraiMessageContainer> OnMiraiMessageReceived { get; init; }
 
     #endregion
 }

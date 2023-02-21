@@ -11,19 +11,14 @@ public interface IMiraiWebSocketConnectData
     #region Properties
 
     /// <summary>
-    /// ws 端口
-    /// </summary>
-    public int Port { get; set; }
-
-    /// <summary>
     /// Ip Address
     /// </summary>
-    public IPAddress IpAddress { get; set; }
-
+    public AdapterServerAddress ServerAddress { get; set; }
+    
     /// <summary>
-    /// Ws connect Uri
+    /// Ws连接Uri
     /// </summary>
-    public Uri ConnectUri { get; }
+    public Uri WsConnectUri { get; }
 
     /// <summary>
     /// 连接模式

@@ -6,7 +6,7 @@ namespace Camille.Logger;
 /// <summary>
 ///  日志记录器的功能实现
 /// </summary>
-internal class Logger : ILogger
+public class Logger : ILogger
 {
     /// <summary>
     /// 日志助手

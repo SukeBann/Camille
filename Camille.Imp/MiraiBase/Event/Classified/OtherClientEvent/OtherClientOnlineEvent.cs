@@ -1,8 +1,8 @@
 using Camille.Core.Enum.MiraiBaseEnum;
-using Camille.Imp.MiraiBase.Models;
+using Camille.Core.MiraiBase.Models;
 using Newtonsoft.Json;
 
-namespace Camille.Imp.MiraiBase.Event.Classified.GroupEvent;
+namespace Camille.Imp.MiraiBase.Event.Classified.OtherClientEvent;
 
 /// <summary>
 /// 其他客户端上线

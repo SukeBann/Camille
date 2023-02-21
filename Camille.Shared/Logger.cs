@@ -12,6 +12,7 @@ public static class Logger
 
     public static void InitLogger(LogConfig logConfig)
     {
+        LoggerImp = new Camille.Logger.Logger();
         LoggerImp.InitLogger(logConfig);
     }
 

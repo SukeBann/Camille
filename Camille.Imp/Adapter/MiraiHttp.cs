@@ -2,6 +2,7 @@
 using Camille.Core.Attribute.ExtensionMethod;
 using Camille.Core.Enum.CommonInterfaceEnum;
 using Camille.Core.Enum.MiraiBaseEnum;
+using Camille.Core.Models;
 using Camille.Core.Models.Exceptions;
 using Camille.Imp.Models;
 using Camille.Shared.Extension;
@@ -102,7 +103,7 @@ public class MiraiHttp : IMiraiHttp
         var response = await request.PostStringAsync(data.ToJsonString(new JsonSerializerSettings()
             {NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore}));
 
-        var result = await request.GetStringAsync();
+        var result = await response.GetStringAsync();
 
         return EnsureSuccess(result, "url={url}\r\npayload={json.ToJsonString()}");
     }

@@ -8,7 +8,7 @@ namespace Camille.Imp.MiraiBase.Message;
 /// <summary>
 /// 未知接收消息
 /// </summary>
-public record UnKnownReceivedMsg : IMiraiMessageReceived, IMiraiUnknownData
+public record UnKnownContainerMsg : IMiraiMessageContainer, IMiraiUnknownData
 {
     [JsonProperty("type")]
     [JsonConverter(typeof(StringEnumConverter))]

@@ -1,7 +1,7 @@
 ﻿using Camille.Core.Enum.MiraiBaseEnum;
-using Camille.Imp.MiraiBase.Models.Contract;
+using Camille.Core.MiraiBase.Models.Contract;
 
-namespace Camille.Imp.MiraiBase.Models;
+namespace Camille.Core.MiraiBase.Models;
 
 /// <summary>
 /// <see cref="Type"/> mapping of Mirai MsgReceived: <see cref="MiraiContainerMsgType"/>

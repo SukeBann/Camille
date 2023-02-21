@@ -2,10 +2,10 @@
 using System.Reflection;
 using Camille.Core.Enum.MiraiBaseEnum;
 using Camille.Core.MiraiBase;
+using Camille.Core.MiraiBase.Models;
+using Camille.Core.MiraiBase.Models.Contract;
 using Camille.Imp.MiraiBase.Event;
 using Camille.Imp.MiraiBase.Message;
-using Camille.Imp.MiraiBase.Models;
-using Camille.Imp.MiraiBase.Models.Contract;
 using Camille.Imp.MiraiBase.Tools.JsonConverter;
 using Camille.Shared.Extension;
 using Newtonsoft.Json;
@@ -87,24 +87,24 @@ public static class MiraiDataReflection
     /// <param name="typeString">类型标识文本</param>
     /// <param name="data">json文本</param>
     /// <returns>解析成功时返回对应类型的消息， 否则返回未知消息</returns>
-    public static IMiraiMessageReceived GetMiraiReceivedMessage(string typeString, string data)
+    public static IMiraiMessageContainer GetMiraiReceivedMessage(string typeString, string data)
     {
         if (!MiraiMsgContainerTypeMapping.TryGetValue(typeString, out var typeMapping))
         {
             Shared.Logger.Error($"接收到未知消息: {data}");
-            return new UnKnownReceivedMsg {SourceData = data};
+            return new UnKnownContainerMsg {SourceData = data};
         }
 
         try
         {
-            var receivedMsg = JsonConvert.DeserializeObject(data, typeMapping.InstanceType) as IMiraiMessageReceived;
+            var receivedMsg = JsonConvert.DeserializeObject(data, typeMapping.InstanceType) as IMiraiMessageContainer;
             receivedMsg.IfNullThenThrowException(out var returnValue);
             return returnValue;
         }
         catch (Exception e)
         {
             Shared.Logger.Error($"反序列化时失败或, 接收到未知消息: {data}", e);
-            return new UnKnownReceivedMsg() {SourceData = data};
+            return new UnKnownContainerMsg() {SourceData = data};
         }
     }
 

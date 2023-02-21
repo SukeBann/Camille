@@ -2,7 +2,7 @@
 using Camille.Core.Models.Exceptions;
 using Masuit.Tools;
 
-namespace Camille.Imp.Models;
+namespace Camille.Core.Models;
 
 /// <summary>
 /// 适配器的服务地址
@@ -29,7 +29,7 @@ public record AdapterServerAddress(string Host, string Port)
             return new MiraiException($"错误的地址: {address}", MiraiExceptionType.InvalidAddress);
         }
 
-        if (!address.Contains(':')) throw GetMiraiException(); 
+        if (!address.Contains(':')) throw GetMiraiException();
 
         var split = address.Split(':');
 
@@ -47,6 +47,16 @@ public record AdapterServerAddress(string Host, string Port)
     public static implicit operator string(AdapterServerAddress serverAddress)
     {
         return $"{serverAddress.Host}:{serverAddress.Port}";
+    }
+
+    /// <summary>
+    /// 转换为string
+    /// </summary>
+    /// <param name="serverAddress"></param>
+    /// <returns></returns>
+    public static implicit operator Uri(AdapterServerAddress serverAddress)
+    {
+        return new Uri($"{serverAddress.Host}:{serverAddress.Port}");
     }
 
     /// <summary>

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Camille.Imp.MiraiBase.Models;
+namespace Camille.Core.MiraiBase.Models;
 
 /// <summary>
 /// 其他QQ客户端

@@ -1,49 +1,31 @@
-﻿using System.Net;
-using System.Reactive.Linq;
-using Camille.Core.Enum.MiraiWebSocket;
-using Camille.Core.MiraiBase;
-using Camille.Imp.Adapter;
+﻿using System.Reactive.Linq;
+using Camille.Core.Enum.MiraiBot;
 using Camille.Imp.MiraiBase;
-using Camille.Imp.MiraiBase.Message.BasicMessage;
 using Camille.Imp.MiraiBase.Message.MessageContainer;
-using Camille.Imp.Models.MiraiWebSocket;
-using Masuit.Tools;
+using Camille.Logger.Config;
+using Camille.Shared;
 
-var cancellationTokenSource = new CancellationTokenSource();
+var manualResetEvent = new ManualResetEvent(false);
 
-var miraiWebSocket = new MiraiWebSocket();
-IMiraiEventMsgParser miraiEventMsgParser = new MiraiEventMsgParser();
+Logger.InitLogger(new LogConfig(Path.Combine(Environment.CurrentDirectory, "Camille.log"), 30));
 
-miraiEventMsgParser.BeginParseData(miraiWebSocket);
+var bot = MiraiBotFactory.CreateBotConfig(1197884312, "1234567890")
+    .AddReceiveAdapter(ReceiveAdapterType.Websocket, "127.0.0.1:8080")
+    .AddApiAdapter(ApiAdapterType.Http, "127.0.0.1:8080")
+    .BuildBot();
 
-await miraiWebSocket.CreateConnection(new MiraiWebSocketConnectData(8080,
-        IPAddress.Parse("127.0.0.1"),
-        ConnectChannelType.All,
-        "1234567890",
-        1197884312),
-    cancellationTokenSource.Token);
-
-miraiEventMsgParser.OnMiraiEventReceived.Subscribe(miraiEvent =>
+bot.OnMiraiEventReceived.Subscribe(x =>
 {
-    Console.WriteLine($"mirai event: {miraiEvent.EventType}");
+    Logger.Info($"[EVENT]: [{x.EventType}]");
 });
 
-miraiEventMsgParser.OnMiraiMessageReceived
+bot.OnMiraiMessageReceived
     .OfType<GroupMiraiMsgContainer>()
-    .Subscribe(miraiMsg =>
-    {
-        var senderGroup = miraiMsg.Sender.Group;
-        Console.WriteLine(
-            $"mirai msg: [{senderGroup.Name}]{miraiMsg.Sender.MemberName}: {miraiMsg.MessageChain.GetPlainMessage()} Image: {miraiMsg.MessageChain.OfType<Image>().ToJsonString()}");
-    });
+    .Subscribe(x =>
+{
+    Logger.Info($"[MSG] [{x.Sender.Group.Name}] {x.Sender.MemberName} --> {x.MessageChain.GetPlainMessage()}");
+});
 
-miraiEventMsgParser.OnMiraiMessageReceived
-    .OfType<FriendMiraiMsgContainer>()
-    .Subscribe(miraiMsg =>
-    {
-        var sender = miraiMsg.Sender;
-        Console.WriteLine(
-            $"mirai msg: [{sender.Nickname}]: {miraiMsg.MessageChain.GetPlainMessage()} Image: {miraiMsg.MessageChain.OfType<Image>().ToJsonString()}");
-    });
+await bot.LinkStart();
 
-Console.ReadKey();
+manualResetEvent.WaitOne();

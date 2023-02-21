@@ -1,7 +1,7 @@
 ﻿using Camille.Core.Enum.MiraiBaseEnum;
-using Camille.Imp.MiraiBase.Models.Contract;
+using Camille.Core.MiraiBase.Models.Contract;
 
-namespace Camille.Imp.MiraiBase.Models;
+namespace Camille.Core.MiraiBase.Models;
 
 /// <summary>
 /// Mirai的消息类型映射<see cref="MiraiEventType"/>

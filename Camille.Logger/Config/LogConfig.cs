@@ -12,9 +12,9 @@ public class LogConfig
     public LogConfig(
         string logPath,
         int logFileRollCount,
-        Action<LoggerConfiguration>? logWindowInitAction,
-        Action? showLogWindow,
-        Action? hiddenLogWindow)
+        Action<LoggerConfiguration>? logWindowInitAction = null,
+        Action? showLogWindow = null,
+        Action? hiddenLogWindow = null)
     {
         LogWindowInitAction = logWindowInitAction;
         ShowLogWindow = showLogWindow;
