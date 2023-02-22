@@ -1,8 +1,8 @@
 ﻿using Camille.Core.MiraiBase;
-using Camille.Imp.MiraiBase.Message;
+using Camille.Core.MiraiBase.Models.Base;
+using Camille.Shared.Extension;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Camille.Shared.Extension;
 
 namespace Camille.Imp.MiraiBase.Tools.JsonConverter;
 

@@ -35,6 +35,6 @@ public record GroupRecallEvent : MiraiEventBase
     /// <summary>
     /// 撤回消息的操作者, 为null则为bot的操作
     /// </summary>
-    [JsonProperty("authorId")]
-    public long Operator { get; set; }
+    [JsonProperty("operator")]
+    public GroupMember Operator { get; set; }
 }

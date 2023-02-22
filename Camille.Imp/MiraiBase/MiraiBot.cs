@@ -1,9 +1,11 @@
 ﻿using System.Diagnostics;
 using System.Reactive.Subjects;
 using Camille.Core.Adapter;
+using Camille.Core.Enum.MiraiBaseEnum;
 using Camille.Core.Enum.MiraiBot;
 using Camille.Core.Enum.MiraiWebSocket;
 using Camille.Core.MiraiBase;
+using Camille.Core.Models.Exceptions;
 using Camille.Imp.Adapter;
 using Camille.Imp.Models.MiraiWebSocket;
 
@@ -21,6 +23,11 @@ public class MiraiBot : IMiraiBot
     #region Private
 
     private IMiraiEventMsgParser MiraiEventMsgParser { get; init; }
+    
+    /// <summary>
+    /// Mirai Api请求服务
+    /// </summary>
+    public ICommonApiServer? CommonApiServer { get; set; }
 
     private CancellationTokenSource CancellationTokenSource { get; init; }
 
@@ -38,6 +45,7 @@ public class MiraiBot : IMiraiBot
 
     public async Task LinkStart()
     {
+        await ConnectApiAdapter();
         await ConnectReceiveAdapter();
     }
 
@@ -52,10 +60,37 @@ public class MiraiBot : IMiraiBot
         return new MiraiWsEventMsgParser();
     }
 
+    private async Task ConnectApiAdapter()
+    {
+        var address = MiraiBotConfig.ApiAdapterServerAddress ?? 
+                      throw new ArgumentException("服务地址为null, 请检查是否设置了Api接口适配器地址");
+        var qq = MiraiBotConfig.QQ;
+        var verifyKey = MiraiBotConfig.VerifyKey;
+
+        switch (MiraiBotConfig.ApiAdapterType)
+        {
+            case ApiAdapterType.Http:
+                var miraiHttp = new MiraiHttp(address);
+                await miraiHttp.VerifyKey(verifyKey);
+                var bind = await miraiHttp.Bind(qq);
+                if (!bind)
+                {
+                    throw new MiraiException("Mirai绑定会话失败", MiraiExceptionType.UnKnownException);
+                }
+                CommonApiServer = miraiHttp; 
+                break;
+            case ApiAdapterType.Websocket:
+            case ApiAdapterType.ReverseWebsocket:
+            case ApiAdapterType.WeHook:
+            default:
+                throw new NotImplementedException("无法使用未实现的Api接适配器");
+        }
+    }
+
     private async Task ConnectReceiveAdapter()
     {
         var address = MiraiBotConfig.ReceiveAdapterServerAddress ??
-                      throw new ArgumentException("服务地址为null, 请检查是否设置了信息接收接口适配器");
+                      throw new ArgumentException("服务地址为null, 请检查是否设置了信息接收接口适配器地址");
         var qq = MiraiBotConfig.QQ;
         var verifyKey = MiraiBotConfig.VerifyKey;
 

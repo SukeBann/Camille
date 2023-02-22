@@ -41,47 +41,47 @@ public enum HttpEndpoints
 
     #region Account Info
 
-    [Description("获取群列表")] [ContentText("groupList")]
+    [Description("获取群列表")] [ContentText("groupList")] [VerificationRequired]
     GroupList,
 
-    [Description("获取群成员列表")] [ContentText("memberList")]
+    [Description("获取群成员列表")] [ContentText("memberList")] [VerificationRequired]
     MemberList,
 
-    [Description("获取最新群成员列表")] [ContentText("latestMemberList")]
+    [Description("获取最新群成员列表")] [ContentText("latestMemberList")] [VerificationRequired]
     LatestMemberList,
 
-    [Description("获取Bot资料")] [ContentText("botProfile")]
+    [Description("获取Bot资料")] [ContentText("botProfile")] [VerificationRequired]
     BotProfile,
 
-    [Description("获取好友资料")] [ContentText("friendProfile")]
+    [Description("获取好友资料")] [ContentText("friendProfile")] [VerificationRequired]
     FriendProfile,
 
-    [Description("获取群成员资料")] [ContentText("memberProfile")]
+    [Description("获取群成员资料")] [ContentText("memberProfile")] [VerificationRequired]
     MemberProfile,
 
-    [Description("获取QQ用户资料")] [ContentText("userProfile")]
+    [Description("获取QQ用户资料")] [ContentText("userProfile")] [VerificationRequired]
     UserProfile,
 
     #endregion
 
     #region Message
 
-    [Description("发送好友消息")] [ContentText("sendFriendMessage")]
+    [Description("发送好友消息")] [ContentText("sendFriendMessage")] [VerificationRequired]
     SendFriendMessage,
 
-    [Description("发送群消息")] [ContentText("sendGroupMessage")]
+    [Description("发送群消息")] [ContentText("sendGroupMessage")] [VerificationRequired]
     SendGroupMessage,
 
-    [Description("发送临时会话消息")] [ContentText("sendTempMessage")]
+    [Description("发送临时会话消息")] [ContentText("sendTempMessage")] [VerificationRequired]
     SendTempMessage,
 
-    [Description("发送头像戳一戳消息")] [ContentText("sendNudge")]
+    [Description("发送头像戳一戳消息")] [ContentText("sendNudge")] [VerificationRequired]
     SendNudge,
 
-    [Description("撤回消息")] [ContentText("recall")]
+    [Description("撤回消息")] [ContentText("recall")] [VerificationRequired]
     Recall,
 
-    [Description("获取漫游消息")] [ContentText("roamingMessages")]
+    [Description("获取漫游消息")] [ContentText("roamingMessages")] [VerificationRequired]
     RoamingMessages,
 
     #endregion

@@ -25,12 +25,16 @@ public static class StringExtension
         }
     }
 
-    public static bool TryGetValue<T>(this JObject jObject, string path, [MaybeNullWhen(false)] out T value)
-        where T : class
+    /// <summary>
+    /// 尝试从json文本中获取指定path的值
+    /// </summary>
+    /// <param name="jsonText">json文本</param>
+    /// <param name="path">json property name</param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static T? GetJsonValue<T>(this string jsonText, string path)
     {
-        var tryGetValue = jObject.TryGetValue(path, out var nullableValue);
-        value = nullableValue?.Value<T>();
-        return tryGetValue;
+        return jsonText.TryGetJToken(out var jToken) ? jToken.GetValueOrDefault<T>(path) : default;
     }
 
     /// <summary>

@@ -2,11 +2,11 @@
 using System.Reflection;
 using Camille.Core.Enum.MiraiBaseEnum;
 using Camille.Core.MiraiBase;
+using Camille.Core.MiraiBase.Contract;
 using Camille.Core.MiraiBase.Models;
-using Camille.Core.MiraiBase.Models.Contract;
+using Camille.Core.MiraiBase.Models.Base;
 using Camille.Imp.MiraiBase.Event;
 using Camille.Imp.MiraiBase.Message;
-using Camille.Imp.MiraiBase.Tools.JsonConverter;
 using Camille.Shared.Extension;
 using Newtonsoft.Json;
 
@@ -23,12 +23,13 @@ public static class MiraiDataReflection
     /// </summary>
     static MiraiDataReflection()
     {
+        // TODO 我认为以下的命名空间硬编码存在一定的隐患, 后期需要寻找可以替代的解决方案
         var eventSet
             = GetDefaultInstances<MiraiEventBase>("Camille.Imp.MiraiBase.Event.Classified");
         MiraiEventTypeMapping = GetTypeMapping<MiraiEventType, MiraiEventBase>(eventSet);
 
         var basicMsgSet
-            = GetDefaultInstances<MiraiBasicMessageBase>("Camille.Imp.MiraiBase.Message.BasicMessage");
+            = GetDefaultInstances<MiraiBasicMessageBase>("Camille.Core.MiraiBase.Models.BasicMessage", typeof(MiraiBasicMessageBase));
         MiraiBasicMsgTypeMapping = GetTypeMapping<MiraiBasicMsgType, MiraiBasicMessageBase>(basicMsgSet);
 
         var receiveMsg
@@ -198,12 +199,15 @@ public static class MiraiDataReflection
     /// 获取某个命名空间下所有类的默认实例
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    /// <param name="typeNamespace">类型所在的命名空间</param>
+    /// <param name="assemblyInstanceType">类型所在的程序集中的任意一个类的Type</param>
     /// <returns></returns>
-    private static IEnumerable<T> GetDefaultInstances<T>(string @namespace) where T : class
+    private static IEnumerable<T> GetDefaultInstances<T>(string typeNamespace, Type? assemblyInstanceType = default) where T : class
     {
-        return Assembly.GetExecutingAssembly()
+        var assembly = assemblyInstanceType is null ? Assembly.GetExecutingAssembly() : Assembly.GetAssembly(assemblyInstanceType);
+        return assembly 
             .GetTypes()
-            .Where(type => type.FullName is not null && type.FullName.Contains(@namespace))
+            .Where(type => type.FullName is not null && type.FullName.Contains(typeNamespace))
             .Where(type => !type.IsAbstract)
             .Select(type =>
             {

@@ -70,6 +70,11 @@ public class MiraiWebSocketConnectData : IMiraiWebSocketConnectData
         }
     }
 
+    /// <summary>
+    /// Http的服务地址
+    /// </summary>
+    public string HttpConnectUrl => $"http://{ServerAddress}";
+
     public ConnectionMode ConnectionMode { get; private set; }
 
     public ConnectChannelType ConnectChannelType { get; set; }

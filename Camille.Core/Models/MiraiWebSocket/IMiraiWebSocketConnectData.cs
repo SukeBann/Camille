@@ -19,6 +19,11 @@ public interface IMiraiWebSocketConnectData
     /// Ws连接Uri
     /// </summary>
     public Uri WsConnectUri { get; }
+    
+    /// <summary>
+    /// Http的服务地址
+    /// </summary>
+    public string HttpConnectUrl { get; }
 
     /// <summary>
     /// 连接模式

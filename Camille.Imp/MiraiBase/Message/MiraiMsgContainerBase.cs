@@ -1,5 +1,6 @@
 ﻿using Camille.Core.Enum.MiraiBaseEnum;
 using Camille.Core.MiraiBase;
+using Camille.Core.MiraiBase.Models.Base;
 using Camille.Imp.MiraiBase.Tools.JsonConverter;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;

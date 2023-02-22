@@ -7,13 +7,13 @@ namespace Camille.Core.MiraiBase.Models;
 /// <summary>
 /// 群信息
 /// </summary>
-public record Group(string Id, string Name, GroupPermissions BotPermission)
+public record Group(long Id, string Name, GroupPermissions BotPermission)
 {
     /// <summary>
     /// 群号
     /// </summary>
     [JsonProperty("id")]
-    public string Id { get; init; } = Id;
+    public long Id { get; init; } = Id;
 
     /// <summary>
     /// 群名称

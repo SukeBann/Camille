@@ -4,7 +4,6 @@ using Camille.Core.Enum.CommonInterfaceEnum;
 using Camille.Core.Enum.MiraiBaseEnum;
 using Camille.Core.Models;
 using Camille.Core.Models.Exceptions;
-using Camille.Imp.Models;
 using Camille.Shared.Extension;
 using Flurl;
 using Flurl.Http;
@@ -21,14 +20,13 @@ namespace Camille.Imp.Adapter;
 /// <br/>因为HttpClient是由Flurl.Http内部创建并复用的.
 /// <br/>这样做的目的在于将Bot的功能解耦。
 /// </summary>
-public class MiraiHttp : IMiraiHttp
+public partial class MiraiHttp : IMiraiHttp, ICommonApiServer
 {
     #region Properties
 
-    public MiraiHttp(AdapterServerAddress httpAddress, string sessionKey)
+    public MiraiHttp(AdapterServerAddress httpAddress)
     {
         HttpAddress = httpAddress;
-        SessionKey = sessionKey;
     }
 
     /// <summary>
@@ -39,7 +37,7 @@ public class MiraiHttp : IMiraiHttp
     /// <summary>
     /// Mirai Http session key
     /// </summary>
-    private string SessionKey { get; set; }
+    private string? SessionKey { get; set; }
 
     #endregion
 
@@ -105,14 +103,14 @@ public class MiraiHttp : IMiraiHttp
 
         var result = await response.GetStringAsync();
 
-        return EnsureSuccess(result, "url={url}\r\npayload={json.ToJsonString()}");
+        return EnsureSuccess(result, $"url={url}\r\npayload={data.ToJsonString()}");
     }
 
     ///<inheritdoc/>
-    public async Task<string> PostJsonAsync(HttpEndpoints endpoint, object data, bool withSessionKey = true)
+    public async Task<string> PostJsonAsync(HttpEndpoints endpoint, object data)
     {
         var url = $"http://{HttpAddress}/{endpoint.GetContentText()}";
-        return await PostJsonAsync(url, data, withSessionKey);
+        return await PostJsonAsync(url, data, endpoint.IsNeedVerify());
     }
 
     #endregion
@@ -139,13 +137,14 @@ public class MiraiHttp : IMiraiHttp
     }
 
     ///<inheritdoc/>
-    public async Task<string> GetAsync(HttpEndpoints endpoint, object? data = null, bool withSessionKey = true)
+    public async Task<string> GetAsync(HttpEndpoints endpoint, object? data = null)
     {
         var url = $"http://{HttpAddress}/{endpoint.GetContentText()}";
 
         if (data != null)
             url = url.SetQueryParams(data);
-        return await GetAsync(url, withSessionKey);
+        
+        return await GetAsync(url, endpoint.IsNeedVerify());
     }
 
     #endregion

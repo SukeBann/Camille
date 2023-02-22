@@ -3,6 +3,7 @@ using Camille.Core.Adapter;
 using Camille.Core.Enum.MiraiBaseEnum;
 using Camille.Core.MiraiBase;
 using Camille.Shared.Extension;
+using Newtonsoft.Json.Linq;
 
 namespace Camille.Imp.MiraiBase;
 
@@ -32,17 +33,14 @@ public class MiraiWsEventMsgParser : IMiraiEventMsgParser
     /// <param name="data"></param>
     private void ParseData(string data)
     {
-        if (!data.TryGetJToken(out var jToken)) return;
-
-        if (!jToken.TryGetJObject(out var jObject)) return;
-
-        if (!jObject.TryGetValue("data", out var jData)) return;
-
-        if (!jData.TryGetJObject(out var dataValue)) return;
-
-        if (dataValue.TryGetValue<string>("type", out var value) && !value.Equals(""))
+        var dataJToken = data.GetJsonValue<JToken>("data");
+        if (dataJToken is null)
         {
-            GetEventOrMsg(jData.ToString(), value);
+            return;
+        }
+        if (dataJToken.TryGetValue<string>("type", out var value) && !value.Equals(""))
+        {
+            GetEventOrMsg(dataJToken.ToString(), value);
         }
         else
         {

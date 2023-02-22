@@ -1,5 +1,5 @@
 ﻿using Camille.Core.Enum.MiraiBaseEnum;
-using Camille.Core.MiraiBase.Models.Contract;
+using Camille.Core.MiraiBase.Contract;
 
 namespace Camille.Core.MiraiBase.Models;
 
