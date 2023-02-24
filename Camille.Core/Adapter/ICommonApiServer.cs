@@ -27,7 +27,15 @@ public interface ICommonApiServer
 
     #region 缓存操作
 
-    public Task<TMsgContainer> GetMsgById<TMsgContainer>() where TMsgContainer : IMiraiMessageContainer;
+    /// <summary>
+    /// 根据消息id获取消息容器 需要指定一个好友id或群聊id
+    /// </summary>
+    /// <param name="messageId">消息id</param>
+    /// <param name="target">好友id或 群id</param>
+    /// <typeparam name="TMsgContainer">消息容器泛型</typeparam>
+    /// <returns></returns>
+    public Task<TMsgContainer> GetMsgById<TMsgContainer>(int messageId, long target) 
+        where TMsgContainer : class, IMiraiMessageContainer;
 
     #endregion
 

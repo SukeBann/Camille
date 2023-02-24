@@ -60,11 +60,11 @@ public class MiraiWsEventMsgParser : IMiraiEventMsgParser
         switch (miraiDataType)
         {
             case MiraiDataType.Event:
-                var miraiEvent = TryGetMiraiEvent(typeString, json);
+                var miraiEvent = MiraiDataReflection.GetMiraiEvent(typeString, json);
                 OnMiraiEventReceived.OnNext(miraiEvent);
                 break;
             case MiraiDataType.Message:
-                var miraiMessage = TryGetMiraiMessage(typeString, json);
+                var miraiMessage = MiraiDataReflection.GetMiraiReceivedMessage(typeString, json);
                 OnMiraiMessageReceived.OnNext(miraiMessage);
                 break;
             case MiraiDataType.Unknown:
@@ -73,28 +73,6 @@ public class MiraiWsEventMsgParser : IMiraiEventMsgParser
                 Shared.Logger.Error("获取Mirai数据类型时发生错误, 目标消息为未知类型", ex);
                 return;
         }
-    }
-
-    /// <summary>
-    /// 尝试从事件类型 获取对应的mirai事件
-    /// </summary>
-    /// <param name="eventType">事件类型</param>
-    /// <param name="json">接受到的json数据</param>
-    /// <returns>成功获取返回true, 获取失败返回false</returns>
-    private IMiraiEvent TryGetMiraiEvent(string eventType, string json)
-    {
-        return MiraiDataReflection.GetMiraiEvent(eventType, json);
-    }
-
-    /// <summary>
-    /// 尝试从type获取对应的mirai信息
-    /// </summary>
-    /// <param name="msgType">信息类型</param>
-    /// <param name="json">接受到的json数据</param>
-    /// <returns>成功获取返回true, 获取失败返回false</returns>
-    private IMiraiMessageContainer TryGetMiraiMessage(string msgType, string json)
-    {
-        return MiraiDataReflection.GetMiraiReceivedMessage(msgType, json);
     }
 
     #endregion

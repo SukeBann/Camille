@@ -7,21 +7,13 @@ namespace Camille.Core.MiraiBase.Models;
 /// <summary>
 /// 创建<see cref="GroupMember"/>的实例
 /// </summary>
-/// <param name="Id">群友QQ</param>
-/// <param name="MemberName">群员的群名片</param>
-/// <param name="MemberPermission">群中的权限</param>
-/// <param name="SpecialTitle">群头衔</param>
-/// <param name="JoinTimestamp">加入时间戳</param>
-/// <param name="LastSpeakTimestamp">最后发言时间戳</param>
-/// <param name="MuteTimeRemaining">剩余禁言时间</param>
-/// <param name="Group">群信息</param>
 public class GroupMember
 {
     /// <summary>
     /// 群员的QQ号
     /// </summary>
     [JsonProperty("id")]
-    public string Id { get; init; }
+    public long Id { get; init; }
 
     /// <summary>
     /// 群员的群昵称

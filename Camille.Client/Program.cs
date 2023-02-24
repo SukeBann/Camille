@@ -1,6 +1,5 @@
 ﻿using System.Reactive.Linq;
 using Camille.Core.Enum.MiraiBot;
-using Camille.Core.MiraiBase.Models.Base;
 using Camille.Core.MiraiBase.Models.BasicMessage;
 using Camille.Imp.Extension;
 using Camille.Imp.MiraiBase;

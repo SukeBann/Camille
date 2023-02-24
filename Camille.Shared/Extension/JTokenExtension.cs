@@ -52,7 +52,17 @@ public static class JTokenExtension
     public static bool TryGetValue<T>(this JObject jObject, string path, [MaybeNullWhen(false)] out T value)
     {
         var tryGetValue = jObject.TryGetValue(path, out var nullableValue);
-        value = nullableValue != null ? nullableValue.Value<T>() : default;
+        
+        try
+        {
+            value = nullableValue != null ? nullableValue.Value<T>() : default;
+        }
+        catch (Exception e)
+        {
+            value = default;
+            return false;
+        }
+        
         return tryGetValue;
     }
 }

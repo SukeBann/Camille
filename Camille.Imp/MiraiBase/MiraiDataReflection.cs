@@ -29,7 +29,8 @@ public static class MiraiDataReflection
         MiraiEventTypeMapping = GetTypeMapping<MiraiEventType, MiraiEventBase>(eventSet);
 
         var basicMsgSet
-            = GetDefaultInstances<MiraiBasicMessageBase>("Camille.Core.MiraiBase.Models.BasicMessage", typeof(MiraiBasicMessageBase));
+            = GetDefaultInstances<MiraiBasicMessageBase>("Camille.Core.MiraiBase.Models.BasicMessage",
+                typeof(MiraiBasicMessageBase));
         MiraiBasicMsgTypeMapping = GetTypeMapping<MiraiBasicMsgType, MiraiBasicMessageBase>(basicMsgSet);
 
         var receiveMsg
@@ -79,6 +80,21 @@ public static class MiraiDataReflection
         {
             Shared.Logger.Error($"反序列化时失败或, 接收到未知事件: {data}", e);
             return new UnKnownEvent {SourceData = data};
+        }
+    }
+
+    public static IMiraiMessageContainer GetMiraiMessageOfType(Type containerType, string data)
+    {
+        try
+        {
+            var receivedMsg = JsonConvert.DeserializeObject(data, containerType) as IMiraiMessageContainer;
+            receivedMsg.IfNullThenThrowException(out var returnValue);
+            return returnValue;
+        }
+        catch (Exception e)
+        {
+            Shared.Logger.Error($"反序列化时失败或, 接收到未知消息: {data}", e);
+            return new UnKnownContainerMsg() {SourceData = data};
         }
     }
 
@@ -202,10 +218,13 @@ public static class MiraiDataReflection
     /// <param name="typeNamespace">类型所在的命名空间</param>
     /// <param name="assemblyInstanceType">类型所在的程序集中的任意一个类的Type</param>
     /// <returns></returns>
-    private static IEnumerable<T> GetDefaultInstances<T>(string typeNamespace, Type? assemblyInstanceType = default) where T : class
+    private static IEnumerable<T> GetDefaultInstances<T>(string typeNamespace, Type? assemblyInstanceType = default)
+        where T : class
     {
-        var assembly = assemblyInstanceType is null ? Assembly.GetExecutingAssembly() : Assembly.GetAssembly(assemblyInstanceType);
-        return assembly 
+        var assembly = assemblyInstanceType is null
+            ? Assembly.GetExecutingAssembly()
+            : Assembly.GetAssembly(assemblyInstanceType);
+        return assembly
             .GetTypes()
             .Where(type => type.FullName is not null && type.FullName.Contains(typeNamespace))
             .Where(type => !type.IsAbstract)

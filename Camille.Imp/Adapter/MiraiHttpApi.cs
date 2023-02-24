@@ -1,4 +1,5 @@
-﻿using Camille.Core.Enum.CommonInterfaceEnum;
+﻿using System.Net.Http.Headers;
+using Camille.Core.Enum.CommonInterfaceEnum;
 using Camille.Core.Enum.MiraiBaseEnum;
 using Camille.Core.MiraiBase;
 using Camille.Core.MiraiBase.Models;
@@ -6,7 +7,9 @@ using Camille.Core.MiraiBase.Models.Base;
 using Camille.Core.MiraiBase.Models.CommonApi;
 using Camille.Core.Models.CommonInterfaceModel;
 using Camille.Core.Models.Exceptions;
+using Camille.Imp.MiraiBase;
 using Camille.Shared.Extension;
+using Flurl.Util;
 
 namespace Camille.Imp.Adapter;
 
@@ -33,26 +36,32 @@ public partial class MiraiHttp
     }
 
     /// <inheritdoc/>
-    public Task<SessionInfo> GetSessionInfo(string sessionInfo)
+    public async Task<SessionInfo> GetSessionInfo(string sessionInfo)
     {
-        throw new NotImplementedException();
+        var response = await GetAsync(HttpEndpoints.SessionInfo, new {sessionKey = SessionKey});
+        return response.GetJsonValue<SessionInfo>("data") ??
+               throw new MiraiException("查询会话信息时发生错误, 无法反序列化会话数据",
+                   MiraiExceptionType.InvalidHttpResponse);
     }
 
     /// <inheritdoc/>
-    public Task<IMiraiApiResult<bool>> Release(long qq)
+    public async Task<bool> Release(long qq)
     {
-        throw new NotImplementedException();
+        var result = await PostJsonAsync(HttpEndpoints.Release, new {sessionKey = SessionKey, qq});
+        return result.GetJsonValue<string>("msg") == "success";
     }
 
     #endregion
 
     #region 获取插件信息
 
+    /// <inheritdoc/>
     public Task<string> About()
     {
         throw new NotImplementedException();
     }
 
+    /// <inheritdoc/>
     public Task<List<long>> GetBotList()
     {
         throw new NotImplementedException();
@@ -62,9 +71,23 @@ public partial class MiraiHttp
 
     #region 获取账号信息
 
-    public Task<TMsgContainer> GetMsgById<TMsgContainer>() where TMsgContainer : IMiraiMessageContainer
+    /// <inheritdoc/>
+    public async Task<TMsgContainer> GetMsgById<TMsgContainer>(int messageId, long target)
+        where TMsgContainer : class, IMiraiMessageContainer
     {
-        throw new NotImplementedException();
+        var result = await GetAsync(HttpEndpoints.MessageFromId, new {messageId, target});
+        if (!result.TryGetJToken(out var jToken))
+        {
+            throw new MiraiException("通过id获取消息时发生错误, data为null",
+                MiraiExceptionType.InvalidHttpResponse);
+        }
+        
+        var token = jToken.SelectToken("data")?.ToString() ?? "";
+        return MiraiDataReflection.GetMiraiMessageOfType(typeof(TMsgContainer),
+                   token) as TMsgContainer ??
+               throw new MiraiException("通过id获取消息时发生错误, data为null",
+                   MiraiExceptionType.InvalidHttpResponse);
+
     }
 
     public Task<List<Account>> GetFriendList()

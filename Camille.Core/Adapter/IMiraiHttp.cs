@@ -38,7 +38,7 @@ public interface IMiraiHttp
     /// </summary>
     /// <param name="qq">要释放会话的qq</param>
     /// <returns>成功返回true, 失败false</returns>
-    public Task<IMiraiApiResult<bool>> Release(long qq);
+    public Task<bool> Release(long qq);
 
     #endregion
     

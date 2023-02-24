@@ -179,7 +179,7 @@ public enum HttpEndpoints
 
     #region MessageCache
 
-    [Description("通过messageId获取消息")] [ContentText("messageFromId")]
+    [Description("通过messageId获取消息")] [ContentText("messageFromId")] [VerificationRequired]
     MessageFromId,
 
     #endregion
