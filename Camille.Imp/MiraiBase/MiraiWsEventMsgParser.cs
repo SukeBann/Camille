@@ -38,9 +38,15 @@ public class MiraiWsEventMsgParser : IMiraiEventMsgParser
         {
             return;
         }
-        if (dataJToken.TryGetValue<string>("type", out var value) && !value.Equals(""))
+
+        if (dataJToken.TryGetValue<string>("type", out var value) && !string.IsNullOrEmpty(value))
         {
             GetEventOrMsg(dataJToken.ToString(), value);
+        }
+        else if (dataJToken.TryGetValue<int>("code", out var code) && dataJToken.TryGetValue<string>("session", out var session))
+        {
+            // 这是连接成功后的Session信息，目前仅记录日志
+            Shared.Logger.Info($"Mirai WebSocket连接成功, Session: {session}, Code: {code}");
         }
         else
         {

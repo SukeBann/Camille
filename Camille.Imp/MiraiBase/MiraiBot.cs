@@ -23,6 +23,8 @@ public class MiraiBot : IMiraiBot
     #region Private
 
     private IMiraiEventMsgParser MiraiEventMsgParser { get; init; }
+
+    private IReceiveDataPublisher? ReceiveDataPublisher { get; set; }
     
     /// <summary>
     /// Mirai Api请求服务
@@ -94,13 +96,12 @@ public class MiraiBot : IMiraiBot
         var qq = MiraiBotConfig.QQ;
         var verifyKey = MiraiBotConfig.VerifyKey;
 
-        IReceiveDataPublisher? msReceiveDataPublisher;
-
         switch (MiraiBotConfig.ReceiveAdapterType)
         {
             case ReceiveAdapterType.Websocket:
                 var miraiWebSocket = new MiraiWebSocket();
-                msReceiveDataPublisher = miraiWebSocket;
+                ReceiveDataPublisher = miraiWebSocket;
+                MiraiEventMsgParser.BeginParseData(ReceiveDataPublisher);
                 await miraiWebSocket.CreateConnection(new MiraiWebSocketConnectData(address, ConnectChannelType.All,
                     verifyKey, qq), CancellationTokenSource.Token);
                 break;
@@ -110,11 +111,9 @@ public class MiraiBot : IMiraiBot
                 throw new NotImplementedException("无法使用未实现的消息接收适配器");
         }
 
-        if (msReceiveDataPublisher is null)
+        if (ReceiveDataPublisher is null)
         {
             throw new NullReferenceException("消息发布器为null");
         }
-
-        MiraiEventMsgParser.BeginParseData(msReceiveDataPublisher);
     }
 }

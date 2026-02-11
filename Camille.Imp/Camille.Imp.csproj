@@ -7,20 +7,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Camille.Core\Camille.Core.csproj" />
-        <ProjectReference Include="..\Camille.Shared\Camille.Shared.csproj" />
+        <ProjectReference Include="..\Camille.Core\Camille.Core.csproj"/>
+        <ProjectReference Include="..\Camille.Shared\Camille.Shared.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="MiraiBase\Event\Classified\OtherClientEvent" />
-        <Folder Include="MiraiBase\Message\BasicMessage" />
+        <Folder Include="MiraiBase\Event\Classified\OtherClientEvent"/>
+        <Folder Include="MiraiBase\Message\BasicMessage"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Flurl" Version="3.0.7" />
-        <PackageReference Include="Flurl.Http" Version="4.0.0-pre3" />
-        <PackageReference Include="Masuit.Tools.Core" Version="2.5.9.2" />
-        <PackageReference Include="Websocket.Client" Version="4.5.2" />
+        <PackageReference Include="Flurl" Version="3.0.7"/>
+        <PackageReference Include="Flurl.Http" Version="4.0.0-pre3"/>
+        <PackageReference Include="Masuit.Tools.Core" Version="2.5.9.2"/>
+        <PackageReference Include="Websocket.Client" Version="4.5.2"/>
     </ItemGroup>
 
 </Project>

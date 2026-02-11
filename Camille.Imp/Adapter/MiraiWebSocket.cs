@@ -36,9 +36,40 @@ public class MiraiWebSocket : IMiraiWebSocket, IReceiveDataPublisher
     {
         try
         {
-            var miraiWebsocketClient = CreateWsClient(connectData.WsConnectUri);
-            
-            await miraiWebsocketClient.StartOrFail();
+            CreateWsClient(connectData.WsConnectUri);
+            if (MiraiWebsocketClient is null)
+            {
+                throw new Exception("创建 WebSocket 客户端失败");
+            }
+
+            await MiraiWebsocketClient.StartOrFail();
+
+            // 如果已经有 SessionKey，说明是重连或指定 Session 连接，不需要发送认证信息
+            if (string.IsNullOrEmpty(connectData.SessionKey))
+            {
+                var authData = new
+                {
+                    syncId = "",
+                    command = "verify",
+                    content = new
+                    {
+                        verifyKey = connectData.VerifyKey
+                    }
+                };
+                MiraiWebsocketClient.Send(Newtonsoft.Json.JsonConvert.SerializeObject(authData));
+
+                var bindData = new
+                {
+                    syncId = "",
+                    command = "bind",
+                    content = new
+                    {
+                        sessionKey = "{{session}}",
+                        qq = connectData.QQ
+                    }
+                };
+                MiraiWebsocketClient.Send(Newtonsoft.Json.JsonConvert.SerializeObject(bindData));
+            }
         }
         catch (Exception e)
         {
@@ -63,7 +94,8 @@ public class MiraiWebSocket : IMiraiWebSocket, IReceiveDataPublisher
     {
         MiraiWebsocketClient = new WebsocketClient(serverAddress)
         {
-            IsReconnectionEnabled = false
+            IsReconnectionEnabled = true,
+            ReconnectTimeout = null
         };
 
         // 当连接断开时推送事件
@@ -73,26 +105,22 @@ public class MiraiWebSocket : IMiraiWebSocket, IReceiveDataPublisher
             Shared.Logger.Error($"{nameof(MiraiWebSocket)}断开连接, 原因：{webSocketCloseStatus}");
         });
 
-        // 默认重连超时为1分钟, 这里修改为30秒
-        MiraiWebsocketClient.ErrorReconnectTimeout = TimeSpan.FromSeconds(30);
-        MiraiWebsocketClient.ReconnectTimeout = TimeSpan.FromSeconds(30);
         MiraiWebsocketClient.ReconnectionHappened.Subscribe(x =>
             Shared.Logger.Info($"{nameof(MiraiWebSocket)} reconnect type: {x.Type}"));
 
         // 当接收到消息时推送事件
         MiraiWebsocketClient.MessageReceived
             // 因为Mirai-Http发送过来的数据都是文本格式，所以在这里过滤文本消息
-            .Where(x => x.MessageType == WebSocketMessageType.Text)
             .Subscribe(message =>
             {
                 if (message.Text.IsNullOrEmpty())
                 {
                     return;
                 }
-
+        
                 OnWsReceiveMsg.OnNext(message.Text);
             });
-
+        
         return MiraiWebsocketClient;
     }
 }

@@ -1,11 +1,13 @@
 using Camille.Core.Enum.MiraiBaseEnum;
 using Camille.Core.Enum.MiraiBot;
+using Camille.Core.Enum.MiraiWebSocket;
 using Camille.Core.MiraiBase;
 using Camille.Imp.Extension;
 using Camille.Imp.MiraiBase;
 using Camille.Imp.MiraiBase.Message.MessageContainer;
+using Camille.Imp.Models.MiraiWebSocket;
 using Camille.Logger.Config;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Websocket.Client;
 
 namespace Camille.Test;
 
@@ -15,9 +17,9 @@ public class Tests
     {
         Shared.Logger.InitLogger(new LogConfig(Path.Combine(Environment.CurrentDirectory, "Camille.log"), 30));
 
-        _bot = MiraiBotFactory.CreateBotConfig(1197884312, "123456789")
-            .AddReceiveAdapter(ReceiveAdapterType.Websocket, "127.0.0.1:8080")
-            .AddApiAdapter(ApiAdapterType.Http, "127.0.0.1:8080")
+        _bot = MiraiBotFactory.CreateBotConfig(1197884312, "INITKEYhzr2Rn32")
+            .AddReceiveAdapter(ReceiveAdapterType.Websocket, "127.0.0.1:8089")
+            .AddApiAdapter(ApiAdapterType.Http, "127.0.0.1:8089")
             .BuildBot();
     }
 
@@ -38,6 +40,40 @@ public class Tests
         await _bot.LinkStart();
     }
 
+    [Test]
+    public async Task WsClientTest()
+    {
+        // TestContext.WriteLine("开始连接 WebSocket...");
+        //
+        // var qq = 1197884312;
+        // var verifyKey = "INITKEYhzr2Rn32";
+        //
+        // var miraiWebSocket = new MiraiWebSocket();
+        // TestContext.WriteLine($"创建连接: {qq}");
+        //
+        // var cancellationTokenSource = new CancellationTokenSource();
+        // var receiveDataPublisher = miraiWebSocket;
+        // var miraiWsEventMsgParser = new MiraiWsEventMsgParser();
+        // miraiWsEventMsgParser.BeginParseData(receiveDataPublisher);
+        //
+        // await miraiWebSocket.CreateConnection(new MiraiWebSocketConnectData("localhost:8089", ConnectChannelType.All,
+        //     verifyKey, qq), cancellationTokenSource.Token);
+        //
+        // TestContext.WriteLine("连接成功,等待60秒...");
+        var websocketClient = new WebsocketClient(new Uri("ws://localhost:8089/all?qq=1197884312&verifyKey=INITKEYhzr2Rn32"))
+        {
+            IsReconnectionEnabled = true,
+            ReconnectTimeout = null
+        };
+        websocketClient.MessageReceived.Subscribe(msg =>
+        {
+            Shared.Logger.Info($"receive msg: {msg}");
+        });
+        await websocketClient.StartOrFail();
+        Console.ReadLine();
+    }
+
+
     /// <summary>
     /// 群信息发送
     /// </summary>
@@ -46,7 +82,7 @@ public class Tests
         var sendGroupMsg = await _bot.SendGroupMsg(_groupId, MessageContent);
         Assert.That(sendGroupMsg, Is.GreaterThanOrEqualTo(1));
         _groupMsgId = sendGroupMsg;
-        
+
         await Task.Delay(1000);
     }
 
@@ -57,8 +93,8 @@ public class Tests
     {
         var sendFriendMsg = await _bot.SendFriendMsg(_friendId, MessageContent);
         Assert.That(sendFriendMsg, Is.GreaterThanOrEqualTo(1));
-        _friendMsgId =sendFriendMsg;
-        
+        _friendMsgId = sendFriendMsg;
+
         await Task.Delay(1000);
     }
 
@@ -70,7 +106,7 @@ public class Tests
     {
         await SendGroupMsg();
         await SendFriendMsg();
-        
+
         var groupMiraiMsgContainer = await _bot.GetMessageById<GroupMiraiMsgContainer>(_groupMsgId, _groupId);
         var friendMiraiMsgContainer = await _bot.GetMessageById<FriendMiraiMsgContainer>(_friendMsgId, _friendId);
         Assert.Multiple(() =>
@@ -89,9 +125,10 @@ public class Tests
         await SendGroupMsg();
         await SendFriendMsg();
 
-        var friendQuoteId = await _bot.QuoteMessage(MiraiSubjectType.Friend, _friendId, _friendMsgId, "quote message test");
+        var friendQuoteId =
+            await _bot.QuoteMessage(MiraiSubjectType.Friend, _friendId, _friendMsgId, "quote message test");
         var groupQuoteId = await _bot.QuoteMessage(MiraiSubjectType.Group, _groupId, _groupMsgId, "quote message test");
-        
+
         Assert.Multiple(() =>
         {
             Assert.That(friendQuoteId, Is.GreaterThanOrEqualTo(1));

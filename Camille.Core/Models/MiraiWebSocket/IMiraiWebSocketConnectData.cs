@@ -14,12 +14,12 @@ public interface IMiraiWebSocketConnectData
     /// Ip Address
     /// </summary>
     public AdapterServerAddress ServerAddress { get; set; }
-    
+
     /// <summary>
     /// Ws连接Uri
     /// </summary>
     public Uri WsConnectUri { get; }
-    
+
     /// <summary>
     /// Http的服务地址
     /// </summary>

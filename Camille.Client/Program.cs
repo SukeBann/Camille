@@ -12,30 +12,19 @@ var manualResetEvent = new ManualResetEvent(false);
 
 Logger.InitLogger(new LogConfig(Path.Combine(Environment.CurrentDirectory, "Camille.log"), 30));
 
-var bot = MiraiBotFactory.CreateBotConfig(1197884312, "123456789")
-    .AddReceiveAdapter(ReceiveAdapterType.Websocket, "127.0.0.1:8080")
-    .AddApiAdapter(ApiAdapterType.Http, "127.0.0.1:8080")
+var bot = MiraiBotFactory.CreateBotConfig(1197884312, "INITKEYhzr2Rn32")
+    .AddReceiveAdapter(ReceiveAdapterType.Websocket, "localhost:8089")
+    .AddApiAdapter(ApiAdapterType.Http, "localhost:8089")
     .BuildBot();
 
 bot.OnMiraiEventReceived.Subscribe(x => { Logger.Info($"[EVENT]: [{x.EventType}]"); });
 
 bot.OnMiraiMessageReceived
-    .OfType<GroupMiraiMsgContainer>()
-    .Where(x => x.Sender.Group.Id == 587914615)
-    .Where(x => x.MessageChain.GetPlainMessage()
-                    .Contains("吗") ||
-                x.MessageChain.GetPlainMessage()
-                    .Contains("?") ||
-                x.MessageChain.GetPlainMessage()
-                    .Contains("？"))
+    .OfType<FriendMiraiMsgContainer>()
+    .Where(x => x.Sender.Id == 1052700448)
     .Subscribe(async x =>
     {
-        x.MessageChain.OfType<Plain>().ForEach(x => x.Text = x.Text
-            .Replace("?", "")
-            .Replace("？", "")
-            .Replace("吗", "!")
-        );
-        await bot.SendGroupMsg(x.Sender.Group.Id, x.MessageChain);
+        await bot.SendFriendMsg(x.Sender.Id, x.MessageChain);
     });
 
 await bot.LinkStart();

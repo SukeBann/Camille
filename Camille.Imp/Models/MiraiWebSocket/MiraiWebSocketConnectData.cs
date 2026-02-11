@@ -58,10 +58,11 @@ public class MiraiWebSocketConnectData : IMiraiWebSocketConnectData
     public Uri WsConnectUri
     {
         get
-        { var connectString = $"ws://{ServerAddress}/{ConnectChannelType.GetContentText()}"
+        {
+            var connectString = $"ws://{ServerAddress}/{ConnectChannelType.GetContentText()}"
                 .SetQueryParam("qq", QQ);
 
-            if (SessionKey is not null)
+            if (SessionKey is null)
             {
                 connectString.SetQueryParam("verifyKey", VerifyKey);
             }

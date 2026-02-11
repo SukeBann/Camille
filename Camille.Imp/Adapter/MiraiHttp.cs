@@ -97,10 +97,12 @@ public partial class MiraiHttp : IMiraiHttp, ICommonApiServer
         {
             request = request.WithHeader("Authorization", $"session {SessionKey}");
         }
+        request = request
+            .WithHeader("Content-Type", "application/json; charset=utf-8")
+            .WithHeader("Accept", "application/json");
 
-        var response = await request.PostStringAsync(data.ToJsonString(new JsonSerializerSettings()
-            {NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore}));
-
+        // 修复：使用 PostJsonAsync 而不是 PostStringAsync，确保正确设置 Content-Type
+        var response = await request.PostStringAsync(JsonConvert.SerializeObject(data));
         var result = await response.GetStringAsync();
 
         return EnsureSuccess(result, $"url={url}\r\npayload={data.ToJsonString()}");
