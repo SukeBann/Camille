@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Camille.Core.Enum.MiraiBot;
+﻿namespace Camille.Core.Enum.MiraiBot;
 
 /// <summary>
 /// 消息与事件接收的适配器

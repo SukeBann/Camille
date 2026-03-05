@@ -1,6 +1,4 @@
-﻿using System.Net;
-using System.Text;
-using Camille.Core.Attribute.ExtensionMethod;
+﻿using Camille.Core.Attribute.ExtensionMethod;
 using Camille.Core.Enum.MiraiWebSocket;
 using Camille.Core.Models;
 using Camille.Core.Models.MiraiWebSocket;

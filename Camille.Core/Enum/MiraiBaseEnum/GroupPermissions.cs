@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Runtime.Serialization;
 using Camille.Core.Attribute;
 
 namespace Camille.Core.Enum.MiraiBaseEnum;

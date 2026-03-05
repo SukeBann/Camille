@@ -1,4 +1,5 @@
 ﻿using Camille.Core.MiraiBase;
+using Camille.Core.MiraiBase.Contract;
 using Camille.Core.MiraiBase.Models.Base;
 using Camille.Shared.Extension;
 using Newtonsoft.Json;

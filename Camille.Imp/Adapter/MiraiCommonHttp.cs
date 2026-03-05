@@ -20,11 +20,11 @@ namespace Camille.Imp.Adapter;
 /// <br/>因为HttpClient是由Flurl.Http内部创建并复用的.
 /// <br/>这样做的目的在于将Bot的功能解耦。
 /// </summary>
-public partial class MiraiHttp : IMiraiHttp, ICommonApiServer
+public partial class MiraiCommonHttp : IMiraiHttp, IMiraiCommonApi
 {
     #region Properties
 
-    public MiraiHttp(AdapterServerAddress httpAddress)
+    public MiraiCommonHttp(AdapterServerAddress httpAddress)
     {
         HttpAddress = httpAddress;
     }

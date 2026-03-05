@@ -1,12 +1,11 @@
-﻿using System.Diagnostics;
-using System.Reflection;
+﻿using System.Reflection;
 using Camille.Core.Enum.MiraiBaseEnum;
-using Camille.Core.MiraiBase;
 using Camille.Core.MiraiBase.Contract;
 using Camille.Core.MiraiBase.Models;
 using Camille.Core.MiraiBase.Models.Base;
 using Camille.Imp.MiraiBase.Event;
 using Camille.Imp.MiraiBase.Message;
+using Camille.Imp.MiraiBase.Message.MessageContainer;
 using Camille.Shared.Extension;
 using Newtonsoft.Json;
 

@@ -1,7 +1,7 @@
 ﻿using System.Reactive.Subjects;
 using Camille.Core.Adapter;
 
-namespace Camille.Core.MiraiBase;
+namespace Camille.Core.MiraiBase.Contract;
 
 /// <summary>
 /// 将Websocket收到的文本数据解析为

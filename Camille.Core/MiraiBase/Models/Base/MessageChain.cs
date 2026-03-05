@@ -1,4 +1,5 @@
-﻿using Camille.Core.MiraiBase.Models.BasicMessage;
+﻿using Camille.Core.MiraiBase.Contract;
+using Camille.Core.MiraiBase.Models.BasicMessage;
 using Masuit.Tools;
 
 namespace Camille.Core.MiraiBase.Models.Base;
@@ -43,40 +44,6 @@ public class MessageChain : List<IMiraiBasicMessage>
         return !plain.Any() ? new List<string>() : plain.Select(x => x.Text).ToList<string>();
     }
 
-    // TODO 将这三个方法作为扩展方法在Camille.Imp中实现
-    // /// <summary>
-    // /// 将该消息链 发送到指定接受信息容器的目标
-    // /// </summary>
-    // /// <param name="groupMiraiMsg">群信息</param>
-    // /// <returns></returns>
-    // public async Task<string> SendToAsync(GroupMiraiMsgContainer groupMiraiMsg)
-    // {
-    //     throw new NotImplementedException();
-    //     // return await groupMessage.SendMessageAsync(this);
-    // }
-    //
-    // /// <summary>
-    // /// 将该消息链 发送到指定接受信息容器的目标
-    // /// </summary>
-    // /// <param name="friendMiraiMsg"></param>
-    // /// <returns></returns>
-    // public async Task<string> SendToAsync(FriendMiraiMsgContainer friendMiraiMsg)
-    // {
-    //     throw new NotImplementedException();
-    //     // return await friendMessage.SendMessageAsync(this);
-    // }
-    //
-    // /// <summary>
-    // /// 将本消息链发送到指定接收器
-    // /// </summary>
-    // /// <param name="tempMiraiMsg"></param>
-    // /// <returns></returns>
-    // public async Task<string> SendToAsync(TempMiraiMsgContainer tempMiraiMsg)
-    // {
-    //     throw new NotImplementedException();
-    //     // return await tempMessage.SendMessageAsync(this);
-    // }
-
     /// <summary>
     /// 自动转换单个消息为消息链
     /// </summary>
@@ -96,7 +63,14 @@ public class MessageChain : List<IMiraiBasicMessage>
     {
         return new MessageChain(){ new Plain(message) };
     }
-
+    
+    /// <summary>
+    /// 转换 FormattableString 为单文本消息链
+    /// </summary>
+    public static implicit operator MessageChain(FormattableString message)
+    {
+        return new MessageChain(){ new Plain(message.ToString()) };
+    }
 
     /// <summary>
     /// 拼接两个消息链

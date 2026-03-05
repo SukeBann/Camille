@@ -1,6 +1,6 @@
 ﻿using Camille.Core.Enum.MiraiBaseEnum;
 
-namespace Camille.Core.MiraiBase;
+namespace Camille.Core.MiraiBase.Contract;
 
 /// <summary>
 /// 消息链内基础消息类型定义

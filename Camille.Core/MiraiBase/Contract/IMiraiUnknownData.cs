@@ -1,4 +1,4 @@
-﻿namespace Camille.Core.MiraiBase;
+﻿namespace Camille.Core.MiraiBase.Contract;
 
 /// <summary>
 /// 未知Mirai数据类型

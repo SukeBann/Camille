@@ -1,7 +1,7 @@
 using Camille.Core.Enum.MiraiBot;
 using Camille.Core.Models;
 
-namespace Camille.Core.MiraiBase;
+namespace Camille.Core.MiraiBase.Contract;
 
 public interface IMiraiBotConfig
 {

@@ -7,14 +7,8 @@ namespace Camille.Core.MiraiBase.Models;
 /// <summary>
 /// 创建<see cref="GroupMember"/>的实例
 /// </summary>
-public class GroupMember
+public record GroupMember : Account
 {
-    /// <summary>
-    /// 群员的QQ号
-    /// </summary>
-    [JsonProperty("id")]
-    public long Id { get; init; }
-
     /// <summary>
     /// 群员的群昵称
     /// </summary>

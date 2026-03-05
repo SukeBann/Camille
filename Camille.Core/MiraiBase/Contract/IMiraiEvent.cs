@@ -1,6 +1,6 @@
 ﻿using Camille.Core.Enum.MiraiBaseEnum;
 
-namespace Camille.Core.MiraiBase;
+namespace Camille.Core.MiraiBase.Contract;
 
 /// <summary>
 /// Mirai事件

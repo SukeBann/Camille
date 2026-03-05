@@ -1,5 +1,4 @@
-﻿using System.Net;
-using Camille.Core.Enum.MiraiWebSocket;
+﻿using Camille.Core.Enum.MiraiWebSocket;
 
 namespace Camille.Core.Models.MiraiWebSocket;
 

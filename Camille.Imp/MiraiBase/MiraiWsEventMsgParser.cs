@@ -1,7 +1,7 @@
 ﻿using System.Reactive.Subjects;
 using Camille.Core.Adapter;
 using Camille.Core.Enum.MiraiBaseEnum;
-using Camille.Core.MiraiBase;
+using Camille.Core.MiraiBase.Contract;
 using Camille.Shared.Extension;
 using Newtonsoft.Json.Linq;
 

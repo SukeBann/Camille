@@ -1,6 +1,4 @@
-﻿using System.Net.WebSockets;
-using System.Reactive.Subjects;
-using Camille.Core.Models.MiraiWebSocket;
+﻿using Camille.Core.Models.MiraiWebSocket;
 
 
 namespace Camille.Core.Adapter;

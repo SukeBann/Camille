@@ -1,10 +1,9 @@
-﻿using System.Diagnostics;
-using System.Reactive.Subjects;
+﻿using System.Reactive.Subjects;
 using Camille.Core.Adapter;
 using Camille.Core.Enum.MiraiBaseEnum;
 using Camille.Core.Enum.MiraiBot;
 using Camille.Core.Enum.MiraiWebSocket;
-using Camille.Core.MiraiBase;
+using Camille.Core.MiraiBase.Contract;
 using Camille.Core.Models.Exceptions;
 using Camille.Imp.Adapter;
 using Camille.Imp.Models.MiraiWebSocket;
@@ -29,7 +28,7 @@ public class MiraiBot : IMiraiBot
     /// <summary>
     /// Mirai Api请求服务
     /// </summary>
-    public ICommonApiServer? CommonApiServer { get; set; }
+    public IMiraiCommonApi Api {  get; private set; }
 
     private CancellationTokenSource CancellationTokenSource { get; init; }
 
@@ -72,14 +71,14 @@ public class MiraiBot : IMiraiBot
         switch (MiraiBotConfig.ApiAdapterType)
         {
             case ApiAdapterType.Http:
-                var miraiHttp = new MiraiHttp(address);
+                var miraiHttp = new MiraiCommonHttp(address);
                 await miraiHttp.VerifyKey(verifyKey);
                 var bind = await miraiHttp.Bind(qq);
                 if (!bind)
                 {
                     throw new MiraiException("Mirai绑定会话失败", MiraiExceptionType.UnKnownException);
                 }
-                CommonApiServer = miraiHttp; 
+                Api = miraiHttp; 
                 break;
             case ApiAdapterType.Websocket:
             case ApiAdapterType.ReverseWebsocket:

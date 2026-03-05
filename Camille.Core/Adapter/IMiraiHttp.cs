@@ -1,6 +1,5 @@
 ﻿using Camille.Core.Enum.CommonInterfaceEnum;
 using Camille.Core.MiraiBase.Models.CommonApi;
-using Camille.Core.Models.CommonInterfaceModel;
 
 namespace Camille.Core.Adapter;
 

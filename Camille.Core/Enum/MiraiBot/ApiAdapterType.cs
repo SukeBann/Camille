@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Camille.Core.Enum.MiraiBot;
+﻿namespace Camille.Core.Enum.MiraiBot;
 
 /// <summary>
 /// 发送消息或进行api调用的 接口适配器类型

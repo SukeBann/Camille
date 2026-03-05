@@ -16,6 +16,11 @@ public static class Logger
         LoggerImp.InitLogger(logConfig);
     }
 
+    public static void SetLogger(ILogger logger)
+    {
+        LoggerImp = logger;
+    }
+
     public static void ShowLog()
     {
         throw new NotImplementedException();

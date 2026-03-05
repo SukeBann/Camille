@@ -1,7 +1,5 @@
 ﻿using Camille.Core.Enum.MiraiBaseEnum;
-using Camille.Core.MiraiBase;
 using Camille.Core.MiraiBase.Models;
-using Camille.Core.MiraiBase.Models.Base;
 using Newtonsoft.Json;
 
 namespace Camille.Imp.MiraiBase.Message.MessageContainer;
@@ -17,5 +15,5 @@ public record FriendMiraiMsgContainer : MiraiMsgContainerBase
     /// 消息发送者
     /// </summary>
     [JsonProperty("sender")]
-    public Account Sender { get; set; }
+    public override Account? Sender { get; set; }
 }

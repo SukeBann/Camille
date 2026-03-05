@@ -1,7 +1,6 @@
 ﻿using Camille.Core.Enum.MiraiBot;
-using Camille.Core.MiraiBase;
+using Camille.Core.MiraiBase.Contract;
 using Camille.Core.Models;
-using Masuit.Tools;
 
 namespace Camille.Imp.MiraiBase;
 

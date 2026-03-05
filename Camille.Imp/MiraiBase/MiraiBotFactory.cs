@@ -1,7 +1,4 @@
-﻿using Camille.Core.Enum.MiraiBot;
-using Camille.Core.MiraiBase;
-using Camille.Imp.Models;
-using Camille.Imp.Models.MiraiWebSocket;
+﻿using Camille.Core.MiraiBase.Contract;
 
 namespace Camille.Imp.MiraiBase;
 

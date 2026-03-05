@@ -1,5 +1,4 @@
-﻿using System.Security.Principal;
-using Camille.Core.Enum.MiraiBaseEnum;
+﻿using Camille.Core.Enum.MiraiBaseEnum;
 using Camille.Core.MiraiBase.Models;
 using Newtonsoft.Json;
 

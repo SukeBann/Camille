@@ -1,7 +1,7 @@
 ﻿using System.Reactive.Subjects;
 using Camille.Core.Adapter;
 
-namespace Camille.Core.MiraiBase;
+namespace Camille.Core.MiraiBase.Contract;
 
 /// <summary>
 /// 单个MiraiBox实例的接口定义
@@ -38,7 +38,7 @@ public interface IMiraiBot
     /// <summary>
     /// Mirai Api请求服务
     /// </summary>
-    public ICommonApiServer CommonApiServer { get; set; }
+    public IMiraiCommonApi Api { get; }
 
     #endregion
 }

@@ -11,7 +11,7 @@ public record Account
     /// 好友qq号
     /// </summary>
     [JsonProperty("id")]
-    public int Id { get; init; }
+    public long Id { get; init; }
 
     /// <summary>
     /// 好友昵称
