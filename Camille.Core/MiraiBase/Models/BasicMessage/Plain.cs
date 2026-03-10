@@ -1,4 +1,5 @@
 using Camille.Core.Enum.MiraiBaseEnum;
+using Camille.Core.MiraiBase.Contract;
 using Camille.Core.MiraiBase.Models.Base;
 using Newtonsoft.Json;
 
@@ -39,6 +40,11 @@ public record Plain : MiraiBasicMessageBase
     /// <param name="text">文本</param>
     /// <returns><see cref="Plain"/></returns>
     public static implicit operator Plain(string text)
+    {
+        return new Plain(text);
+    }
+
+    public static IMiraiBasicMessage ToIMiraiBasicMessage(string text)
     {
         return new Plain(text);
     }
