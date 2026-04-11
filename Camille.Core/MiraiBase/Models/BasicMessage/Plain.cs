@@ -59,6 +59,12 @@ public record Plain : MiraiBasicMessageBase
         return plain.Text;
     }
 
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return Text;
+    }
+
     #endregion
 
     /// <summary>
