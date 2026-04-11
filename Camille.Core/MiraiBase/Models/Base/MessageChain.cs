@@ -1,4 +1,5 @@
-﻿using Camille.Core.MiraiBase.Contract;
+﻿using Camille.Core.Enum.MiraiBaseEnum;
+using Camille.Core.MiraiBase.Contract;
 using Camille.Core.MiraiBase.Models.BasicMessage;
 using Masuit.Tools;
 
@@ -32,6 +33,24 @@ public class MessageChain : List<IMiraiBasicMessage>
     {
         var plain = this.OfType<Plain>().ToList();
         return !plain.Any() ? string.Empty : plain.Select(x => x.Text).Join("");
+    }
+
+    /// <summary>
+    /// 削除消息中 除了文本 表情和图片 分享外的消息元素
+    /// </summary>
+    /// <returns></returns>
+    public MessageChain GetMessageDetail()
+    {
+        var messageChain = new MessageChain();
+        messageChain.AddRange(this.Where(x =>
+            x.MiraiBasicMsgType is MiraiBasicMsgType.Plain or MiraiBasicMsgType.Face or MiraiBasicMsgType.Image or MiraiBasicMsgType.MusicShare));
+        return messageChain;
+    }
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return !this.Any() ? string.Empty : string.Join("", this).Trim();
     }
 
     /// <summary>

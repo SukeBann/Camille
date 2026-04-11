@@ -30,7 +30,7 @@ public class ContentTextAttribute : System.Attribute
     {
     }
 
-    public ContentTextAttribute(string contentText) => this.ContentTextValue = contentText;
+    public ContentTextAttribute(string contentText) => ContentTextValue = contentText;
 
     #endregion
 

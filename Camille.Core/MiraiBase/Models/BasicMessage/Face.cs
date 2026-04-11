@@ -22,4 +22,7 @@ public record Face : MiraiBasicMessageBase
     /// </summary>
     [JsonProperty("name")]
     public string FaceName { get; set; }
+
+    /// <inheritdoc />
+    public override string ToString() => "{这里是一个聊天表情:" + FaceName + "}";
 }

@@ -38,4 +38,7 @@ public record Image : MiraiBasicMessageBase
     /// </summary>
     [JsonProperty("base64")]
     public string Base64 { get; set; }
+
+    /// <inheritdoc />
+    public override string ToString() => "{这里是一张图片:" + ImageId + "}";
 }

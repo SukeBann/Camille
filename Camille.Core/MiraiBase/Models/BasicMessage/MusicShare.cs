@@ -52,4 +52,7 @@ public record MusicShare : MiraiBasicMessageBase
     /// </summary>
     [JsonProperty("brief")]
     public string Brief { get; set; }
+
+    /// <inheritdoc />
+    public override string ToString() => "{这里是一个去掉了链接的分析消息:" + Title + "}";
 }
